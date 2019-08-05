@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import EventCard from "../components/EventCard";
 import API from "../utils/API";
 
 class Detail extends Component {
@@ -27,16 +28,9 @@ class Detail extends Component {
               </h1>
             </Jumbotron>
           </Col>
-          <Col size="md-2 md-offset-10">
-            <Link to="/ONG/1">See More</Link>
-          </Col>       
-        </Row>
-        
-        <hr></hr>
-        <Row>
           <Col size="md-10 md-offset-1">
             <article>
-              <h1>"Event Info"</h1>
+              <h1>"ONG Info"</h1>
               <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -44,6 +38,42 @@ class Detail extends Component {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
             </article>
+          </Col>   
+        </Row>
+        
+        <hr></hr>
+        <Row>
+        <Col size="md-12">
+            <Jumbotron>
+              <h1>
+                "ONG Event Cards"
+              </h1>
+            </Jumbotron>
+          </Col>
+        <Col size="col-5 offset-1">
+            <Link to="/Event/1">
+              <EventCard
+                  guessCard="1"
+                  id="1"
+                  key="1"
+                  name='"Event"'
+                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
+                  location="in your mind"
+                  >
+              </EventCard>
+            </Link>
+          </Col>
+          <Col size="col-5 offset-1">
+            <Link to="/Event/1">
+              <EventCard
+                  guessCard="2"
+                  id="2"
+                  key="2"
+                  name='"Donation"'
+                  image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
+                  location="in your mind"
+                  />
+            </Link>
           </Col>
         </Row>
       </Container>
