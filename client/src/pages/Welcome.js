@@ -59,8 +59,8 @@ class Books extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>Dónde Ayudar?!</h1>
-              <h3>Bienvenidos a la app para buscar ayudar.</h3>
+              <p>Dónde Ayudar?!</p>
+              <p>Bienvenidos a la app para buscar ayudar.</p>
 
             </Jumbotron>
             <Link to="/Search">

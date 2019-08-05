@@ -59,7 +59,7 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>New to DondeAyudar? Register</h1>
+              <p>New to DondeAyudar? Register</p>
               <h3>Email us al dondeayudar@gmail.com for your verification</h3>
             </Jumbotron>
             <form>
@@ -81,6 +81,23 @@ class Books extends Component {
                 name="Password"
                 placeholder="Validation PassWord (contact Us)"
               />
+              <Input
+              name="Password"
+              placeholder="details"
+              />
+              <Input
+              name="Password"
+              placeholder="details"
+              />
+              <Input
+              name="Password"
+              placeholder="details"
+              />
+              <Input
+              name="Password"
+              placeholder="details"
+              />
+              
               <Link to="/ONG">
                 <FormBtn>
                   Register

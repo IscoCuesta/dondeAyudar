@@ -23,9 +23,9 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>
+              <p>
                 "ONG Information"
-              </h1>
+              </p>
             </Jumbotron>
           </Col>
           <Col size="md-10 md-offset-1">
@@ -45,9 +45,9 @@ class Detail extends Component {
         <Row>
         <Col size="md-12">
             <Jumbotron>
-              <h1>
+              <p>
                 "ONG Event Cards"
-              </h1>
+              </p>
             </Jumbotron>
           </Col>
         <Col size="col-5 offset-1">

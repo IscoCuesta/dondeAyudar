@@ -27,7 +27,7 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Register new event</h1>
+              <p>Register new event</p>
             </Jumbotron>
             <form>
             <Input

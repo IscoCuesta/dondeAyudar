@@ -57,14 +57,12 @@ class Books extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
-              <h1>if ypu are a ONG Login</h1>
+              <p>if you are a ONG Login</p>
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
                 name="Username"
                 placeholder="Username"
               />

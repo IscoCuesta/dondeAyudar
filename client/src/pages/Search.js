@@ -22,17 +22,17 @@ class Books extends Component {
         <Row>
           <Col size="md-4">
             <Jumbotron>
-              <h1>Eventos</h1>
+              <p>Eventos</p>
             </Jumbotron>
           </Col>
           <Col size="md-4">
             <Jumbotron>
-              <h1>Aportaciones</h1>
+              <p>Aportaciones</p>
             </Jumbotron>
           </Col>
           <Col size="md-4">
             <Jumbotron>
-              <h1>Donaciones</h1>
+              <p>Donaciones</p>
             </Jumbotron>
           </Col>
         </Row>
@@ -40,7 +40,7 @@ class Books extends Component {
           <Col size="md-5">
           </Col>
           <Col size="md-2 offset-md-5">
-              <h1>"Filters"</h1>
+              <p>"Filters"</p>
           </Col>
 
         </Row>
@@ -50,7 +50,7 @@ class Books extends Component {
           <Col size="md-5">                
           </Col>
           <Col size="md-2 offset-md-5">            
-              <h1>"Cards"</h1>            
+              <p>"Cards"</p>            
           </Col>
           <Col size="md-5">                
           </Col>

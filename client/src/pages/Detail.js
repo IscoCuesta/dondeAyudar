@@ -22,9 +22,9 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>
+              <p>
                 "ONG Information"
-              </h1>
+              </p>
             </Jumbotron>
           </Col>
           <Col size="md-2 md-offset-10">
