@@ -86,16 +86,48 @@ class Books extends Component {
               placeholder="details"
               />
               <Input
-              name="Password"
-              placeholder="details"
+              name="Descripcion"
+              placeholder="Descripcion"
               />
               <Input
-              name="Password"
-              placeholder="details"
+              name="Mision"
+              placeholder="Mision"
               />
               <Input
-              name="Password"
-              placeholder="details"
+              name="Vision"
+              placeholder="Vision"
+              />
+              <Input
+              name="objetivo"
+              placeholder="Objetivo"
+              />
+              <Input
+              name="email"
+              placeholder="Email"
+              />
+              <Input
+              name="telefono"
+              placeholder="telefono"
+              />
+              <Input
+              name="pagina"
+              placeholder="pagina"
+              />
+              <Input
+              name="pagina"
+              placeholder="direccion"
+              />
+              <Input
+              name="pagina"
+              placeholder="logo"
+              />
+              <Input
+              name="pagina"
+              placeholder="Portada"
+              />
+              <Input
+              name="pagina"
+              placeholder="Necesidades Fijas"
               />
               
               <Link to="/ONG">
