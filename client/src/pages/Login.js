@@ -10,8 +10,8 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 class Books extends Component {
   state = {
     books: [],
-    title: "",
-    author: "",
+    user: "",
+    password: "",
     synopsis: ""
   };
 
@@ -43,12 +43,11 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+      API.authLogin({
+        user: this.state.user,
+        password: this.state.password
       })
-        .then(res => this.loadBooks())
+        .then(res => console.log(res))
         .catch(err => console.log(err));
     }
   };
@@ -63,18 +62,26 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input
+                value={this.state.username}
+                onChange={this.handleInputChange}
                 name="Username"
                 placeholder="Username"
               />
               <Input
-                value={this.state.author}
+                value={this.state.password}
                 onChange={this.handleInputChange}
                 name="Password"
                 placeholder="PassWord"
               />
+              <FormBtn
+                disabled={!(this.state.username && this.state.password)}
+                onClick={this.handleFormSubmit}
+              >
+                Login
+              </FormBtn>
               <Link to="/ONG">
                 <FormBtn>
-                  Log in
+                  /ONG
                 </FormBtn>
               </Link>
               <Link to="/Register">
