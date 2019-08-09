@@ -49,6 +49,7 @@ class Event extends Component {
       [name]: selectedOption
     }, () => {
       console.log(this.state);
+      console.log(this.state.endDate._d);
     }
     );
   };
@@ -61,8 +62,8 @@ class Event extends Component {
       necesidad: this.state.necesidad.value,
       resumen: this.state.resumen,
       descripcion: this.state.descripcion,
-      fechaInicial: this.state.startDate,
-      fechaFinal: this.state.endDate,
+      fechaInicial: this.state.startDate._d,
+      fechaFinal: this.state.endDate._d,
       lugar: this.state.lugar,
       link: this.state.link,
       imagen: this.state.imagen,

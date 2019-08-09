@@ -5,8 +5,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-
+import { Input, TextArea, FormBtn, Separator } from "../components/Form";
+import Select from 'react-select';
 
 class Register extends Component {
   state = {
@@ -46,6 +46,15 @@ class Register extends Component {
       .catch(err => console.log(err));
   };
 
+  handleSelectChange = (selectedOption, meta) => {
+    const { name } = meta;
+    this.setState({
+      [name]: selectedOption
+    }, () => {
+      console.log(this.state);
+    }
+    );
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -80,14 +89,11 @@ class Register extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
-            <Jumbotron>
-
-          {/*     <p>New to DondeAyudar? Register</p>
-              <h3>Email us at dondeayudar@gmail.com for your verification</h3> */}
-            </Jumbotron>
+          <Col size="md-2"></Col>
+          <Col size="md-8">
+            <h3 className="mb-3 mt-3">Registra tu organización</h3>
             <form>
-            <Input
+            {/* <Input
                 value={this.state.username}
                 onChange={this.handleInputChange}
                 name="username"
@@ -104,79 +110,130 @@ class Register extends Component {
                 onChange={this.handleInputChange}
                 name="validation"
                 placeholder="Contraseña de validación (La recibirás en un correo electrónico)"
-              />
+              /> */}
               <Input
               value={this.state.nombre}
               onChange={this.handleInputChange}
               name="nombre"
               placeholder="Nombre de tu organización/fundación"
               />
+              <Row>
+                <Col size="md-6">
+                  <Select
+                    name= "objeto"
+                    value={this.state.objeto}
+                    placeholder="¿Cuál es el objeto de tu organización?"
+                    onChange={this.handleSelectChange}
+                    options={[
+                      {value: "niños", label: "Niños / Adolescentes"}, 
+                      {value: "mujeres", label: "Mujeres"},
+                      {value: "senectud", label: "Adultos mayores"},
+                      {value: "enfermedad", label: "Enfermedades / Adicciones"},
+                      {value: "discapacidad", label: "Personas con capacidades diferentes"},
+                      {value: "casa", label: "Casa hogar / Asilo / Comedor"},
+                      {value: "cultura", label: "Cultura / Educación"},
+                      {value: "reinsercion", label: "Reinserción social"},
+                      {value: "victimas", label: "Víctimas de violencia"},
+                      {value: "migrantes", label: "Migrantes"},
+                      {value: "ambiente", label: "Medio ambiente"},
+                      {value: "animales", label: "Animales"},
+                      {value: "otros", label: "Otros"}
+                    ]}
+                  />
+                </Col>
+                <Col size="md-6">
+                  <Select
+                    name= "necesidad"
+                    value={this.state.necesidad}
+                    placeholder="Selecciona el tipo de ayuda que estás buscando"
+                    onChange={this.handleSelectChange}
+                    options={[
+                        {value: "dinero", label: "Apoyo económico"}, 
+                        {value: "voluntarios", label: "Voluntariado"},
+                        {value: "ropa", label: "Ropa"},
+                        {value: "comida", label: "Comida"},
+                        {value: "juguetes", label: "Juguetes"},
+                        {value: "otros", label: "Otros"}
+                      ]}
+                  />
+                </Col>
+              </Row>
+              
+              <Separator></Separator>
               <TextArea
               value={this.state.descripcion}
               onChange={this.handleInputChange}
               name="descripcion"
               placeholder="Proporciona una descripción básica de tu organización"
               />
-              <TextArea
-              value={this.state.mision}
-              onChange={this.handleInputChange}
-              name="mision"
-              placeholder="Misión"
-              />
-              <TextArea
-              value={this.state.vision}
-              onChange={this.handleInputChange}
-              name="vision"
-              placeholder="Visión"
-              />
-              <Input
-              value={this.state.objetivo}
-              onChange={this.handleInputChange}
-              name="objetivo"
-              placeholder="Especifica el objeto de tu fundación"
-              />
-              <Input
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              name="email"
-              placeholder="Introduce tu email"
-              />
-              <Input
-              value={this.state.telefono}
-              onChange={this.handleInputChange}
-              name="telefono"
-              placeholder="Introduce tu teléfono"
-              />
-              <Input
-              value={this.state.paginaweb}
-              onChange={this.handleInputChange}
-              name="paginaweb"
-              placeholder="Introduce el URL de tu página web"
-              />
+              <Row>
+                <Col size="md-6">
+                  <TextArea
+                  value={this.state.mision}
+                  onChange={this.handleInputChange}
+                  name="mision"
+                  placeholder="Misión"
+                  />
+                </Col>
+                <Col size="md-6">
+                  <TextArea
+                  value={this.state.vision}
+                  onChange={this.handleInputChange}
+                  name="vision"
+                  placeholder="Visión"
+                  />
+                </Col>
+              </Row>
               <Input
               value={this.state.direccion}
               onChange={this.handleInputChange}
               name="direccion"
               placeholder="Dirección de la fundación"
               />
-              <Input
-              value={this.state.logo}
-              onChange={this.handleInputChange}
-              name="logo"
-              placeholder="Inserta el URL del logo de tu fundación"
-              />
-              <Input
-              value={this.state.portada}
-              onChange={this.handleInputChange}
-              name="portada"
-              placeholder="Inserta el URL de una imagen para tu portada"
-              />
-              <Input
-              value={this.state.necesidades}
-              onChange={this.handleInputChange}
-              name="necesidades"
-              placeholder="Necesidades Fijas"
-              />
+              <Row>
+                <Col size="md-4">
+                  <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name="email"
+                  placeholder="Introduce tu email de contacto"
+                  />
+                </Col>
+                <Col size="md-4">
+                  <Input
+                  value={this.state.telefono}
+                  onChange={this.handleInputChange}
+                  name="telefono"
+                  placeholder="Introduce tu teléfono"
+                  />
+                </Col>
+                <Col size="md-4">
+                  <Input
+                  value={this.state.paginaweb}
+                  onChange={this.handleInputChange}
+                  name="paginaweb"
+                  placeholder="Introduce el URL de tu website"
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col size="md-6">
+                <Input
+                value={this.state.logo}
+                onChange={this.handleInputChange}
+                name="logo"
+                placeholder="Inserta el URL del logo de tu fundación"
+                />
+                </Col>
+                <Col size="md-6">
+                <Input
+                value={this.state.portada}
+                onChange={this.handleInputChange}
+                name="portada"
+                placeholder="Inserta el URL de una imagen para tu portada"
+                />
+                </Col>
+              </Row>
               
               <FormBtn onClick={this.handleFormSubmit}>
                 Register
