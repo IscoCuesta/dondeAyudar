@@ -5,6 +5,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -24,11 +25,13 @@ class Event extends Component {
     link: "",
     imagen: "",
     organization: "Default"
+
   };
 
   componentDidMount() {
     // this.loadBooks();
   }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -69,10 +72,12 @@ class Event extends Component {
       .catch(err => console.log(err));
   };
 
+
   render() {
     return (
       <Container fluid>
         <Row>
+
           <Col size="md-2"></Col>
           <Col size="md-8">
             <h3 className="mb-3 mt-3">Crea un nuevo post</h3>
@@ -181,6 +186,7 @@ class Event extends Component {
               <Link to="/ONG">
                 
               </Link>
+
 
           </Col>
         </Row>

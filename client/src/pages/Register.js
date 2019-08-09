@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
+
 class Register extends Component {
   state = {
     username: "",
@@ -24,11 +25,27 @@ class Register extends Component {
     logo: "",
     portada: "",
     necesidades: ""
+
   };
 
   componentDidMount() {
     // this.loadBooks();
   }
+
+  loadBooks = () => {
+    API.getBooks()
+      .then(res =>
+        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+      )
+      .catch(err => console.log(err));
+  };
+
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.loadBooks())
+      .catch(err => console.log(err));
+  };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -39,6 +56,7 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+
     API.saveOrg({
       nombre: this.state.nombre,
       descripcion: this.state.descripcion,
@@ -55,6 +73,7 @@ class Register extends Component {
     })
       .then(res => console.log(res))
       .catch(err => console.log(err));
+
   };
 
   render() {
@@ -63,6 +82,7 @@ class Register extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
+
           {/*     <p>New to DondeAyudar? Register</p>
               <h3>Email us at dondeayudar@gmail.com for your verification</h3> */}
             </Jumbotron>
@@ -163,6 +183,7 @@ class Register extends Component {
               </FormBtn>
               <Link to="/ONG">
                 
+
               </Link>
             </form>
           </Col>
@@ -171,5 +192,6 @@ class Register extends Component {
     );
   }
 }
+
 
 export default Register;
