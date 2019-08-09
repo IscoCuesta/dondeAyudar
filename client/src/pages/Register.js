@@ -7,12 +7,25 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Books extends Component {
+
+class Register extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    username: "",
+    password: "",
+    validation: "",
+    nombre: "",
+    descripcion: "",
+    mision: "",
+    vision: "",
+    objetivo: "",
+    email: "",
+    telefono: "",
+    paginaweb: "",
+    direccion: "",
+    logo: "",
+    portada: "",
+    necesidades: ""
+
   };
 
   componentDidMount() {
@@ -33,6 +46,7 @@ class Books extends Component {
       .catch(err => console.log(err));
   };
 
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -42,15 +56,24 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
+
+    API.saveOrg({
+      nombre: this.state.nombre,
+      descripcion: this.state.descripcion,
+      mision: this.state.mision,
+      vision: this.state.vision,
+      objetivo: this.state.objetivo,
+      email: this.state.email,
+      telefono: this.state.telefono,
+      paginaweb: this.state.paginaweb,
+      direccion: this.state.direccion,
+      logo: this.state.logo,
+      portada: this.state.portada,
+      necesidades: this.state.necesidades
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+
   };
 
   render() {
@@ -59,80 +82,108 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <p>New to DondeAyudar? Register</p>
-              <h3>Email us al dondeayudar@gmail.com for your verification</h3>
+
+          {/*     <p>New to DondeAyudar? Register</p>
+              <h3>Email us at dondeayudar@gmail.com for your verification</h3> */}
             </Jumbotron>
             <form>
             <Input
-                value={this.state.title}
+                value={this.state.username}
                 onChange={this.handleInputChange}
-                name="Username"
-                placeholder="Username"
+                name="username"
+                placeholder="Nombre de usuario"
               />
               <Input
-                value={this.state.author}
+                value={this.state.password}
                 onChange={this.handleInputChange}
-                name="Password"
-                placeholder="PassWord"
+                name="password"
+                placeholder="Contraseña"
               />
               <Input
-                value={this.state.author}
+                value={this.state.validation}
                 onChange={this.handleInputChange}
-                name="Password"
-                placeholder="Validation PassWord (contact Us)"
+                name="validation"
+                placeholder="Contraseña de validación (La recibirás en un correo electrónico)"
               />
               <Input
-              name="Password"
-              placeholder="details"
+              value={this.state.nombre}
+              onChange={this.handleInputChange}
+              name="nombre"
+              placeholder="Nombre de tu organización/fundación"
+              />
+              <TextArea
+              value={this.state.descripcion}
+              onChange={this.handleInputChange}
+              name="descripcion"
+              placeholder="Proporciona una descripción básica de tu organización"
+              />
+              <TextArea
+              value={this.state.mision}
+              onChange={this.handleInputChange}
+              name="mision"
+              placeholder="Misión"
+              />
+              <TextArea
+              value={this.state.vision}
+              onChange={this.handleInputChange}
+              name="vision"
+              placeholder="Visión"
               />
               <Input
-              name="Descripcion"
-              placeholder="Descripcion"
-              />
-              <Input
-              name="Mision"
-              placeholder="Mision"
-              />
-              <Input
-              name="Vision"
-              placeholder="Vision"
-              />
-              <Input
+              value={this.state.objetivo}
+              onChange={this.handleInputChange}
               name="objetivo"
-              placeholder="Objetivo"
+              placeholder="Especifica el objeto de tu fundación"
               />
               <Input
+              value={this.state.email}
+              onChange={this.handleInputChange}
               name="email"
-              placeholder="Email"
+              placeholder="Introduce tu email"
               />
               <Input
+              value={this.state.telefono}
+              onChange={this.handleInputChange}
               name="telefono"
-              placeholder="telefono"
+              placeholder="Introduce tu teléfono"
               />
               <Input
-              name="pagina"
-              placeholder="pagina"
+              value={this.state.paginaweb}
+              onChange={this.handleInputChange}
+              name="paginaweb"
+              placeholder="Introduce el URL de tu página web"
               />
               <Input
-              name="pagina"
-              placeholder="direccion"
+              value={this.state.direccion}
+              onChange={this.handleInputChange}
+              name="direccion"
+              placeholder="Dirección de la fundación"
               />
               <Input
-              name="pagina"
-              placeholder="logo"
+              value={this.state.logo}
+              onChange={this.handleInputChange}
+              name="logo"
+              placeholder="Inserta el URL del logo de tu fundación"
               />
               <Input
-              name="pagina"
-              placeholder="Portada"
+              value={this.state.portada}
+              onChange={this.handleInputChange}
+              name="portada"
+              placeholder="Inserta el URL de una imagen para tu portada"
               />
               <Input
-              name="pagina"
+              value={this.state.necesidades}
+              onChange={this.handleInputChange}
+              name="necesidades"
               placeholder="Necesidades Fijas"
               />
+              
+              <FormBtn onClick={this.handleFormSubmit}>
+                Register
+              </FormBtn>
               <Link to="/ONG">
-                <FormBtn>
-                  Register
-                </FormBtn>
+                
+
               </Link>
             </form>
           </Col>
@@ -142,4 +193,5 @@ class Books extends Component {
   }
 }
 
-export default Books;
+
+export default Register;
