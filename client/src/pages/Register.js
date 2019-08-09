@@ -129,7 +129,6 @@ class Books extends Component {
               name="pagina"
               placeholder="Necesidades Fijas"
               />
-              
               <Link to="/ONG">
                 <FormBtn>
                   Register
