@@ -13,7 +13,7 @@ export function Input(props) {
 export function TextArea(props) {
   return (
     <div className="form-group">
-      <textarea className="form-control" rows="20" {...props} />
+      <textarea className="form-control" rows="5" {...props} />
     </div>
   );
 }
@@ -23,5 +23,13 @@ export function FormBtn(props) {
     <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
       {props.children}
     </button>
+  );
+}
+
+export function Separator(props){
+  return (
+    <div {...props} style={{height:"15px"}}>
+      {props.children}
+    </div>
   );
 }
