@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import EventIco from "../images/event-ico.svg";
+import DonaIco from "../images/dona-ico.svg";
+import NeedsIco from "../images/needs-ico.svg";
+import VoluntIco from "../images/volunt-ico.svg";
+import BackHead from "../images/fondo-banner.svg";
+import PeopleHead from "../images/friends-banner.svg";
+import Header from "../components/Header";
+
+
 
 class Books extends Component {
 
@@ -19,21 +28,35 @@ class Books extends Component {
   render() {
     return (
       <Container fluid>
+          <Header backgroundImage={BackHead}>
+            <div className="friendsHead">
+              <img src={PeopleHead} width="50%"></img>
+            </div>
+            <div className="textHead">
+              <p>"Nada de lo que ocurra a los hombres nos debe resultar ajeno"</p>
+              <p>San Juan XXIII</p>
+            </div>
+          </Header>
         <Row>
-          <Col size="md-4">
-            <Jumbotron>
+          <Col size="md-3">
+          <img src={EventIco} width></img>
               <p>Eventos</p>
-            </Jumbotron>
+            
           </Col>
-          <Col size="md-4">
-            <Jumbotron>
-              <p>Aportaciones</p>
-            </Jumbotron>
+          <Col size="md-3">
+          <img src={NeedsIco}></img>
+              <p>Necesidades</p>
+            
           </Col>
-          <Col size="md-4">
-            <Jumbotron>
+          <Col size="md-3">
+          <img src={DonaIco}></img>
               <p>Donaciones</p>
-            </Jumbotron>
+            
+          </Col>
+          <Col size="md-3">
+          <img src={VoluntIco}></img>
+              <p>Voluntarios</p>
+            
           </Col>
         </Row>
         <Row>
