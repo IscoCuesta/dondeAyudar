@@ -4,7 +4,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
 import API from "../utils/API";
-import { Header, Portada, InfoONG } from "../components/ORGheader";
+import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
 
 
 class Detail extends Component {
@@ -47,8 +47,6 @@ class Detail extends Component {
         </InfoONG>
 
 
-
-
         <hr></hr>
         <Row>
       
@@ -78,6 +76,12 @@ class Detail extends Component {
             </Link>
           </Col>
         </Row>
+        <Footer
+          direccion="Direccion"
+          telefono="Telefono:54545454"
+          email="prueba@gmail.com"
+          paginaweb="www.prueba.com">
+        </Footer>
       </Container>
     );
   }

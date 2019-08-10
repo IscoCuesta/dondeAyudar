@@ -40,3 +40,17 @@ export function InfoONG (props) {
     );
 }
 
+export function Footer (props) {
+    return (
+        <div className="row">
+            <div className="col-md-12 footer">
+                <p>{props.direccion}</p>
+                <p>{props.telefono}</p>
+                <p>{props.email}</p>
+                <p>{props.paginaweb}</p>
+            </div>
+        </div>
+    );
+}
+
+

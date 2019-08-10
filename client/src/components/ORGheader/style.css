@@ -1,5 +1,5 @@
 .nombre {
-    background: rgb(233, 233, 226);
+    background: rgba(233, 233, 226, 0.358);
     height: 150px;
     text-align: center;
     vertical-align: middle;
@@ -8,7 +8,7 @@
 }
 
 .logo {
-    background: rgb(212, 229, 209);
+    background: rgba(233, 233, 226, 0.358);
     height: 150px;
 }
 
@@ -17,6 +17,7 @@
 }
 
 .foto {
+    
     background-image: URL("/images/backgroundPrueba.jpg");
     background-size: cover;
     height: auto;
@@ -24,9 +25,17 @@
 }
 
 .infoEspecifica {
+    background: rgba(233, 233, 226, 0.358);
     padding-left: 35px;
 }
 
 .objNecesidades {
+    background: rgba(233, 233, 226, 0.358);
     padding-right: 35px;
+}
+
+.footer {
+    background: rgb(181, 206, 213);
+    text-align: center;
+    font-size: 15px;
 }
