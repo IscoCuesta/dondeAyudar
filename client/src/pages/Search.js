@@ -28,6 +28,7 @@ class Books extends Component {
   render() {
     return (
       <Container fluid>
+        <Row>
           <Header backgroundImage={BackHead}>
             <div className="friendsHead">
               <img src={PeopleHead} width="50%"></img>
@@ -37,6 +38,7 @@ class Books extends Component {
               <p>San Juan XXIII</p>
             </div>
           </Header>
+        </Row>
         <Row>
           <Col size="md-3">
           <img src={EventIco} width></img>
