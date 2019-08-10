@@ -17,15 +17,14 @@ class Register extends Component {
     descripcion: "",
     mision: "",
     vision: "",
-    objetivo: "",
+    objetivo: [],
     email: "",
     telefono: "",
     paginaweb: "",
     direccion: "",
     logo: "",
     portada: "",
-    necesidades: ""
-
+    necesidades: []
   };
 
   componentDidMount() {
@@ -48,10 +47,12 @@ class Register extends Component {
 
   handleSelectChange = (selectedOption, meta) => {
     const { name } = meta;
+    console.log(selectedOption);
     this.setState({
       [name]: selectedOption
     }, () => {
-      console.log(this.state);
+      console.log(this.state.objetivo);
+      console.log(this.state.necesidades.map(x => x.value));
     }
     );
   };
@@ -71,14 +72,14 @@ class Register extends Component {
       descripcion: this.state.descripcion,
       mision: this.state.mision,
       vision: this.state.vision,
-      objetivo: this.state.objetivo,
+      objetivo: this.state.objetivo.map(x => x.value),
       email: this.state.email,
       telefono: this.state.telefono,
       paginaweb: this.state.paginaweb,
       direccion: this.state.direccion,
       logo: this.state.logo,
       portada: this.state.portada,
-      necesidades: this.state.necesidades
+      necesidades: this.state.necesidades.map(x => x.value)
     })
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -120,8 +121,9 @@ class Register extends Component {
               <Row>
                 <Col size="md-6">
                   <Select
-                    name= "objeto"
-                    value={this.state.objeto}
+                    isMulti
+                    name= "objetivo"
+                    value={this.state.objetivo}
                     placeholder="¿Cuál es el objeto de tu organización?"
                     onChange={this.handleSelectChange}
                     options={[
@@ -143,8 +145,9 @@ class Register extends Component {
                 </Col>
                 <Col size="md-6">
                   <Select
-                    name= "necesidad"
-                    value={this.state.necesidad}
+                    isMulti
+                    name= "necesidades"
+                    value={this.state.necesidades}
                     placeholder="Selecciona el tipo de ayuda que estás buscando"
                     onChange={this.handleSelectChange}
                     options={[
@@ -153,6 +156,7 @@ class Register extends Component {
                         {value: "ropa", label: "Ropa"},
                         {value: "comida", label: "Comida"},
                         {value: "juguetes", label: "Juguetes"},
+                        {value: "hogar", label: "Artículos del hogar"},
                         {value: "otros", label: "Otros"}
                       ]}
                   />
