@@ -3,31 +3,21 @@ require('dotenv').config()
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
-var db = require('./db');
+const passport = require('passport');
 const PORT = process.env.PORT || 3001;
 
-passport.use(new Strategy(
-  function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      return cb(null, user);
-    });
-}));
+const passportSetup = require('./config/passport-setup');
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
-});
+// requires the model with Passport-Local Mongoose plugged in
+const User = require('./models/User');
+ 
+// use static authenticate method of model in LocalStrategy
+passport.use(User.createStrategy());
+ 
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-passport.deserializeUser(function(id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
 
 app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
@@ -39,6 +29,7 @@ app.use(passport.session());
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

@@ -7,10 +7,11 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
+
 class Books extends Component {
   state = {
     books: [],
-    user: "",
+    username: "",
     password: "",
     synopsis: ""
   };
@@ -42,14 +43,21 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.username && this.state.password) {
       API.authLogin({
-        user: this.state.user,
+        user: this.state.username,
         password: this.state.password
       })
-        .then(res => console.log(res))
+        .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
+  };
+
+  handleFormSubmitGoogle = event => {
+    event.preventDefault();
+      API.authLoginGoogle()
+        .then(res => this.render)
+        .catch(err => console.log(err));
   };
 
   render() {
@@ -64,13 +72,13 @@ class Books extends Component {
               <Input
                 value={this.state.username}
                 onChange={this.handleInputChange}
-                name="Username"
+                name="username"
                 placeholder="Username"
               />
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
-                name="Password"
+                name="password"
                 placeholder="PassWord"
               />
               <FormBtn
@@ -78,6 +86,12 @@ class Books extends Component {
                 onClick={this.handleFormSubmit}
               >
                 Login
+              </FormBtn>
+              <FormBtn
+
+                onClick={this.handleFormSubmitGoogle}
+              >
+                Google
               </FormBtn>
               <Link to="/ONG">
                 <FormBtn>

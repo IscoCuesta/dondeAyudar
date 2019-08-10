@@ -19,5 +19,8 @@ export default {
   },
   authLogin: function(user) {
     return axios.post("/user/auth/login", user);
+  },
+  authLoginGoogle: function() {
+    return axios.get("/user/auth/google");
   }
 };
