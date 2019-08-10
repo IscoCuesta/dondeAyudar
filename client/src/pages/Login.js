@@ -6,25 +6,27 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import firebase from 'firebase'
+
+
 
 class Books extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    email: "",
+    name: "",
+    password: "",
+    User: ""
   };
 
   componentDidMount() {
-    // this.loadBooks();
+    this.loadUser();
+
+    console.log();
   }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
+  loadUser = () => {
+    // const current = firebase.auth().getCurrentUser()
+
   };
 
   deleteBook = id => {
@@ -42,14 +44,19 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.email && this.state.password) {
+      firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((err)=> console.log(err))
+    }
+
+  };
+  handleFormSubmitRegister = event => {
+    event.preventDefault();
+    if (this.state.email && this.state.password) {
+
+      (firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).user)
+      .then((user) => {
+        user.updateProfile({displayName: this.state.name})
       })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
     }
   };
 
@@ -63,25 +70,32 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input
-                name="Username"
-                placeholder="Username"
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="nombre"
               />
               <Input
-                value={this.state.author}
+                value={this.state.email}
                 onChange={this.handleInputChange}
-                name="Password"
+                name="email"
+                placeholder="email"
+              />
+              <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
                 placeholder="PassWord"
               />
-              <Link to="/ONG">
-                <FormBtn>
+                <FormBtn
+                  onClick={this.handleFormSubmit}>
                   Log in
                 </FormBtn>
-              </Link>
-              <Link to="/Register">
-                <FormBtn>
+                <FormBtn
+                  onClick={this.handleFormSubmitRegister}>
                   Register
                 </FormBtn>
-              </Link>
+
             </form>
           </Col>
         </Row>
