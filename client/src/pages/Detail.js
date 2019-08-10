@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import { Header, Portada, InfoONG } from "../components/ORGheader";
 import API from "../utils/API";
 
 class Detail extends Component {
@@ -21,14 +22,21 @@ class Detail extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-            <Jumbotron>
-              <p>
-                "ONG Information"
-              </p>
-            </Jumbotron>
+          <Header 
+          nombre="NOMBRE ONG">
+        </Header>
+
+        <Row>
+          <Col size="md-12">
+            <Portada>
+              <p>"ONG Information"</p>
+            </Portada>
+          </Col>  
+        </Row>
+
           </Col>
           <Col size="md-2 md-offset-10">
-            <Link to="/ONG/1">See More</Link>
+            <Link to="/ONG/1">Ver fundacion</Link>
           </Col>       
         </Row>
         
