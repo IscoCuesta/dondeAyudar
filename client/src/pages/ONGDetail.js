@@ -4,6 +4,8 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
 import API from "../utils/API";
+import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
+
 
 class Detail extends Component {
   state = {
@@ -20,36 +22,34 @@ class Detail extends Component {
   render() {
     return (
       <Container fluid>
+        <Header 
+          nombre="NOMBRE ONG">
+        </Header>
+
         <Row>
           <Col size="md-12">
-            <Jumbotron>
-              <p>
-                "ONG Information"
-              </p>
-            </Jumbotron>
-          </Col>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>"ONG Info"</h1>
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </article>
-          </Col>   
+            <Portada>
+              <p>"ONG Information"</p>
+            </Portada>
+          </Col>  
         </Row>
-        
+
+        <InfoONG 
+          descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+          mision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+          vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+          objetivo="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" 
+          necesidades="ICONOS ICONOS ICONOS">
+        </InfoONG>
+
+
         <hr></hr>
         <Row>
-        <Col size="md-12">
-            <Jumbotron>
-              <p>
-                "ONG Event Cards"
-              </p>
-            </Jumbotron>
-          </Col>
+      
         <Col size="col-5 offset-1">
             <Link to="/Event/1">
               <EventCard
@@ -76,6 +76,12 @@ class Detail extends Component {
             </Link>
           </Col>
         </Row>
+        <Footer
+          direccion="Direccion"
+          telefono="Telefono:54545454"
+          email="prueba@gmail.com"
+          paginaweb="www.prueba.com">
+        </Footer>
       </Container>
     );
   }

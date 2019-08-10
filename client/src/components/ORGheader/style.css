@@ -1,0 +1,41 @@
+.nombre {
+    background: rgba(233, 233, 226, 0.358);
+    height: 150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    font-size: 100px;
+}
+
+.logo {
+    background: rgba(233, 233, 226, 0.358);
+    height: 150px;
+}
+
+.logoo {
+    height: 100%;
+}
+
+.foto {
+    
+    background-image: URL("/images/backgroundPrueba.jpg");
+    background-size: cover;
+    height: auto;
+    background-repeat: no-repeat;
+}
+
+.infoEspecifica {
+    background: rgba(233, 233, 226, 0.358);
+    padding-left: 35px;
+}
+
+.objNecesidades {
+    background: rgba(233, 233, 226, 0.358);
+    padding-right: 35px;
+}
+
+.footer {
+    background: rgb(181, 206, 213);
+    text-align: center;
+    font-size: 15px;
+}
