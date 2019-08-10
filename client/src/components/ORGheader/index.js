@@ -18,7 +18,7 @@ export function Portada(props) {
     return (
         <div
             style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-            className="jumbotron text">
+            className="foto text">
             {/* <img src="/images/backgroundPrueba.jpg" alt={"Portada"} ></img> */}
         </div>
     );

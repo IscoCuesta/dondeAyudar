@@ -4,7 +4,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
 import API from "../utils/API";
-import { Header, Portada, InfoONG } from "../components/ORGpage";
+import { Header, Portada, InfoONG } from "../components/ORGheader";
 
 
 class Detail extends Component {
