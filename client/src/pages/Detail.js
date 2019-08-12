@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
-import { Header, Portada, InfoONG } from "../components/ORGheader";
 import API from "../utils/API";
+import { Header, Portada, InfoONG } from "../components/EventHeader";
+
 
 class Detail extends Component {
   state = {
@@ -22,18 +23,16 @@ class Detail extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-          <Header 
-          nombre="NOMBRE ONG">
-        </Header>
-
-        <Row>
-          <Col size="md-12">
-            <Portada>
-              <p>"ONG Information"</p>
-            </Portada>
-          </Col>  
-        </Row>
-
+            <Header 
+              nombre="NOMBRE ONG">
+            </Header>
+            <Row>
+              <Col size="md-12">
+                <Portada>
+                  <p>"ONG Information"</p>
+                </Portada>
+              </Col>  
+            </Row>
           </Col>
           <Col size="md-2 md-offset-10">
             <Link to="/ONG/1">Ver fundacion</Link>
@@ -41,18 +40,24 @@ class Detail extends Component {
         </Row>
         
         <hr></hr>
+
         <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>"Event Info"</h1>
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </article>
-          </Col>
+          <InfoONG 
+            nombre="CONCIERTO PARA RECAUDAR FONDOSPARA LA FUNDACION...."
+            lugar="Auditorio Nacional, venta de garage, direccion..."
+            startDate="12 de octubre"
+            endDate="15 de Octubre"
+            descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                It has survived not only five centuries. Lorem Ipsum is simply dummy text of the 
+                printing and typesetting industry. It has survived not only five centuries. 
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            resumen="Necesitamos jovenes, necesitamos dinero..."
+            necesidad="Economica, recursos, voluntarios..."
+            vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                It has survived not only five centuries"
+            link="facebook, tickermaster....."
+            >
+          </InfoONG>
         </Row>
       </Container>
     );
