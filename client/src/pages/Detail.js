@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+import Cards from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, InfoONG } from "../components/EventHeader";
@@ -27,15 +28,27 @@ class Detail extends Component {
           nombre="Nombre Evento">
         </Header>
         <Row>
-          <Col size="md-6">
+          <Col size="md-7">
             <Portada>
               <p>"ONG Information"</p>
             </Portada>
-          </Col>  
-          <Col size="md-2 md-offset-10">
-            <Link to="/ONG/1">Ver fundacion</Link>
+          </Col> 
 
-          </Col>       
+          {/* <Col size="md-2 md-offset-10">
+            <Link to="/ONG/1">Ver fundacion</Link> */}
+
+          <Col size="md-5">
+            <Link to="/ONG/1">
+              <Cards
+                  id=""
+                  key=""
+                  nombre=""
+                  descripcion=""
+                >
+              </Cards>
+            </Link>
+          </Col>
+   
         </Row>
         
         <hr></hr>
@@ -58,6 +71,7 @@ class Detail extends Component {
             >
           </InfoONG>
         </Row>
+
       </Container>
     );
   }
