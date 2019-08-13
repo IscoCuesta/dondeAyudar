@@ -1,14 +1,20 @@
 import React from "react";
 import "./style.css";
 
+// const nombreEvento = { background: rgba(233, 233, 226, 0.358);
+//     height: "150px",
+//     text-align: "center",
+//     vertical-align: "middle",
+//     line-height: "150px",
+//     font-size: "100px",
+//     color: "blue",
+// };
+
 export function Header(props) {
     return (
         <div className="row">
-            <div className="col-md-10 nombre">
+            <div className="col-md-12 nombreEvento">
                 {props.nombre}
-            </div>
-            <div className="col-md-2 logo">
-                <img className="logoo" src="/images/logoPrueba.jpeg" alt={props.nombre}></img>
             </div>
         </div>
     );
@@ -17,9 +23,8 @@ export function Header(props) {
 export function Portada(props) {
     return (
         <div
-            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-            className="foto text">
-            {/* <img src="/images/backgroundPrueba.jpg" alt={"Portada"} ></img> */}
+            className="fotoEvento text">
+            <img src="/images/logoPrueba.jpeg" alt={"Portada"} ></img>
         </div>
     );
 }

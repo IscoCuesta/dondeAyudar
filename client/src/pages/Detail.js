@@ -5,6 +5,8 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, InfoONG } from "../components/EventHeader";
 
+// import EventCard from "../components/EventCard";
+
 
 class Detail extends Component {
   state = {
@@ -21,21 +23,18 @@ class Detail extends Component {
   render() {
     return (
       <Container fluid>
+        <Header 
+          nombre="Nombre Evento">
+        </Header>
         <Row>
-          <Col size="md-12">
-            <Header 
-              nombre="NOMBRE ONG">
-            </Header>
-            <Row>
-              <Col size="md-12">
-                <Portada>
-                  <p>"ONG Information"</p>
-                </Portada>
-              </Col>  
-            </Row>
-          </Col>
+          <Col size="md-6">
+            <Portada>
+              <p>"ONG Information"</p>
+            </Portada>
+          </Col>  
           <Col size="md-2 md-offset-10">
             <Link to="/ONG/1">Ver fundacion</Link>
+
           </Col>       
         </Row>
         
