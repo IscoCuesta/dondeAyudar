@@ -34,6 +34,8 @@ class Detail extends Component {
           </Col>  
         </Row>
 
+        <hr></hr>
+
         <InfoONG 
           descripcion={this.state.orgDetails.descripcion}
           mision={this.state.orgDetails.mision}
@@ -42,22 +44,8 @@ class Detail extends Component {
           necesidades={this.state.orgDetails.necesidades}>
         </InfoONG>
 
-
         <hr></hr>
-        <Row>
-          <InfoONG 
-            descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-            mision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-            vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-            objetivo="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" 
-            necesidades="ICONOS ICONOS ICONOS">
-          </InfoONG>
-        </Row>
-          <hr></hr>
+
         <Row>
           <Col size="col-5 offset-1">
             <Link to="/Event/1">

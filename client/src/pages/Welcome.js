@@ -62,17 +62,11 @@ class Books extends Component {
               <div style={btnWelcome}>
                 <Link to="/Search">
                   <FormBtn>
-                    Dónde Ayudar
+                    Empieza a ayudar
                   </FormBtn>
                 </Link>
               </div>
-              <div style={btnWelcome}>
-                <Link to="/Search">
-                  <FormBtn>
-                    Get started
-                  </FormBtn>
-                </Link>
-              </div>
+  
             </div>
           </Col>
         </Col>
