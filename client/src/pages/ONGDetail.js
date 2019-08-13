@@ -80,6 +80,8 @@ class Detail extends Component {
           </Col>  
         </Row>
 
+        <hr></hr>
+
         <InfoONG 
           descripcion={this.state.orgDetails.descripcion}
           mision={this.state.orgDetails.mision}

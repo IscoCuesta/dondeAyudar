@@ -60,7 +60,7 @@ class Register extends Component {
     }).then((res) =>{
       let OrgID = res.data[0]._id
       if(OrgID){
-        this.props.history.push("/ONG/"+OrgID)
+        //this.props.history.push("/ONG/"+OrgID)
       }
     })
   };
