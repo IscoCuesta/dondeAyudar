@@ -17,7 +17,7 @@ function Nav() {
       <a className="navbar-brand" href="/">
         <img src={logoIcon}  width="50px" height="50px"></img>
       </a>
-      <a className="my-2 my-sm-0" href="/Registro" style={navText1}>
+      <a className="my-2 my-sm-0" href="/Login" style={navText1}>
         Registrate     
 
       </a>

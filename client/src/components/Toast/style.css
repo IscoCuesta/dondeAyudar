@@ -1,0 +1,10 @@
+.general{
+    position: relative; 
+    min-height: 200px;
+}
+
+.tost{
+    position: absolute;
+    top: 0; 
+    right: 0;
+}

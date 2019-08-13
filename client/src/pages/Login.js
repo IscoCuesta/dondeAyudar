@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
+import Toast from "../components/Toast";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -8,6 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import firebase from 'firebase'
 import { userInfo } from "os";
+import $ from 'jquery';
 
 
 
@@ -18,13 +20,15 @@ class Books extends Component {
     password: "",
     UserEmail: "",
     UserFirebaseId: "",
-    error: ""
+    error: "",
+    isError: false
   };
 
   componentDidMount() {
     // this.loadUser();
 
     // console.log();
+    // $('.toast').toast("hide")
   }
 
   loadUser = () => {
@@ -32,6 +36,10 @@ class Books extends Component {
     // console.log(current);
 
   };
+
+  toast = (error) => {
+    $('.toast').toast("show");
+  }
 
   deleteBook = id => {
     API.deleteBook(id)
@@ -50,7 +58,11 @@ class Books extends Component {
     event.preventDefault();
     if (this.state.email && this.state.password) {
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .catch((err)=> this.setState({error: err.message}))
+      .then((user) => {
+        localStorage.setItem("DAU", user.user.uid);
+        this.props.history.push("/Register");
+      })
+      .catch((err)=> this.setState({error: err.message, isError: true}))
     }
 
   };
@@ -63,18 +75,28 @@ class Books extends Component {
           UserEmail: user.user.email,
           UserFirebaseId: user.user.uid,
         })
-      }).then( API.saveUser({
+      }).then(() => API.saveUser({
         email: this.state.UserEmail,
         userFirebaseId: this.state.UserFirebaseId,
         nombre: this.state.name
-      })).catch(err => this.setState({error: err.message}))
-    }
-  };
+      })).then((res) => {
+        console.log(res.data);
+        this.props.history.push("/Register");
+      }).catch(err => {
+        this.setState({error: err.message, isError: true})
+        this.toast(this.state.error);
+      });
+  }};
 
   render() {
     return (
       <Container fluid>
         <Row>
+          {this.state.isError?
+          <Toast
+            alert={this.state.error}>
+          </Toast>
+          : ""}
           <Col size="md-12">
             <Jumbotron>
               <p>if you are a ONG Login</p>
@@ -109,6 +131,7 @@ class Books extends Component {
                 </FormBtn>
 
             </form>
+            
           </Col>
         </Row>
       </Container>

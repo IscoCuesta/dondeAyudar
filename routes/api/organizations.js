@@ -7,6 +7,12 @@ router
   .get(orgController.findAll)
   .post(orgController.create);
 
+// Matches with "/api/orgs/uid"
+router
+  .route("/uid")
+  .get(orgController.findAll)
+  .post(orgController.findOne);
+
 // Matches with "/api/orgs/:id"
 router
   .route("/:id")

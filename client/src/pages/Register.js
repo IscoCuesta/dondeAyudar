@@ -8,6 +8,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import Select from 'react-select';
+import firebase from 'firebase'
 
 class Register extends Component {
   state = {
@@ -26,14 +27,49 @@ class Register extends Component {
     logo: "",
     portada: "",
     necesidades: [],
+    firebaseUID: "",
     selectedLogo: null,
     selectedHeader: null,
     orgId: null
   };
 
   componentDidMount() {
-    // this.loadBooks();
+    // const user = firebase.auth().currentUser
+    // console.log(user.uid);
+
+    this.loadUser();
   }
+
+
+  loadUser = () => {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        localStorage.setItem("DAU", user.uid)
+
+      } else {
+        // No user is signed in.
+        this.props.history.push("/Login");
+      }
+    });
+    this.setState({
+      firebaseUID: localStorage.getItem("DAU")
+    })
+    API.getOrgUid({
+      userId: this.state.firebaseUID
+    }).then((res) =>{
+      let OrgID = res.data[0]._id
+      if(OrgID){
+        this.props.history.push("/ONG/"+OrgID)
+      }
+    })
+  };
+
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.loadBooks())
+      .catch(err => console.log(err));
+  };
 
   handleSelectChange = (selectedOption, meta) => {
     const { name } = meta;
@@ -111,6 +147,7 @@ class Register extends Component {
       telefono: this.state.telefono,
       paginaweb: this.state.paginaweb,
       direccion: this.state.direccion,
+      userId: this.state.firebaseUID,
       necesidades: this.state.necesidades.map(x => x.value)
     })
       .then(res => {
@@ -120,7 +157,7 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      })
+      }).then(this.props.history.push("/ONG/"+this.state.orgId))
       .catch(err => console.log(err));
   };
 
