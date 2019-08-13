@@ -27,16 +27,17 @@ class Register extends Component {
     logo: "",
     portada: "",
     necesidades: [],
-    firebaseUID: ""
+    firebaseUID: "",
     selectedLogo: null,
     selectedHeader: null,
     orgId: null
   };
 
   componentDidMount() {
-    this.loadUser();
     // const user = firebase.auth().currentUser
     // console.log(user.uid);
+
+    this.loadUser();
   }
 
 
@@ -44,14 +45,24 @@ class Register extends Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
-        this.setState({
-          firebaseUID: localStorage.getItem("DAU")
-        })
+        localStorage.setItem("DAU", user.uid)
+
       } else {
         // No user is signed in.
         this.props.history.push("/Login");
       }
     });
+    this.setState({
+      firebaseUID: localStorage.getItem("DAU")
+    })
+    API.getOrgUid({
+      userId: this.state.firebaseUID
+    }).then((res) =>{
+      let OrgID = res.data[0]._id
+      if(OrgID){
+        this.props.history.push("/ONG/"+OrgID)
+      }
+    })
   };
 
   deleteBook = id => {
@@ -136,8 +147,6 @@ class Register extends Component {
       telefono: this.state.telefono,
       paginaweb: this.state.paginaweb,
       direccion: this.state.direccion,
-      logo: this.state.logo,
-      portada: this.state.portada,
       userId: this.state.firebaseUID,
       necesidades: this.state.necesidades.map(x => x.value)
     })
@@ -148,7 +157,7 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      })
+      }).then(this.props.history.push("/ONG/"+this.state.orgId))
       .catch(err => console.log(err));
   };
 

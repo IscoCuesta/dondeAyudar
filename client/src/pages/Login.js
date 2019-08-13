@@ -75,19 +75,18 @@ class Books extends Component {
           UserEmail: user.user.email,
           UserFirebaseId: user.user.uid,
         })
-      }).then(() => { API.saveUser({
+      }).then(() => API.saveUser({
         email: this.state.UserEmail,
         userFirebaseId: this.state.UserFirebaseId,
         nombre: this.state.name
-      });
-      this.props.history.push("/Register")
-    }
-      ).catch(err => 
-        {this.setState({error: err.message, isError: true})
+      })).then((res) => {
+        console.log(res.data);
+        this.props.history.push("/Register");
+      }).catch(err => {
+        this.setState({error: err.message, isError: true})
         this.toast(this.state.error);
-        })
-    }
-  };
+      });
+  }};
 
   render() {
     return (

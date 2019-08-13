@@ -4,6 +4,9 @@ export default {
   getOrgs: function() {
     return axios.get("/api/orgs");
   },
+  getOrgUid: function() {
+    return axios.post("/api/orgs/uid");
+  },
 
   getOrgDetails: function(id) {
     return axios.get("/api/orgs/" + id);

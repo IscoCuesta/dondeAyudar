@@ -12,10 +12,7 @@ const OrganizationSchema = new Schema({
   paginaweb: { type: String, required: true },
   direccion: { type: String, required: true },
   necesidades: { type: Array, required: true },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  }
+  userId: { type: String, required:true }
 }, { timestamps: {} });
 
 const Organization = mongoose.model("Organization", OrganizationSchema);
