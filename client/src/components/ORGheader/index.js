@@ -8,7 +8,7 @@ export function Header(props) {
                 {props.nombre}
             </div>
             <div className="col-md-2 logo">
-                <img className="logoo" src="/images/logoPrueba.jpeg" alt={props.nombre}></img>
+                <img className="logoo" src={props.logoUrl} alt={props.nombre}></img>
             </div>
         </div>
     );
@@ -17,9 +17,8 @@ export function Header(props) {
 export function Portada(props) {
     return (
         <div
-            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
+            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center", backgroundSize: 'cover', backgroundImage: `url(${props.headerUrl})` }}
             className="foto text">
-            {/* <img src="/images/backgroundPrueba.jpg" alt={"Portada"} ></img> */}
         </div>
     );
 }

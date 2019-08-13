@@ -17,12 +17,12 @@
     height: 100%;
 }
 
-.foto {
+/* .foto {
     background-image: URL("/images/backgroundPrueba.jpg");
     background-size: cover;
     height: auto;
     background-repeat: no-repeat;
-}
+} */
 
 .infoEspecifica {
     background: rgba(233, 233, 226, 0.358);
