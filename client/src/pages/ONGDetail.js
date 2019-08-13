@@ -33,7 +33,6 @@ class Detail extends Component {
             </Portada>
           </Col>  
         </Row>
-<<<<<<< HEAD
 
         <InfoONG 
           descripcion={this.state.orgDetails.descripcion}
@@ -45,8 +44,6 @@ class Detail extends Component {
 
 
         <hr></hr>
-=======
->>>>>>> master
         <Row>
           <InfoONG 
             descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
