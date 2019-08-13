@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 function FriendCard(props) {
@@ -10,11 +11,20 @@ function FriendCard(props) {
       <div className="content">
         <ul>
           <li>
-            <strong>Name:</strong> {props.name}
+            <strong>Nombre:</strong> {props.name}
           </li>
+          <hr/>
           <li>
-            <strong>Earth:</strong> {props.location}
+            <strong>Lugar / Fecha:</strong> {props.location}
           </li>
+          <hr/>
+          <li>
+            <strong>Resumen:</strong> {props.resumen}
+          </li>
+          <hr/>
+          <Link to="/Event/1">
+                <p>Mas info</p>
+          </Link>
         </ul>
       </div>
       </div>

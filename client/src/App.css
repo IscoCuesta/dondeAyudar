@@ -7,6 +7,7 @@
   height: 80px;
 }
 
+
 .App-header {
   background-color: #222;
   height: 150px;
@@ -25,20 +26,22 @@
 
 .wrapper {
   background: rgb(125,7,242);
-  background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgba(82,7,242,1) 100%);
+  background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgb(41, 0, 131) 100%);
 } 
 
 .navbar-expand-lg {
   background: rgb(125,7,242);
-  background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgba(82,7,242,1) 100%);
+  background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgba(41, 0, 131) 100%);
 }
 
 .infoIndex {
-  color: white;
+  color: white !important;
   margin: auto;
 }
 
-
+.icons-Row {
+  background-color: aqua;
+}
 
 /* .container {
   margin: auto;
