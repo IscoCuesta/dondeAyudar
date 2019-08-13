@@ -10,6 +10,8 @@ import ONG from "./pages/ONG";
 import ONGEvent from "./pages/ONGEvent";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import './App.css';
+
 
 function App() {
   return (
