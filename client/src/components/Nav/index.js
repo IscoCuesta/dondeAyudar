@@ -19,6 +19,7 @@ function Nav() {
       </a>
       <a className="my-2 my-sm-0" href="/Registro" style={navText1}>
         Registrate     
+
       </a>
       
       <a className="my-2 my-sm-0" href="/Login" style={navText2}>
