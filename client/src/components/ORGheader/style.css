@@ -5,6 +5,7 @@
     vertical-align: middle;
     line-height: 150px;
     font-size: 100px;
+    color: red;
 }
 
 .logo {
@@ -17,7 +18,6 @@
 }
 
 .foto {
-    
     background-image: URL("/images/backgroundPrueba.jpg");
     background-size: cover;
     height: auto;

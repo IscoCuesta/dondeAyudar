@@ -9,14 +9,15 @@ import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
 
 class Detail extends Component {
   state = {
-    book: {}
+    orgDetails: {}
   };
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
-    // API.getBook(this.props.match.params.id)
-    //   .then(res => this.setState({ book: res.data }))
-    //   .catch(err => console.log(err));
+    API.getOrgDetails(this.props.match.params.id)
+      .then(res => this.setState({ orgDetails: res.data }))
+      .catch(err => console.log(err));
+      
   }
 
   render() {
@@ -25,7 +26,6 @@ class Detail extends Component {
         <Header 
           nombre="NOMBRE ONG">
         </Header>
-
         <Row>
           <Col size="md-12">
             <Portada>
@@ -33,24 +33,22 @@ class Detail extends Component {
             </Portada>
           </Col>  
         </Row>
-
-        <InfoONG 
-          descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-          mision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-          vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-          objetivo="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" 
-          necesidades="ICONOS ICONOS ICONOS">
-        </InfoONG>
-
-
-        <hr></hr>
         <Row>
-      
-        <Col size="col-5 offset-1">
+          <InfoONG 
+            descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+            mision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+            vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+            objetivo="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" 
+            necesidades="ICONOS ICONOS ICONOS">
+          </InfoONG>
+        </Row>
+          <hr></hr>
+        <Row>
+          <Col size="col-5 offset-1">
             <Link to="/Event/1">
               <EventCard
                   guessCard="1"
@@ -59,7 +57,7 @@ class Detail extends Component {
                   name='"Event"'
                   image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
                   location="in your mind"
-                  >
+                >
               </EventCard>
             </Link>
           </Col>
@@ -72,7 +70,8 @@ class Detail extends Component {
                   name='"Donation"'
                   image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
                   location="in your mind"
-                  />
+                >
+              </EventCard>
             </Link>
           </Col>
         </Row>
