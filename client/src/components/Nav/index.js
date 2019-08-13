@@ -17,14 +17,13 @@ function Nav() {
       <a className="navbar-brand" href="/">
         <img src={logoIcon}  width="50px" height="50px"></img>
       </a>
-      <a className="my-2 my-sm-0" href="/Login" style={navText1}>
-        Registrate     
-
-      </a>
-      
       <a className="my-2 my-sm-0" href="/Login" style={navText2}>
         Incio sesión
       </a>
+      <a className="my-2 my-sm-0" href="/Register" style={navText1}>
+        Registra tu Fundación     
+      </a>
+
     </nav>
   );
 }
