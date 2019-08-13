@@ -11,8 +11,6 @@ const OrganizationSchema = new Schema({
   telefono: { type: Number, required: true },
   paginaweb: { type: String, required: true },
   direccion: { type: String, required: true },
-  logo: { type: String, required: true },
-  portada: { type: String, required: true },
   necesidades: { type: Array, required: true }
 }, { timestamps: {} });
 

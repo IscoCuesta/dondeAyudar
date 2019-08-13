@@ -24,7 +24,7 @@ class Detail extends Component {
     return (
       <Container fluid>
         <Header 
-          nombre="NOMBRE ONG">
+          nombre={this.state.orgDetails.nombre}>
         </Header>
         <Row>
           <Col size="md-12">
@@ -33,6 +33,17 @@ class Detail extends Component {
             </Portada>
           </Col>  
         </Row>
+
+        <InfoONG 
+          descripcion={this.state.orgDetails.descripcion}
+          mision={this.state.orgDetails.mision}
+          vision={this.state.orgDetails.vision}
+          objetivo={this.state.orgDetails.objetivo}
+          necesidades={this.state.orgDetails.necesidades}>
+        </InfoONG>
+
+
+        <hr></hr>
         <Row>
           <InfoONG 
             descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
