@@ -18,7 +18,7 @@ export function Portada(props) {
     return (
         <div
             style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-            className="jumbotron text">
+            className="foto text">
             {/* <img src="/images/backgroundPrueba.jpg" alt={"Portada"} ></img> */}
         </div>
     );
@@ -39,4 +39,18 @@ export function InfoONG (props) {
         </div>
     );
 }
+
+export function Footer (props) {
+    return (
+        <div className="row">
+            <div className="col-md-12 footer">
+                <p>{props.direccion}</p>
+                <p>{props.telefono}</p>
+                <p>{props.email}</p>
+                <p>{props.paginaweb}</p>
+            </div>
+        </div>
+    );
+}
+
 

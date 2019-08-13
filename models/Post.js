@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   nombre: { type: String, required: true },
   tipo: { type: String, required: true },
-  necesidad: { type: String, required: true },
+  necesidad: { type: Array, required: true },
   resumen: { type: String, required: true },
   descripcion: { type: String, required: true },
   imagen: { type: String, required: true },
@@ -12,11 +12,11 @@ const postSchema = new Schema({
   fechaFinal: { type: Date, required: true },
   lugar: { type: String, required: true },
   link: { type: String, required: true },
-  organization: {
+/*   organization: {
     type: Schema.Types.ObjectId,
     ref: "Organization"
-  }
-});
+  } */
+}, { timestamps: {} });
 
 const Post = mongoose.model("Post", postSchema);
 

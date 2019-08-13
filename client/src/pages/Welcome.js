@@ -3,9 +3,32 @@ import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row, Container, Wrapper } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Header from "../components/Header";
+import logoPage from "../Logo_DondeAyudar.svg";
+import imgInicio from "../images/img_incio.svg";
+
+const textWelcome = {
+  color: "#FFFFFF",
+};
+
+
+const divBtns = {
+  display: "flex",
+  margin: "0, auto",
+  left: "50%",
+};
+
+
+const btnWelcome = {
+  margin: "1rem",
+};
+
+
+
+
 
 class Books extends Component {
   state = {
@@ -19,65 +42,49 @@ class Books extends Component {
     // this.loadBooks();
   }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
+  
 
   render() {
     return (
-      <Container fluid>
+      <Wrapper>
+      <Container fluid className="container">
         <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <p>Dónde Ayudar?!</p>
-              <p>Bienvenidos a la app para buscar ayudar.</p>
-
-            </Jumbotron>
-            <Link to="/Search">
-              <FormBtn
-              >
-                Get started
-              </FormBtn>
-            </Link>
-          </Col>
-          <Col size="md-12">
-            <div>
-              <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-              </p>
+        <Col size="md-6">
+          <img src={logoPage} width="80%" margin="auto"></img>
+          <br/>
+          <br/>
+          <br/>
+          <p style={textWelcome}>¿Te ha pasado que escombras y te sale mucha ropa en buen estado pero no sabes a dónde llevarla para que otros la pueda aprovechar?</p>
+          <p style={textWelcome}>¿O tienes algo de tiempo y te gustaría usarlo para una buena causa pero no sabes dónde puedes ir?</p>
+          <p style={textWelcome}>Por eso surge "Dónde Ayudar", aquí concentramos eventos, campañas de donación y demás necesidades de diversas fundaciones y ONG ubicadas en la Ciudad de México. Para comenzar es simple, si eres ONG o tienes una fundación registrate, si quieres ver donde ayudar revisa las publicaciones más recientes.</p>
+          <Col size="md-6">
+            <div style={divBtns}>
+              <div style={btnWelcome}>
+                <Link to="/Search">
+                  <FormBtn>
+                    Dónde Ayudar
+                  </FormBtn>
+                </Link>
+              </div>
+              <div style={btnWelcome}>
+                <Link to="/Search">
+                  <FormBtn>
+                    Get started
+                  </FormBtn>
+                </Link>
+              </div>
             </div>
           </Col>
+        </Col>
+        <Col size="md-6">
+        <img src={imgInicio} width="90%"></img>
+          
+        </Col>  
         </Row>
+
       </Container>
+      
+      </Wrapper>
     );
   }
 }

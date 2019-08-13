@@ -1,4 +1,6 @@
 node_modules
 .env
 firebaseConfig.json
+package-lock.json
+.DS_store
 

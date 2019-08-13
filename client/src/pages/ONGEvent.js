@@ -16,7 +16,7 @@ class Event extends Component {
   state = {
     nombre: "",
     tipo: "",
-    necesidad: "",
+    necesidad: [],
     resumen: "",
     descripcion: "",
     startDate: null,
@@ -25,7 +25,6 @@ class Event extends Component {
     link: "",
     imagen: "",
     organization: "Default"
-
   };
 
   componentDidMount() {
@@ -49,7 +48,6 @@ class Event extends Component {
       [name]: selectedOption
     }, () => {
       console.log(this.state);
-      console.log(this.state.endDate._d);
     }
     );
   };
@@ -59,7 +57,7 @@ class Event extends Component {
     API.savePost({
       nombre: this.state.nombre,
       tipo: this.state.tipo.value,
-      necesidad: this.state.necesidad.value,
+      necesidad: this.state.necesidad.map(x => x.value),
       resumen: this.state.resumen,
       descripcion: this.state.descripcion,
       fechaInicial: this.state.startDate._d,
@@ -67,7 +65,7 @@ class Event extends Component {
       lugar: this.state.lugar,
       link: this.state.link,
       imagen: this.state.imagen,
-      organization: this.state.organization,
+      // organization: this.state.organization,
     })
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -103,6 +101,7 @@ class Event extends Component {
               </Col>
               <Col size="md-6">
                 <Select
+                  isMulti
                   name= "necesidad"
                   value={this.state.necesidad}
                   placeholder="Selecciona el tipo de ayuda que estás buscando"
@@ -113,6 +112,7 @@ class Event extends Component {
                       {value: "ropa", label: "Ropa"},
                       {value: "comida", label: "Comida"},
                       {value: "juguetes", label: "Juguetes"},
+                      {value: "hogar", label: "Artículos del hogar"},
                       {value: "otros", label: "Otros"}
                     ]}
                 />
