@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from 'axios';
+
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
@@ -24,7 +26,9 @@ class Event extends Component {
     lugar: "",
     link: "",
     imagen: "",
-    organization: "Default"
+    organization: "Default",
+    selectedImage: null,
+    postId: null
   };
 
   componentDidMount() {
@@ -52,6 +56,28 @@ class Event extends Component {
     );
   };
 
+  fileChangedHandler = event => {
+    console.log(event.target.id);
+    this.setState({
+      selectedImage: event.target.files[0] 
+    } , () => {
+      console.log(this.state.selectedImage.name)
+    });
+  };
+
+  uploadImageHandler = () => {
+    const formData = new FormData()
+    formData.append(
+      'myFile',
+      this.state.selectedImage,
+      this.state.selectedImage.name
+    );
+    formData.append('fileName', this.state.postId);
+    axios.post('https://us-central1-dondeayudar.cloudfunctions.net/uploadPostImage', formData)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
     API.savePost({
@@ -67,7 +93,13 @@ class Event extends Component {
       imagen: this.state.imagen,
       // organization: this.state.organization,
     })
-      .then(res => console.log(res))
+      .then(res => {
+        this.setState({ 
+          postId: res.data._id
+        } , () => {
+          this.uploadImageHandler();
+        });
+      })
       .catch(err => console.log(err));
   };
 
@@ -85,18 +117,18 @@ class Event extends Component {
               value={this.state.nombre}
               onChange={this.handleInputChange}
               name="nombre"
-              placeholder="Título de tu evento o convocatoria"
+              placeholder="Título de tu post"
             />
             <Row>
               <Col size="md-6">
                 <Select
                   name="tipo"
                   value={this.state.tipo}
-                  placeholder="¿Es un evento o convocatoria para apoyar?"
+                  placeholder="¿Es un evento o recaudación?"
                   onChange={this.handleSelectChange}
                   options={[
                     {value: "evento", label: "Evento"}, 
-                    {value: "convocatoria", label: "Convocatoria"}]}
+                    {value: "recaudacion", label: "Recaudación"}]}
                 />
               </Col>
               <Col size="md-6">
@@ -112,7 +144,7 @@ class Event extends Component {
                       {value: "ropa", label: "Ropa"},
                       {value: "comida", label: "Comida"},
                       {value: "juguetes", label: "Juguetes"},
-                      {value: "hogar", label: "Artículos del hogar"},
+                      {value: "personales", label: "Artículos personales"},
                       {value: "otros", label: "Otros"}
                     ]}
                 />
@@ -133,15 +165,17 @@ class Event extends Component {
               value={this.state.descripcion}
               onChange={this.handleInputChange}
               name="descripcion"
-              placeholder="Proporciona detalles sobre el evento/convocatoria y la ayuda que necesitas"
-            />
-            <Input
-              value={this.state.lugar}
-              onChange={this.handleInputChange}
-              name="lugar"
-              placeholder="¿Dónde ocurrirá el evento o la recepción de donaciones?"
+              placeholder="Proporciona detalles sobre el evento/recaudación y la ayuda que necesitas"
             />
             <Row>
+              <Col size="md-6">
+                <Input
+                  value={this.state.lugar}
+                  onChange={this.handleInputChange}
+                  name="lugar"
+                  placeholder="¿Dónde ocurrirá el evento o recaudación?"
+                />
+              </Col>
               <Col size="md-6">
                 <Input
                   value={this.state.link}
@@ -149,16 +183,16 @@ class Event extends Component {
                   name="link"
                   placeholder="Introduce el link de tu evento o convocatoria"
                 />
-                <Input
-                  value={this.state.imagen}
-                  onChange={this.handleInputChange}
-                  name="imagen"
-                  placeholder="Introduce el url de la imagen para tu post"
-                />
+              </Col>
+            </Row>
+            <Row>
+              <Col size="md-6">
+                <h6 className="ml-2 mb-3 mt-1">Sube una imagen para tu post</h6>
+                <Input id="input-postImage" type="file" onChange={this.fileChangedHandler}></Input>
               </Col>
               <Col size="md-4">
                 <Row>
-                  <h6 className="mb-3 mt-2">Selecciona una fecha o rango de fechas</h6>
+                  <h6 className="ml-2 mb-3 mt-1">Selecciona una fecha o rango de fechas</h6>
                 </Row>
                 <Row>
                 <DateRangePicker

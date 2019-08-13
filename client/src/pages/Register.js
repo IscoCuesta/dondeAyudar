@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
@@ -24,26 +25,15 @@ class Register extends Component {
     direccion: "",
     logo: "",
     portada: "",
-    necesidades: []
+    necesidades: [],
+    selectedLogo: null,
+    selectedHeader: null,
+    orgId: null
   };
 
   componentDidMount() {
     // this.loadBooks();
   }
-
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
 
   handleSelectChange = (selectedOption, meta) => {
     const { name } = meta;
@@ -64,6 +54,50 @@ class Register extends Component {
     });
   };
 
+  fileChangedHandler = event => {
+    console.log(event.target.id);
+    if (event.target.id === "input-logo"){
+      this.setState({ 
+        selectedLogo: event.target.files[0] 
+      } , () => {
+        console.log(this.state.selectedLogo.name)
+      });
+    }
+    else {
+      this.setState({ 
+        selectedHeader: event.target.files[0] 
+      } , () => {
+        console.log(this.state.selectedHeader.name)
+      });
+    }  
+  }
+
+  uploadLogoHandler = () => {
+    const formData = new FormData()
+    formData.append(
+      'myFile',
+      this.state.selectedLogo,
+      this.state.selectedLogo.name 
+    );
+    formData.append('fileName', this.state.orgId);
+    axios.post('https://us-central1-dondeayudar.cloudfunctions.net/uploadLogo', formData)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
+  uploadHeaderHandler = () => {
+    const formData = new FormData()
+    formData.append(
+      'myFile',
+      this.state.selectedHeader,
+      this.state.selectedHeader.name
+    );
+    formData.append('fileName', this.state.orgId);
+    axios.post('https://us-central1-dondeayudar.cloudfunctions.net/uploadHeader', formData)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
   handleFormSubmit = event => {
     event.preventDefault();
 
@@ -77,13 +111,17 @@ class Register extends Component {
       telefono: this.state.telefono,
       paginaweb: this.state.paginaweb,
       direccion: this.state.direccion,
-      logo: this.state.logo,
-      portada: this.state.portada,
       necesidades: this.state.necesidades.map(x => x.value)
     })
-      .then(res => console.log(res))
+      .then(res => {
+        this.setState({ 
+          orgId: res.data._id
+        } , () => {
+          this.uploadLogoHandler();
+          this.uploadHeaderHandler();
+        });
+      })
       .catch(err => console.log(err));
-
   };
 
   render() {
@@ -93,7 +131,6 @@ class Register extends Component {
           <Col size="md-2"></Col>
           <Col size="md-8">
             <h3 className="mb-3 mt-3">Registra tu organización</h3>
-            <form>
             {/* <Input
                 value={this.state.username}
                 onChange={this.handleInputChange}
@@ -222,20 +259,12 @@ class Register extends Component {
               </Row>
               <Row>
                 <Col size="md-6">
-                <Input
-                value={this.state.logo}
-                onChange={this.handleInputChange}
-                name="logo"
-                placeholder="Inserta el URL del logo de tu fundación"
-                />
+                <h6 className="ml-2 mb-3 mt-1">Sube el logo de tu organización</h6>
+                <Input id="input-logo" type="file" onChange={this.fileChangedHandler}></Input>
                 </Col>
                 <Col size="md-6">
-                <Input
-                value={this.state.portada}
-                onChange={this.handleInputChange}
-                name="portada"
-                placeholder="Inserta el URL de una imagen para tu portada"
-                />
+                <h6 className="ml-2 mb-3 mt-1">Sube una imagen de portada</h6>
+                <Input id="input-header" type="file" onChange={this.fileChangedHandler}></Input>
                 </Col>
               </Row>
               
@@ -246,7 +275,6 @@ class Register extends Component {
                 
 
               </Link>
-            </form>
           </Col>
         </Row>
       </Container>
