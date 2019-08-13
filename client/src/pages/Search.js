@@ -17,6 +17,13 @@ import Header from "../components/Header";
 
 
 
+const divIconsS = {
+  margin: "auto",
+  textAlign: "center",
+  /* display: "flex-inline", */
+};
+
+
 class Books extends Component {
 
 
@@ -29,72 +36,88 @@ class Books extends Component {
     return (
       <Container fluid>
         <Row>
-          <Header backgroundImage={BackHead}>
+            <Header backgroundImage={BackHead}>
             <div className="friendsHead">
               <img src={PeopleHead} width="50%"></img>
             </div>
-            <div className="textHead">
-              <p>"Nada de lo que ocurra a los hombres nos debe resultar ajeno"</p>
-              <p>San Juan XXIII</p>
-            </div>
-          </Header>
+            
+              
+            </Header>
         </Row>
+        <br/>
         <Row>
-          <Col size="md-3">
-          <img src={EventIco} width></img>
-              <p>Eventos</p>
-            
-          </Col>
-          <Col size="md-3">
-          <img src={NeedsIco}></img>
-              <p>Necesidades</p>
-            
-          </Col>
-          <Col size="md-3">
-          <img src={DonaIco}></img>
-              <p>Donaciones</p>
-            
-          </Col>
-          <Col size="md-3">
-          <img src={VoluntIco}></img>
-              <p>Voluntarios</p>
-            
-          </Col>
+        <Col size="sm-4"></Col>
+        <Col size="sm-4">
+          <div style={divIconsS}>
+          <img src={EventIco} className="animated infinite pulse" style={{maxWidth:"7rem"}}></img>
+          
+              <p>Evento</p>
+          </div>
+          
+          
+          <div style={divIconsS}>
+          <img src={EventIco} className="animated infinite pulse" style={{maxWidth:"7rem"}}></img>
+              <p>Recaudación</p>
+              </div>
+              </Col>
+          <Col size="sm-4"></Col>
         </Row>
-        <Row>
-          <Col size="md-5">
-          </Col>
-          <Col size="md-2 offset-md-5">
-              <p>"Filters"</p>
+        <hr/>
+        <Row className="icons-Row">
+        <Col size="sm-2"></Col>
+          <Col size="sm-1">
+          <img src={EventIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Ropa</p>
           </Col>
 
-        </Row>
+          <Col size="sm-1">
+          <img src={NeedsIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Comida</p>  
+          </Col>
 
-          <hr></hr>
-        <Row>
-          <Col size="md-5">                
+          <Col size="sm-1">
+          <img src={DonaIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Apoyo económico</p>  
           </Col>
-          <Col size="md-2 offset-md-5">            
-              <p>"Cards"</p>            
+
+          <Col size="sm-1">
+          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Voluntariado</p>  
           </Col>
-          <Col size="md-5">                
+
+          <Col size="md-1">
+          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Juguetes</p>  
           </Col>
+
+          <Col size="md-1">
+          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Artículos personales</p>  
+          </Col>
+
+          <Col size="md-1">
+          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Otros</p>  
+          </Col>
+          <Col size="md-2"></Col>
         </Row>
+          <hr/>
+        
           <Row>
 
           <Col size="md-6">
-            <Link to="/Event/1">
+            
               <EventCard
                   guessCard="1"
-                  
                   id="1"
                   key="1"
-                  name='"Event"'
+                  name="Campamento Tortugero"
                   image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                  location="in your mind"
+                  location="2, 3 y 4 de semptiembre en Nautla, Veracruz"
+                  resumen="Liberacion de tortugas, playas más limpias, conocimiento acerca de la bioconservación"
                   >
               </EventCard>
-            </Link>
+              
           </Col>
           <Col size="md-6">
             <Link to="/Event/1">
@@ -102,12 +125,15 @@ class Books extends Component {
                   guessCard="2"
                   id="2"
                   key="2"
-                  name='"Donation"'
+                  name="Tapaton 2019"
                   image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
-                  location="in your mind"
+                  location="Del 17 al 24 de septiembre, alcaldía Benito Juárez"
+                  resumen="Dona tus tapitas para salvar vidas. Colecta de tapas de plastico de cualquier tipo de envase"
                   />
             </Link>
           </Col>
+
+          
         </Row>
         
       </Container>
