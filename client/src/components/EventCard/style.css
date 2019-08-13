@@ -17,30 +17,30 @@
 }
 
 .card > .img-container {
-  height: 60%;
+  height: 100%;
   overflow: hidden;
   text-align: center;
   opacity: 1;
   /* background:#6CADDC; */
 }
 .card > .img-container > img {
-  width: 80%
+  width: 100%
 }
 
 .card > .content {
   padding-left: .1rem;
   padding-right: .3rem;
   font-size: 1rem;  
-  font-family: 'Beth Ellen', cursive;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .card > .content > ul {
   list-style-type: none;
-  font-family: 'Beth Ellen', cursive;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .card > .content > ul > li {
   margin-top: 18px;
   padding-inline: 5rem;
-  font-family: 'Beth Ellen', cursive;
+  font-family: 'Nanum Gothic', sans-serif;
 }
