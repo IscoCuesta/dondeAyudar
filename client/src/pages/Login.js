@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import firebase from 'firebase'
+import { userInfo } from "os";
 
 
 
@@ -15,17 +16,20 @@ class Books extends Component {
     email: "",
     name: "",
     password: "",
-    User: ""
+    UserEmail: "",
+    UserFirebaseId: "",
+    error: ""
   };
 
   componentDidMount() {
-    this.loadUser();
+    // this.loadUser();
 
-    console.log();
+    // console.log();
   }
 
   loadUser = () => {
-    // const current = firebase.auth().getCurrentUser()
+    // const current = firebase.default.auth().getCurrentUser();
+    // console.log(current);
 
   };
 
@@ -45,18 +49,25 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.email && this.state.password) {
-      firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((err)=> console.log(err))
+      firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .catch((err)=> this.setState({error: err.message}))
     }
 
   };
   handleFormSubmitRegister = event => {
     event.preventDefault();
     if (this.state.email && this.state.password) {
-
-      (firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).user)
+      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        user.updateProfile({displayName: this.state.name})
-      })
+        this.setState({
+          UserEmail: user.user.email,
+          UserFirebaseId: user.user.uid,
+        })
+      }).then( API.saveUser({
+        email: this.state.UserEmail,
+        userFirebaseId: this.state.UserFirebaseId,
+        nombre: this.state.name
+      })).catch(err => this.setState({error: err.message}))
     }
   };
 
@@ -68,6 +79,7 @@ class Books extends Component {
             <Jumbotron>
               <p>if you are a ONG Login</p>
             </Jumbotron>
+            <div><h1>{this.state.error}</h1></div>
             <form>
               <Input
                 value={this.state.name}
