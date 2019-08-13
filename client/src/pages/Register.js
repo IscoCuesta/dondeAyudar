@@ -65,12 +65,6 @@ class Register extends Component {
     })
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
-
   handleSelectChange = (selectedOption, meta) => {
     const { name } = meta;
     console.log(selectedOption);
