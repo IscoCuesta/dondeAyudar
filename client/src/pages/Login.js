@@ -6,25 +6,31 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import firebase from 'firebase'
+import { userInfo } from "os";
+
+
 
 class Books extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    email: "",
+    name: "",
+    password: "",
+    UserEmail: "",
+    UserFirebaseId: "",
+    error: ""
   };
 
   componentDidMount() {
-    // this.loadBooks();
+    // this.loadUser();
+
+    // console.log();
   }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
+  loadUser = () => {
+    // const current = firebase.default.auth().getCurrentUser();
+    // console.log(current);
+
   };
 
   deleteBook = id => {
@@ -42,14 +48,26 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
+    if (this.state.email && this.state.password) {
+      firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .catch((err)=> this.setState({error: err.message}))
+    }
+
+  };
+  handleFormSubmitRegister = event => {
+    event.preventDefault();
+    if (this.state.email && this.state.password) {
+      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((user) => {
+        this.setState({
+          UserEmail: user.user.email,
+          UserFirebaseId: user.user.uid,
+        })
+      }).then( API.saveUser({
+        email: this.state.UserEmail,
+        userFirebaseId: this.state.UserFirebaseId,
+        nombre: this.state.name
+      })).catch(err => this.setState({error: err.message}))
     }
   };
 
@@ -61,27 +79,35 @@ class Books extends Component {
             <Jumbotron>
               <p>if you are a ONG Login</p>
             </Jumbotron>
+            <div><h1>{this.state.error}</h1></div>
             <form>
               <Input
-                name="Username"
-                placeholder="Username"
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="nombre"
               />
               <Input
-                value={this.state.author}
+                value={this.state.email}
                 onChange={this.handleInputChange}
-                name="Password"
+                name="email"
+                placeholder="email"
+              />
+              <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
                 placeholder="PassWord"
               />
-              <Link to="/ONG">
-                <FormBtn>
+                <FormBtn
+                  onClick={this.handleFormSubmit}>
                   Log in
                 </FormBtn>
-              </Link>
-              <Link to="/Register">
-                <FormBtn>
+                <FormBtn
+                  onClick={this.handleFormSubmitRegister}>
                   Register
                 </FormBtn>
-              </Link>
+
             </form>
           </Col>
         </Row>
