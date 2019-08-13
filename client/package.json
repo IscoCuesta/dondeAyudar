@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^6.3.5",
+    "jquery": "^3.4.1",
     "react": "^16.6.3",
     "react-dates": "^20.2.5",
     "react-dom": "^16.6.3",

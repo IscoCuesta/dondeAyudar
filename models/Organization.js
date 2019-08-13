@@ -13,7 +13,11 @@ const OrganizationSchema = new Schema({
   direccion: { type: String, required: true },
   logo: { type: String, required: true },
   portada: { type: String, required: true },
-  necesidades: { type: Array, required: true }
+  necesidades: { type: Array, required: true },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
 }, { timestamps: {} });
 
 const Organization = mongoose.model("Organization", OrganizationSchema);

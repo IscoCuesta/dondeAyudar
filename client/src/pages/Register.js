@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import Select from 'react-select';
+import firebase from 'firebase'
 
 class Register extends Component {
   state = {
@@ -24,19 +25,28 @@ class Register extends Component {
     direccion: "",
     logo: "",
     portada: "",
-    necesidades: []
+    necesidades: [],
+    firebaseUID: ""
   };
 
   componentDidMount() {
-    // this.loadBooks();
+    this.loadUser();
+    // const user = firebase.auth().currentUser
+    // console.log(user.uid);
   }
 
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
+  loadUser = () => {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        this.setState({
+          firebaseUID: localStorage.getItem("DAU")
+        })
+      } else {
+        // No user is signed in.
+        this.props.history.push("/Login");
+      }
+    });
   };
 
   deleteBook = id => {
@@ -79,6 +89,7 @@ class Register extends Component {
       direccion: this.state.direccion,
       logo: this.state.logo,
       portada: this.state.portada,
+      userId: this.state.firebaseUID,
       necesidades: this.state.necesidades.map(x => x.value)
     })
       .then(res => console.log(res))
