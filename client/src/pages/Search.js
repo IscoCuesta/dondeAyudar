@@ -14,7 +14,7 @@ import VoluntIco from "../images/volunt-ico.svg";
 import BackHead from "../images/fondo-banner.svg";
 import PeopleHead from "../images/friends-banner.svg";
 import Header from "../components/Header";
-
+import Nav from "../components/Nav";
 
 
 const divIconsS = {
@@ -35,6 +35,7 @@ class Books extends Component {
   render() {
     return (
       <Container fluid>
+        <Nav/>
         <Row>
             <Header backgroundImage={BackHead}>
             <div className="friendsHead">

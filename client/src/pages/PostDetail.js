@@ -5,7 +5,7 @@ import Cards from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, InfoONG } from "../components/EventHeader";
-
+import Nav from "../components/Nav";
 // import EventCard from "../components/EventCard";
 
 
@@ -24,6 +24,7 @@ class Detail extends Component {
   render() {
     return (
       <Container fluid>
+        <Nav/>
         <Header 
           nombre="Nombre Evento">
         </Header>

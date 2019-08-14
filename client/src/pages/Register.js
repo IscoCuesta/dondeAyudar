@@ -9,6 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import Select from 'react-select';
 import firebase from 'firebase'
+import Nav from "../components/Nav";
 
 class Register extends Component {
   state = {
@@ -33,16 +34,8 @@ class Register extends Component {
     orgId: null
   };
 
-  componentDidMount() {
-    // const user = firebase.auth().currentUser
-    // console.log(user.uid);
-
-    this.loadUser();
-  }
-
-
-  loadUser = () => {
-    firebase.auth().onAuthStateChanged(function(user) {
+  componentWillMount(){
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
         localStorage.setItem("DAU", user.uid)
@@ -52,17 +45,34 @@ class Register extends Component {
         this.props.history.push("/Login");
       }
     });
+
     this.setState({
       firebaseUID: localStorage.getItem("DAU")
-    })
+    });
+  }
+
+  componentDidMount() {
+    // const user = firebase.auth().currentUser
+    // console.log(user.uid);
+
+    this.loadUser();
+  }
+
+
+
+  loadUser = () => {
+    let OrgID = "";
+
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
-      let OrgID = res.data._id
+      console.log(res)
+      OrgID = res.data._id;
+    }).then(() => {
       if(OrgID){
-        //this.props.history.push("/ONG/"+OrgID)
+        this.props.history.push("/ONG/"+OrgID)
       }
-    })
+    }).catch((err) => console.log(err));
   };
 
   handleSelectChange = (selectedOption, meta) => {
@@ -151,13 +161,14 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      })/* .then(this.props.history.push("/ONG/"+this.state.orgId)) */
+      }).then(this.props.history.push("/ONG/"+this.state.orgId))
       .catch(err => console.log(err));
   };
 
   render() {
     return (
       <Container fluid>
+        <Nav/>
         <Row>
           <Col size="md-2"></Col>
           <Col size="md-8">

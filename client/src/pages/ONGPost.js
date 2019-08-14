@@ -8,7 +8,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-
+import Nav from "../components/Nav";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -129,6 +129,7 @@ class Event extends Component {
   render() {
     return (
       <Container fluid>
+        <Nav/>
         <Row>
 
           <Col size="md-2"></Col>

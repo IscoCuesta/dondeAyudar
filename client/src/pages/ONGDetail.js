@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
+import Nav from "../components/Nav";
 import API from "../utils/API";
 import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
 import firebase from '@firebase/app';
@@ -16,7 +16,8 @@ class Detail extends Component {
     orgLogoUrl: null,
     orgHeaderUrl: null,
     orgPosts: [],
-    isOwner: false
+    isOwner: false,
+    logged: false
   };
 
   componentDidMount() {
@@ -39,7 +40,8 @@ class Detail extends Component {
         firebase.auth().onAuthStateChanged(user => {
           if (user.uid === this.state.orgDetails.userId){
             this.setState({
-              isOwner: true
+              isOwner: true,
+              logged: true
             }, () => {
               console.log(this.state)
             })
@@ -93,10 +95,19 @@ class Detail extends Component {
       })
     })  
   }
+  logOut = () => {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
 
   render() {
     return (
       <Container fluid>
+        <Nav/>
         <Header 
           nombre={this.state.orgDetails.nombre}
           logoUrl={this.state.orgLogoUrl}>
@@ -123,7 +134,7 @@ class Detail extends Component {
           <hr></hr>
         <Row>
         {this.state.orgPosts.map(post => (
-            <Link to="posts/1">
+          <Link to="posts/1">
               <EventCard
                   guessCard="1"
                   id={post._id}
@@ -132,7 +143,7 @@ class Detail extends Component {
                   location={post.lugar}
                   descripcion={post.descripcion}
                   image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                >
+                  >
               </EventCard>
             </Link>
         ))}
@@ -144,6 +155,7 @@ class Detail extends Component {
           paginaweb={this.state.orgDetails.paginaweb}>
         </Footer>
       </Container>
+
     );
   }
 }
