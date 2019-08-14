@@ -58,17 +58,11 @@ class Register extends Component {
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
-      let OrgID = res.data[0]._id
+      let OrgID = res.data._id
       if(OrgID){
-        this.props.history.push("/ONG/"+OrgID)
+        //this.props.history.push("/ONG/"+OrgID)
       }
     })
-  };
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
   };
 
   handleSelectChange = (selectedOption, meta) => {
@@ -157,7 +151,7 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      }).then(this.props.history.push("/ONG/"+this.state.orgId))
+      })/* .then(this.props.history.push("/ONG/"+this.state.orgId)) */
       .catch(err => console.log(err));
   };
 

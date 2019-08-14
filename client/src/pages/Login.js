@@ -104,22 +104,17 @@ class Books extends Component {
             <div><h1>{this.state.error}</h1></div>
             <form>
               <Input
-                value={this.state.name}
-                onChange={this.handleInputChange}
-                name="name"
-                placeholder="nombre"
-              />
-              <Input
                 value={this.state.email}
                 onChange={this.handleInputChange}
                 name="email"
-                placeholder="email"
+                placeholder="Email"
               />
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                placeholder="PassWord"
+                type="password"
+                placeholder="Password"
               />
                 <FormBtn
                   onClick={this.handleFormSubmit}>

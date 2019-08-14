@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import firebase from 'firebase';
 
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
@@ -26,15 +27,37 @@ class Event extends Component {
     lugar: "",
     link: "",
     imagen: "",
-    organization: "Default",
+    organization: null,
     selectedImage: null,
-    postId: null
+    postId: null,
+    firebaseUID: null
   };
 
   componentDidMount() {
-    // this.loadBooks();
+    this.loadUser();
   }
 
+  loadUser = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          firebaseUID: user.uid
+        }, () => {
+          console.log(this.state.firebaseUID);
+          API.getOrgUid({
+            userId: this.state.firebaseUID
+          }).then(res => {
+            console.log(res.data)
+            this.setState ({
+              organization: res.data._id
+            }, () => {
+              console.log(this.state);
+            })
+          })
+        })
+      }
+    });
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -90,8 +113,7 @@ class Event extends Component {
       fechaFinal: this.state.endDate._d,
       lugar: this.state.lugar,
       link: this.state.link,
-      imagen: this.state.imagen,
-      // organization: this.state.organization,
+      organization: this.state.organization
     })
       .then(res => {
         this.setState({ 
