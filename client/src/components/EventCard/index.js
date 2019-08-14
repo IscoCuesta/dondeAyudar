@@ -19,7 +19,7 @@ function FriendCard(props) {
           </li>
           <hr/>
           <li>
-            <strong>Resumen:</strong> {props.resumen}
+            <strong>Resumen:</strong> {props.descripcion}
           </li>
           <hr/>
           <a href={props.postID}><p>Mas info</p></a>

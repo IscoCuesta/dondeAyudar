@@ -1,5 +1,7 @@
 import React from "react";
 import "./style.css";
+import { FormBtn } from "../Form"
+import { Link } from "react-router-dom"
 
 export function Header(props) {
     return (
@@ -8,7 +10,7 @@ export function Header(props) {
                 {props.nombre}
             </div>
             <div className="col-md-2 logo">
-                <img className="logoo" src="/images/logoPrueba.jpeg" alt={props.nombre}></img>
+                <img className="logoo" src={props.logoUrl} alt={props.nombre}></img>
             </div>
         </div>
     );
@@ -17,9 +19,8 @@ export function Header(props) {
 export function Portada(props) {
     return (
         <div
-            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
+            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center", backgroundSize: 'cover', backgroundImage: `url(${props.headerUrl})` }}
             className="foto text">
-            {/* <img src="/images/backgroundPrueba.jpg" alt={"Portada"} ></img> */}
         </div>
     );
 }
@@ -35,6 +36,10 @@ export function InfoONG (props) {
             <div className="col-md-4 objNecesidades">
                 <h3>Objetivo</h3> <p>{props.objetivo}</p>
                 <h3>Necesidades</h3> <p>{props.necesidades}</p>
+                <Link to = '/ONG/newPost'><FormBtn>
+                Create a new post
+              </FormBtn>
+              </Link>
             </div>
         </div>
     );

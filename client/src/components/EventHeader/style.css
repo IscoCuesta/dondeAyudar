@@ -1,0 +1,16 @@
+.nombreEvento {
+    background: rgba(233, 233, 226, 0.358);
+    height: 150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    font-size: 100px;
+    color: blue;
+}
+
+/* .fotoEvento {
+    background-image: URL("/images/logoPrueba.jpeg");
+    background-size: cover;
+    height: auto;
+    background-repeat: no-repeat;
+} */

@@ -9,7 +9,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findOne: function(req, res) {
+    console.log(req.body)
+    db.Organization
+      .findOne(req.body)
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findById: function(req, res) {
+    console.log(res.data);
     db.Organization
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))

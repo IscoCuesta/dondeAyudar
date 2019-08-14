@@ -5,82 +5,143 @@ import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
 import API from "../utils/API";
 import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
+import firebase from '@firebase/app';
+import '@firebase/storage';
 
 
 class Detail extends Component {
   state = {
-    book: {}
+    orgId: null,
+    orgDetails: {},
+    orgLogoUrl: null,
+    orgHeaderUrl: null,
+    orgPosts: [],
+    isOwner: false
   };
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+
   componentDidMount() {
-    // API.getBook(this.props.match.params.id)
-    //   .then(res => this.setState({ book: res.data }))
-    //   .catch(err => console.log(err));
+    this.setState({ 
+      orgId: this.props.match.params.id
+    } , () => {
+      this.retrieveDetails();
+      this.retrieveLogo();
+      this.retrieveHeader();
+      this.retrievePosts();
+    });   
+  }
+
+  retrieveDetails = () => {
+    API.getOrgDetails(this.state.orgId)
+    .then(res =>
+      this.setState({ 
+        orgDetails: res.data 
+      }, () => {
+        firebase.auth().onAuthStateChanged(user => {
+          if (user.uid === this.state.orgDetails.userId){
+            this.setState({
+              isOwner: true
+            }, () => {
+              console.log(this.state)
+            })
+          }
+          else{
+            console.log(this.state)
+          }
+        })  
+      }))
+    .catch(err => console.log(err));   
+  }
+
+  retrieveLogo = () => {
+    const storage = firebase.storage();
+    storage
+      .ref(`/logos/${this.state.orgId}.jpg`)
+      .getDownloadURL()
+      .then( url => {
+        this.setState({ 
+          orgLogoUrl: url 
+        }, () => {
+          //console.log(this.state);
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  retrieveHeader = () => {
+    const storage = firebase.storage();
+    storage
+      .ref(`/headers/${this.state.orgId}.jpg`)
+      .getDownloadURL()
+      .then( url => {
+        this.setState({ 
+          orgHeaderUrl: url 
+        }, () => {
+          //console.log(this.state);
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  retrievePosts = () => {
+    API.getOrgPosts({
+      organization: this.state.orgId
+    }).then(res => {
+      this.setState({ 
+        orgPosts: res.data 
+      }, () => {
+        console.log(this.state)
+      })
+    })  
   }
 
   render() {
     return (
       <Container fluid>
         <Header 
-          nombre="NOMBRE ONG">
+          nombre={this.state.orgDetails.nombre}
+          logoUrl={this.state.orgLogoUrl}>
         </Header>
-
         <Row>
           <Col size="md-12">
-            <Portada>
+            <Portada
+            headerUrl={this.state.orgHeaderUrl}>
               <p>"ONG Information"</p>
             </Portada>
           </Col>  
         </Row>
 
+        <hr></hr>
+
         <InfoONG 
-          descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-          mision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-          vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
-          objetivo="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" 
-          necesidades="ICONOS ICONOS ICONOS">
+          descripcion={this.state.orgDetails.descripcion}
+          mision={this.state.orgDetails.mision}
+          vision={this.state.orgDetails.vision}
+          objetivo={this.state.orgDetails.objetivo}
+          necesidades={this.state.orgDetails.necesidades}>
         </InfoONG>
 
-
-        <hr></hr>
+          <hr></hr>
         <Row>
-      
-        <Col size="col-5 offset-1">
-            <Link to="/Event/1">
+        {this.state.orgPosts.map(post => (
+            <Link to="posts/1">
               <EventCard
                   guessCard="1"
-                  id="1"
-                  key="1"
-                  name='"Event"'
+                  id={post._id}
+                  key={post._id}
+                  name={post.nombre}
+                  location={post.lugar}
+                  descripcion={post.descripcion}
                   image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                  location="in your mind"
-                  >
+                >
               </EventCard>
             </Link>
-          </Col>
-          <Col size="col-5 offset-1">
-            <Link to="/Event/1">
-              <EventCard
-                  guessCard="2"
-                  id="2"
-                  key="2"
-                  name='"Donation"'
-                  image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
-                  location="in your mind"
-                  />
-            </Link>
-          </Col>
+        ))}
         </Row>
         <Footer
-          direccion="Direccion"
-          telefono="Telefono:54545454"
-          email="prueba@gmail.com"
-          paginaweb="www.prueba.com">
+          direccion={this.state.orgDetails.direccion}
+          telefono={this.state.orgDetails.telefono}
+          email={this.state.orgDetails.email}
+          paginaweb={this.state.orgDetails.paginaweb}>
         </Footer>
       </Container>
     );
