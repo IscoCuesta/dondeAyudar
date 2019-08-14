@@ -22,9 +22,10 @@ function FriendCard(props) {
             <strong>Resumen:</strong> {props.descripcion}
           </li>
           <hr/>
-          <Link to="/Post/1">
-                <p>Mas info</p>
-          </Link>
+          <a href={props.postID}><p>Mas info</p></a>
+          
+                
+
         </ul>
       </div>
       </div>
