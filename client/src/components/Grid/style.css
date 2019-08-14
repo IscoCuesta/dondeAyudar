@@ -8,3 +8,7 @@
     background: rgb(125,7,242);
     background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgba(82,7,242,1) 100%);
   }
+
+  .row {
+    justify-content: center;
+  }
