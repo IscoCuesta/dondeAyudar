@@ -29,13 +29,25 @@ const divIconsS = {
 };
 
 
+class Search extends Component {
 
-
-class Books extends Component {
-
+  state= {
+    posts: []
+  }
 
   componentDidMount() {
-    // this.loadBooks();
+    this.retrievePosts();
+  }
+
+  retrievePosts = (filter) => {
+    API.getPosts({filter
+    }).then(res => {
+      this.setState({ 
+        posts: res.data 
+      }, () => {
+        console.log(this.state)
+      })
+    })  
   }
 
 
@@ -122,57 +134,22 @@ class Books extends Component {
         </Col>
         </Row>
           <hr/>
-          <Row>
-            
-              <EventCard
-                  guessCard="1"
-                  id="1"
-                  key="1"
-                  name="Campamento Tortugero"
-                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                  location="2, 3 y 4 de semptiembre en Nautla, Veracruz"
-                  resumen="Liberacion de tortugas, playas más limpias, conocimiento acerca de la bioconservación"
-                  postID="/Event/1"
-                  >
-              </EventCard>
-            
-              <EventCard
-                  guessCard="2"
-                  id="2"
-                  key="2"
-                  name="Tapaton 2019"
-                  image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
-                  location="Del 17 al 24 de septiembre, alcaldía Benito Juárez"
-                  resumen="Dona tus tapitas para salvar vidas. Colecta de tapas de plastico de cualquier tipo de envase"
-                  postID="/Event/1"
-                  >
-              </EventCard>
-            
-              <EventCard
-                  guessCard="1"
-                  id="1"
-                  key="1"
-                  name="Campamento Tortugero"
-                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                  location="2, 3 y 4 de semptiembre en Nautla, Veracruz"
-                  resumen="Liberacion de tortugas, playas más limpias, conocimiento acerca de la bioconservación"
-                  postID="/Event/1"
-                  >
-              </EventCard>
-            
-              <EventCard
-                  guessCard="2"
-                  id="2"
-                  key="2"
-                  name="Tapaton 2019"
-                  image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
-                  location="Del 17 al 24 de septiembre, alcaldía Benito Juárez"
-                  resumen="Dona tus tapitas para salvar vidas. Colecta de tapas de plastico de cualquier tipo de envase"
-                  postID="/Event/1"
-                  >
-              </EventCard>
+        <Row>
 
-              
+          {this.state.posts.map(post => (
+
+              <EventCard
+                  guessCard="1"
+                  id={post._id}
+                  key={post._id}
+                  name={post.nombre}
+                  location={post.lugar}
+                  descripcion={post.descripcion}
+                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
+                >
+              </EventCard>
+          ))}
+ 
         </Row>
         
       </Container>
@@ -180,4 +157,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Search;

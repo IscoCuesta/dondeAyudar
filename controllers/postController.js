@@ -1,17 +1,18 @@
 const db = require("../models");
 
-// Defining methods for the booksController
+// Defining methods for the postsController
 module.exports = {
   findAll: function(req, res) {
     db.Post
       .find(req.body)
-      .sort({ date: -1 })
+      .sort({ createdAt: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Post
       .findById(req.params.id)
+      .populate('organization')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

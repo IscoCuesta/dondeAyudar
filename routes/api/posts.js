@@ -12,8 +12,8 @@ router.route("/:id")
   .put(postController.update)
   .delete(postController.remove);
 
-// Matches with "/api/posts/getOrgPosts"
-router.route("/getOrgPosts")
+// Matches with "/api/posts/filterPosts"
+router.route("/filterPosts")
   .post(postController.findAll);
 
 module.exports = router;

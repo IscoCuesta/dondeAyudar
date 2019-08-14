@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/ONG" component={ONG} />
           <Route exact path="/ONG/newPost" component={ONGPost} />
           <Route exact path="/ONG/:id" component={ONGDetail} />
-          <Route exact path="/Post/:id" component={PostDetail} />
+          <Route exact path="/Posts/:id" component={PostDetail} />
           <Route component={NoMatch} />
         </Switch>
       </div>
