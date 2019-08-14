@@ -10,8 +10,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findOne: function(req, res) {
+    console.log(req.body)
     db.Organization
-      .find(req.query)
+      .findOne(req.body)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

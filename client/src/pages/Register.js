@@ -58,7 +58,7 @@ class Register extends Component {
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
-      let OrgID = res.data[0]._id
+      let OrgID = res.data._id
       if(OrgID){
         //this.props.history.push("/ONG/"+OrgID)
       }
@@ -151,7 +151,7 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      }).then(this.props.history.push("/ONG/"+this.state.orgId))
+      })/* .then(this.props.history.push("/ONG/"+this.state.orgId)) */
       .catch(err => console.log(err));
   };
 
