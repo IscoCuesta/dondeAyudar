@@ -11,7 +11,7 @@ function FriendCard(props) {
       <div className="content">
         <ul>
           <li>
-            <strong>Nombre:</strong> {props.name}
+            <strong>{props.name}</strong> 
           </li>
           <hr/>
           <li>
@@ -22,10 +22,9 @@ function FriendCard(props) {
             <strong>Resumen:</strong> {props.descripcion}
           </li>
           <hr/>
-          <a href={props.postID}><p>Mas info</p></a>
-          
-                
-
+          <Link to={"/Posts/" + props.id}>
+                <p>Mas info</p>
+          </Link>
         </ul>
       </div>
       </div>

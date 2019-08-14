@@ -14,7 +14,7 @@ function Cards(props) {
             <strong>Descripcion:</strong> {props.descripcion}
           </li>
         <hr/>
-          <Link to="/Event/1">
+          <Link to={"../ONG/" + props.id}>
                 <p>Click aqui para más información</p>
           </Link>
         </ul>

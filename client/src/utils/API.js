@@ -25,8 +25,8 @@ export default {
     return axios.get("/api/posts/" + id);
   },
 
-  getOrgPosts: function(orgId) {
-    return axios.post("/api/posts/getOrgPosts/", orgId);
+  getPosts: function(filter){
+    return axios.post("/api/posts/filterPosts", filter);
   },
 
   saveUser: function(postData) {
