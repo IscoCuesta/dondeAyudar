@@ -33,8 +33,10 @@
 .card > .content {
   padding-left: .1rem;
   padding-right: .3rem;
-  font-size: 1rem;  
+  padding-top: 1rem;
+  font-size: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 12rem;
 }
 
 .card > .content > ul {
