@@ -19,7 +19,7 @@ function FriendCard(props) {
           </li>
           <hr/>
           <li>
-            <strong>Resumen:</strong> {props.descripcion}
+            <strong>Fundacion:</strong> {props.organization}
           </li>
           <hr/>
           <Link to={"/Posts/" + props.id}>

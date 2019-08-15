@@ -54,12 +54,15 @@ class Register extends Component {
     });
     this.setState({
       firebaseUID: localStorage.getItem("DAU")
+    }, () => {
+      console.log(this.state)
     })
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
-      let OrgID = res.data._id
-      if(OrgID){
+      console.log(res)
+      if(res.data !== null){
+        let OrgID = res.data._id
         //this.props.history.push("/ONG/"+OrgID)
       }
     })
