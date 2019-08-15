@@ -11,7 +11,7 @@ function Cards(props) {
         <ul>
           <strong>Nombre de la Fundacion:</strong> {props.nombre}
           <li>
-            <strong>Descripcion:</strong> {props.descripcion}
+            <strong>Logo:</strong> {props.logo}
           </li>
         <hr/>
           <Link to={"../ONG/" + props.id}>

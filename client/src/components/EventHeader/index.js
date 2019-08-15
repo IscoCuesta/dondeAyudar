@@ -30,12 +30,14 @@ export function Portada(props) {
 }
 
 export function InfoONG (props) {
+
+
     return (
         <div className="row">
             <div className="col-md-7 infoEspecifica">
                 <p>{props.resumen}</p>
                 <h2>Descripcion del Evento</h2> <p>{props.descripcion}</p>
-                <h2>Tipo de apoyo que se necesita</h2> <p>{props.necesidad}</p>
+                <h2>Tipo de apoyo que se necesita</h2> {props.necesidad}
             </div>
             <div className="col-md-5 objNecesidades">
                 <h2>Locación del evento</h2> <p>{props.lugar}</p>
