@@ -9,12 +9,13 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-
+import Nav from "../components/Nav";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import Select from 'react-select';
+import { runInThisContext } from "vm";
 
 class Event extends Component {
   state = {
@@ -31,7 +32,8 @@ class Event extends Component {
     organization: null,
     selectedImage: null,
     postId: null,
-    firebaseUID: null
+    firebaseUID: null,
+    error: ""
   };
 
   componentDidMount() {
@@ -56,6 +58,8 @@ class Event extends Component {
             })
           })
         })
+      }else{
+        this.props.history.push("/Login")
       }
     });
   };
@@ -65,7 +69,6 @@ class Event extends Component {
     this.setState({
       [name]: value
     }, () => {
-      console.log(this.state);
     }
     );
   };
@@ -117,8 +120,7 @@ class Event extends Component {
       .catch(err => console.log(err));
   }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
+  handleFormSubmit = () => {
     API.savePost({
       nombre: this.state.nombre,
       tipo: this.state.tipo.value,
@@ -141,14 +143,49 @@ class Event extends Component {
       .catch(err => console.log(err));
   };
 
+  validate = event => {
+    event.preventDefault();
+    if(
+      this.state.nombre !== "" &&
+      this.state.tipo.value !== "" &&
+      this.state.necesidad !== [] &&
+      this.state.resumen !== "" &&
+      this.state.descripcion !== "" &&
+      this.state.startDate !== null &&
+      this.state.endDate !== null &&
+      this.state.lugar !== "" &&
+      this.state.link !== "" &&
+      this.state.selectedImage !== null
+      ){
+        if(
+          this.state.firebaseUID !== null &&
+          this.state.organization !== null
+          ){
+            this.handleFormSubmit()
+          } else{
+            this.setState({ 
+              error: "error en el inicio de session"
+            });
+          }
+    }else {
+      this.setState({ 
+        error: "falta algun campo por llenar"
+      });
+      console.log(this.state.error)
+    }
+  };
+
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Row>
           <Col size="md-2"></Col>
           <Col size="md-8">
             <h3 className="mb-3 mt-3">Crea un nuevo post</h3>
+
             <form>
             <Input
               value={this.state.nombre}
@@ -247,7 +284,8 @@ class Event extends Component {
               </Col>
               <Col size="md-2">
 
-                  <FormBtn className="mt-5" onClick={this.handleFormSubmit}>
+                <h6>{this.state.error}</h6>
+                  <FormBtn className="mt-5" onClick={this.validate}>
                     Crear Post
                   </FormBtn>
 
@@ -255,14 +293,12 @@ class Event extends Component {
             </Row>
             </form>
            
-              <Link to="/ONG">
-                
-              </Link>
 
 
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

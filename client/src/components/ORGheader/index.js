@@ -35,7 +35,6 @@ export function InfoONG (props) {
         necesidades = Object.values(props.necesidades).map(elemento => <p>{elemento.charAt(0).toUpperCase() + elemento.slice(1)}</p>)
     }
     return (
-        // <div className="imagenFondo"></div>
         <div className="row InfoONGstyle">
             <div className="col-md-8 infoEspecifica">
                 <h3>Descripcion</h3> <p>{props.descripcion}</p>

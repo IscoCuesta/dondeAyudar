@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
-import Toast from "../components/Toast";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 import firebase from 'firebase'
-import { userInfo } from "os";
-import $ from 'jquery';
+import Nav from "../components/Nav";
 
 
 
@@ -37,9 +32,6 @@ class Books extends Component {
 
   };
 
-  toast = (error) => {
-    $('.toast').toast("show");
-  }
 
   deleteBook = id => {
     API.deleteBook(id)
@@ -84,22 +76,19 @@ class Books extends Component {
         this.props.history.push("/Register");
       }).catch(err => {
         this.setState({error: err.message, isError: true})
-        this.toast(this.state.error);
       });
   }};
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
+      
         <Row>
-          {this.state.isError?
-          <Toast
-            alert={this.state.error}>
-          </Toast>
-          : ""}
           <Col size="md-12">
             <Jumbotron>
-              <p>if you are a ONG Login</p>
+              {/* <p>If you are a ONG Login</p> */}
             </Jumbotron>
             <div><h1>{this.state.error}</h1></div>
             <form>
@@ -130,6 +119,7 @@ class Books extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

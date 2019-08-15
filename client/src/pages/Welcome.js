@@ -9,6 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import Header from "../components/Header";
 import logoPage from "../Logo_DondeAyudar.svg";
 import imgInicio from "../images/img_incio.svg";
+import Nav from "../components/Nav";
 
 const textWelcome = {
   color: "#FFFFFF",
@@ -56,6 +57,7 @@ class Books extends Component {
   render() {
     return (
       <Wrapper>
+      <Nav/>
       <Container fluid className="container">
         <Row>
         <Col size="md-6">

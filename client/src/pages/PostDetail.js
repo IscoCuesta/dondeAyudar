@@ -5,6 +5,7 @@ import OngCard from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, PostInfo } from "../components/EventHeader";
+import Nav from "../components/Nav";
 import firebase from '@firebase/app';
 import '@firebase/storage';
 
@@ -57,6 +58,8 @@ class Detail extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Header 
           nombre={this.state.postDetails.nombre}>
@@ -99,8 +102,9 @@ class Detail extends Component {
             >
           </PostInfo>
         </Row>
-
       </Container>
+      </div>
+
     );
   }
 }

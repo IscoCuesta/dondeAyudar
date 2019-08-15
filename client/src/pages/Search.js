@@ -25,6 +25,7 @@ import Header from "../components/Header";
 import StatusMessage from "../components/StatusMessage";
 import { throws } from "assert";
 
+import Nav from "../components/Nav";
 
 
 const divIconsS = {
@@ -84,6 +85,8 @@ class Search extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Row>
             <Header backgroundImage={BackHead}>
@@ -209,6 +212,7 @@ class Search extends Component {
         </Row>
         
       </Container>
+      </div>
     );
   }
 }
