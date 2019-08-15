@@ -4,6 +4,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
 import API from "../utils/API";
+import Nav from "../components/Nav";
 
 class Detail extends Component {
   state = {
@@ -19,6 +20,8 @@ class Detail extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Row>
           <Col size="md-12">
@@ -83,6 +86,7 @@ class Detail extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

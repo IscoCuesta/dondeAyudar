@@ -1,9 +1,12 @@
 import React from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import Nav from "../components/Nav";
 
 function NoMatch() {
   return (
+    <div>
+    <Nav/>
     <Container fluid>
       <Row>
         <Col size="md-12">
@@ -18,6 +21,7 @@ function NoMatch() {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 }
 
