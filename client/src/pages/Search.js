@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import firebase from '@firebase/app';
+import '@firebase/storage';
+
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
@@ -32,7 +35,8 @@ const divIconsS = {
 class Search extends Component {
 
   state= {
-    posts: []
+    posts: [],
+    images: {}
   }
 
   componentDidMount() {
@@ -43,13 +47,12 @@ class Search extends Component {
     API.getPosts({filter
     }).then(res => {
       this.setState({ 
-        posts: res.data 
+        posts: res.data
       }, () => {
         console.log(this.state)
       })
     })  
   }
-
 
   render() {
     return (
@@ -59,8 +62,6 @@ class Search extends Component {
             <div className="friendsHead">
               <img src={PeopleHead} width="50%"></img>
             </div>
-            
-              
             </Header>
         </Row>
         <br/>
@@ -137,16 +138,16 @@ class Search extends Component {
         <Row>
 
           {this.state.posts.map(post => (
-
               <EventCard
                   guessCard="1"
                   id={post._id}
                   key={post._id}
-                  name={post.nombre}
-                  location={post.lugar}
-                  descripcion={post.descripcion}
+                  nombre={post.nombre}
+                  lugar={post.lugar}
+                  fecha={post.fechaInicial}
                   organization={post.organization}
-                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
+                  imagen={post.imagen}
+                  page="search"
                 >
               </EventCard>
           ))}

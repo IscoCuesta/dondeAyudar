@@ -5,6 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Post
       .find(req.body)
+      .populate('organization')
       .sort({ createdAt: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -24,7 +25,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.Post
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .updateOne({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

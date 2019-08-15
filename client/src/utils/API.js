@@ -25,6 +25,10 @@ export default {
     return axios.get("/api/posts/" + id);
   },
 
+  updatePost: function(id, data){
+    return axios.post("/api/posts/" + id, data);
+  },
+
   getPosts: function(filter){
     return axios.post("/api/posts/filterPosts", filter);
   },

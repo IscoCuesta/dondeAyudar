@@ -3,25 +3,29 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 function FriendCard(props) {
+  console.log(props)
+  const nombreFundacion = props.organization ? <span>{props.organization.nombre}</span> : "NA";
+  const fundacionInfo = props.page === "search"? 
+  <React.Fragment>
+  <li>
+  <strong>Fundacion:</strong> {nombreFundacion}
+ </li><hr/>
+ </React.Fragment> : ""
+          
   return (
     <div className="card">
       <div className="img-container" onClick={() => props.Click}>
-        <img alt={props.name} src={props.image} />
+        <img alt={props.nombre} src={props.imagen} />
       </div>
       <div className="content">
         <ul>
-          <li>
-            <strong>{props.name}</strong> 
-          </li>
+            <p className="mt-3"><strong>{props.nombre}</strong></p>
           <hr/>
-          <li>
-            <strong>Lugar / Fecha:</strong> {props.location}
-          </li>
+            <p>{props.fecha}</p>
+            <p>{props.lugar}</p>
           <hr/>
-          <li>
-            <strong>Fundacion:</strong> {props.organization}
-          </li>
-          <hr/>
+          {fundacionInfo}
+
           <Link to={"/Posts/" + props.id}>
                 <p>Mas info</p>
           </Link>

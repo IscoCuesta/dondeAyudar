@@ -23,8 +23,8 @@ export function Header(props) {
 export function Portada(props) {
     return (
         <div
-            className="fotoEvento text">
-            <img src="/images/logoPrueba.jpeg" alt={"Portada"} ></img>
+            className="fotoEvento text" 
+            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center", backgroundSize: 'cover', backgroundImage: `url(${props.imagen})` }}>
         </div>
     );
 }

@@ -7,10 +7,10 @@ function Cards(props) {
     <div className="card" style={{ width: '25rem'}}>
       <div className="content">
         <ul>
-          <strong>Nombre de la Fundacion:</strong> {props.nombre}
-          <li>
-            <strong>Logo:</strong> {props.logo}
-          </li>
+          <p className="mt-3"><strong>Creado por {props.nombre} </strong></p>
+
+          <img style={{margin:"auto", width:"50%"}} src={props.logo} alt={props.nombre}></img>
+
         <hr/>
           <Link to={"../ONG/" + props.id}>
                 <p>Click aqui para más información</p>
