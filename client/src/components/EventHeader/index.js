@@ -12,7 +12,7 @@ import "./style.css";
 
 export function Header(props) {
     return (
-        <div className="row">
+        <div className="rowHeader">
             <div className="col-md-12 nombreEvento">
                 {props.nombre}
             </div>
@@ -35,21 +35,26 @@ export function InfoONG (props) {
     return (
         <div className="row">
             <div className="col-md-7 infoEspecifica">
-                <p>{props.resumen}</p>
-                <h2>Descripcion del Evento</h2> <p>{props.descripcion}</p>
-                <h2>Tipo de apoyo que se necesita</h2> {props.necesidad}
+                <div className="textInfoEsp">
+                    <h5>Resumen</h5> <p>{props.resumen}</p>
+                    <h5>Descripcion del Evento</h5> <p>{props.descripcion}</p>
+                    <h5>Tipo de apoyo que se necesita</h5> {props.necesidad}
+                </div>
             </div>
             <div className="col-md-5 objNecesidades">
-                <h2>Locación del evento</h2> <p>{props.lugar}</p>
                 <div className="row">
-                    <div className="col-sm-4">       
-                        <h2>Fecha Inicial</h2> <p>{props.fechaInicial}</p>
+                    <div className="col-sm-12 TextObjNed">
+                        <h5>Locación del evento</h5> <p>{props.lugar}</p>
                     </div>
-                    <div className="col-sm-8"> 
-                        <h2>Fecha Final</h2> <p>{props.fechaFinal}</p>
+                    <div className="col-sm-6">       
+                        <h5>Fecha Inicial</h5> <p>{props.fechaInicial}</p>
                     </div>
+                    <div className="col-sm-6"> 
+                        <h5>Fecha Final</h5> <p>{props.fechaFinal}</p>
+                    </div>
+                
+                    <a className="linkEvent" href={props.link}><strong>Link del evento</strong></a>
                 </div>
-                <h2>Link del evento</h2> <p>{props.link}</p>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 export function Header(props) {
     return (
-        <div className="row">
+        <div className="row rowHeader">
             <div className="col-md-10 nombre">
                 {props.nombre}
             </div>
@@ -27,19 +27,25 @@ export function Portada(props) {
 
 export function InfoONG (props) {
     return (
-        <div className="row">
+        // <div className="imagenFondo"></div>
+        <div className="row InfoONGstyle">
             <div className="col-md-8 infoEspecifica">
-                <h2>Descripcion</h2> <p>{props.descripcion}</p>
-                <h2>Mision</h2> <p>{props.mision}</p>
-                <h2>Vision</h2> <p>{props.vision}</p>
+                <h3>Descripcion</h3> <p>{props.descripcion}</p>
+                <h3>Mision</h3> <p>{props.mision}</p>
+                <h3>Vision</h3> <p>{props.vision}</p>
             </div>
             <div className="col-md-4 objNecesidades">
-                <h3>Objetivo</h3> <p>{props.objetivo}</p>
-                <h3>Necesidades</h3> <p>{props.necesidades}</p>
-                <Link to = '/ONG/newPost'><FormBtn>
-                Create a new post
-              </FormBtn>
-              </Link>
+                <div className="infoObj">
+                    <h3>Objetivo</h3> <p>{props.objetivo}</p>
+                    <br/> <br/> <br/> <br/> <br/> <br/>
+                    <h3>Necesidades</h3> <p>{props.necesidades}</p>
+                    <br/> <br/> <br/> <br/> <br/>
+                    <Link to = '/ONG/newPost'>
+                        <FormBtn>
+                            Create a new post
+                        </FormBtn>
+                    </Link>
+                </div>
             </div>
         </div>
     );
@@ -49,10 +55,12 @@ export function Footer (props) {
     return (
         <div className="row">
             <div className="col-md-12 footer">
-                <p>{props.direccion}</p>
-                <p>{props.telefono}</p>
-                <p>{props.email}</p>
-                <p>{props.paginaweb}</p>
+                <div className="footerInfo">
+                    <p>{props.direccion}</p>
+                    <p>{props.telefono}</p>
+                    <p>{props.email}</p>
+                    <p>{props.paginaweb}</p>
+                </div>
             </div>
         </div>
     );

@@ -4,9 +4,7 @@ import "./style.css";
 
 function Cards(props) {
   return (
-    <div className="card"
-        style={{ width: '25rem'}}
-        >
+    <div className="card" style={{ width: '25rem'}}>
       <div className="content">
         <ul>
           <p className="mt-3"><strong>Creado por {props.nombre} </strong></p>
