@@ -99,7 +99,7 @@ class Books extends Component {
           : ""}
           <Col size="md-12">
             <Jumbotron>
-              <p>if you are a ONG Login</p>
+              {/* <p>If you are a ONG Login</p> */}
             </Jumbotron>
             <div><h1>{this.state.error}</h1></div>
             <form>
