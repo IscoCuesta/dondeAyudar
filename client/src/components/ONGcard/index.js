@@ -4,9 +4,7 @@ import "./style.css";
 
 function Cards(props) {
   return (
-    <div className="card"
-        style={{ width: '25rem'}}
-        >
+    <div className="card" style={{ width: '25rem'}}>
       <div className="content">
         <ul>
           <strong>Nombre de la Fundacion:</strong> {props.nombre}
