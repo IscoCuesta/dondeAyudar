@@ -28,11 +28,13 @@ class Books extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
+        console.log(user)
         localStorage.setItem("DAU", user.uid)
         this.setState({
           firebaseUID: localStorage.getItem("DAU"),
           logged: true
-        });
+        }, () => this.loadUser());
+
       } else {
         // No user is signed in.
         // this.props.history.push("/Login");
@@ -47,18 +49,23 @@ class Books extends Component {
     // const user = firebase.auth().currentUser
     // console.log(user.uid);
 
-    this.loadUser();
+
   }
 
 
 
   loadUser() {
+    console.log(this.state.firebaseUID);
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
-      this.setState({
-        Org: res.data
-      })
+      console.log(res)
+      if(res.data !== null){
+        console.log(res.data)
+        this.setState({
+          Org: res.data
+        }, () => console.log(this.state))
+      } 
     })
     // .then(() => {
     //   if(OrgID){
@@ -96,7 +103,7 @@ class Books extends Component {
         </a>
       :
         <a className="my-2 my-sm-0" href="/Login" style={navText1}>
-        Incia sesión o regístrate    
+        Inicia sesión o regístrate    
         </a>
       }
       {this.state.logged ?
