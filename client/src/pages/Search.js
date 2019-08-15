@@ -22,7 +22,7 @@ import OtroIco from "../images/Otro-ico.svg";
 import BackHead from "../images/fondo-banner.svg";
 import PeopleHead from "../images/friends-banner.svg";
 import Header from "../components/Header";
-
+import Nav from "../components/Nav";
 
 
 const divIconsS = {
@@ -56,6 +56,8 @@ class Search extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Row>
             <Header backgroundImage={BackHead}>
@@ -155,6 +157,7 @@ class Search extends Component {
         </Row>
         
       </Container>
+      </div>
     );
   }
 }

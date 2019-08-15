@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import { Col, Row, Container, Wrapper } from "../components/Grid";
 import EventCard from "../components/EventCard";
+import Nav from "../components/Nav";
 import API from "../utils/API";
 import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
 import firebase from '@firebase/app';
@@ -16,7 +16,8 @@ class Detail extends Component {
     orgLogoUrl: null,
     orgHeaderUrl: null,
     orgPosts: [],
-    isOwner: false
+    isOwner: false,
+    logged: false
   };
 
   componentDidMount() {
@@ -37,15 +38,24 @@ class Detail extends Component {
         orgDetails: res.data 
       }, () => {
         firebase.auth().onAuthStateChanged(user => {
-          if (user.uid === this.state.orgDetails.userId){
-            this.setState({
-              isOwner: true
-            }, () => {
-              console.log(this.state)
-            })
+          if(user){
+            if (user.uid === this.state.orgDetails.userId){
+              this.setState({
+                isOwner: true,
+                logged: true
+              }, () => {
+                console.log(this.state)
+              })
+            }
           }
           else{
             console.log(this.state)
+            this.setState({
+              isOwner: false,
+              logged: false
+            }, () => {
+              console.log(this.state)
+            })
           }
         })  
       }))
@@ -93,9 +103,19 @@ class Detail extends Component {
       })
     })  
   }
+  logOut = () => {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Header 
           nombre={this.state.orgDetails.nombre}
@@ -117,7 +137,8 @@ class Detail extends Component {
           mision={this.state.orgDetails.mision}
           vision={this.state.orgDetails.vision}
           objetivo={this.state.orgDetails.objetivo}
-          necesidades={this.state.orgDetails.necesidades}>
+          necesidades={this.state.orgDetails.necesidades}
+          isOwner={this.state.isOwner}>
         </InfoONG>
 
           <hr></hr>
@@ -144,6 +165,8 @@ class Detail extends Component {
           paginaweb={this.state.orgDetails.paginaweb}>
         </Footer>
       </Container>
+      </div>
+
     );
   }
 }

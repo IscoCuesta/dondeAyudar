@@ -9,6 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import Select from 'react-select';
 import firebase from 'firebase'
+import Nav from "../components/Nav";
 
 class Register extends Component {
   state = {
@@ -30,8 +31,26 @@ class Register extends Component {
     firebaseUID: "",
     selectedLogo: null,
     selectedHeader: null,
-    orgId: null
+    orgId: null,
+    error: ""
   };
+
+  componentWillMount(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        localStorage.setItem("DAU", user.uid)
+
+      } else {
+        // No user is signed in.
+        this.props.history.push("/");
+      }
+    });
+
+    this.setState({
+      firebaseUID: localStorage.getItem("DAU")
+    });
+  }
 
   componentDidMount() {
     // const user = firebase.auth().currentUser
@@ -41,31 +60,20 @@ class Register extends Component {
   }
 
 
-  loadUser = () => {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        localStorage.setItem("DAU", user.uid)
 
-      } else {
-        // No user is signed in.
-        this.props.history.push("/Login");
-      }
-    });
-    this.setState({
-      firebaseUID: localStorage.getItem("DAU")
-    }, () => {
-      console.log(this.state)
-    })
+  loadUser = () => {
+    let OrgID = "";
+
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
       console.log(res)
-      if(res.data !== null){
-        let OrgID = res.data._id
-        //this.props.history.push("/ONG/"+OrgID)
+      OrgID = res.data._id;
+    }).then(() => {
+      if(OrgID){
+        this.props.history.push("/ONG/"+OrgID)
       }
-    })
+    }).catch((err) => console.log(err));
   };
 
   handleSelectChange = (selectedOption, meta) => {
@@ -131,8 +139,7 @@ class Register extends Component {
       .catch(err => console.log(err))
   }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
+  handleFormSubmit = () => {
 
     API.saveOrg({
       nombre: this.state.nombre,
@@ -154,12 +161,40 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      })/* .then(this.props.history.push("/ONG/"+this.state.orgId)) */
+      }).then(this.props.history.push("/"))
       .catch(err => console.log(err));
+  };
+
+  Validate = event => {
+    event.preventDefault();
+
+    if(
+      this.state.nombre !== "" &&
+      this.state.descripcion !== "" &&
+      this.state.mision !== "" &&
+      this.state.vision !== "" &&
+      this.state.objetivo !== [] &&
+      this.state.email !== "" &&
+      this.state.telefono !== "" &&
+      this.state.paginaweb !== "" &&
+      this.state.direccion !== "" &&
+      this.state.firebaseUID !== "" &&
+      this.state.necesidades !== [] &&
+      this.state.selectedLogo !== null &&
+      this.state.selectedHeader !== null
+    ){
+      this.handleFormSubmit()
+    }else {
+      this.setState({ 
+        error: "falta algun campo por llenar"
+      });
+    }
   };
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
         <Row>
           <Col size="md-2"></Col>
@@ -301,8 +336,12 @@ class Register extends Component {
                 <Input id="input-header" type="file" onChange={this.fileChangedHandler}></Input>
                 </Col>
               </Row>
+
+              <div>
+                <h3>{this.state.error}</h3>
+              </div>
               
-              <FormBtn onClick={this.handleFormSubmit}>
+              <FormBtn onClick={this.Validate}>
                 Register
               </FormBtn>
               <Link to="/ONG">
@@ -312,6 +351,7 @@ class Register extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

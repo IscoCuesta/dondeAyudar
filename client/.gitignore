@@ -1,8 +1,4 @@
 node_modules
-.env
-/src/firebaseConfig.json
-firebaseConfig.json
+firebaseConfig.js
 package-lock.json
 .DS_store
-
-
