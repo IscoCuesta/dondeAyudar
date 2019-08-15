@@ -52,7 +52,7 @@ class Books extends Component {
 
 
 
-  loadUser = () => {
+  loadUser() {
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
@@ -90,7 +90,7 @@ class Books extends Component {
 {/*       <a className="my-2 my-sm-0" href="/Login" style={navText2}>
         Incia sesión o regístrate
       </a> */}
-      { this.state.logged ?
+      { this.state.Org._id ?
         <a className="my-2 my-sm-0" href={"/ONG/"+this.state.Org._id} style={navText1}>
         {this.state.Org.nombre}
         </a>
