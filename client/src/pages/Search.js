@@ -145,6 +145,7 @@ class Search extends Component {
                   name={post.nombre}
                   location={post.lugar}
                   descripcion={post.descripcion}
+                  organization={post.organization}
                   image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
                 >
               </EventCard>
