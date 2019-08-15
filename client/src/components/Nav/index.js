@@ -14,7 +14,7 @@ const navText2 = {
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg">
-      <a className="navbar-brand" href="/">
+      <a className="navbar-brand" href="/Search">
         <img src={logoIcon}  width="50px" height="50px"></img>
       </a>
 {/*       <a className="my-2 my-sm-0" href="/Login" style={navText2}>

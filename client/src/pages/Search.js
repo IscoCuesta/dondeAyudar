@@ -22,6 +22,8 @@ import OtroIco from "../images/Otro-ico.svg";
 import BackHead from "../images/fondo-banner.svg";
 import PeopleHead from "../images/friends-banner.svg";
 import Header from "../components/Header";
+import StatusMessage from "../components/StatusMessage";
+import { throws } from "assert";
 
 
 
@@ -38,22 +40,46 @@ class Search extends Component {
 
   state= {
     posts: [],
-    images: {}
+    postsFound: true
   }
 
   componentDidMount() {
     this.retrievePosts();
   }
 
-  retrievePosts = (filter) => {
-    API.getPosts({filter
-    }).then(res => {
-      this.setState({ 
-        posts: res.data
-      }, () => {
-        console.log(this.state)
-      })
+  retrievePosts = filter => {
+    API.getPosts(filter
+    ).then(res => {
+      console.log(res)
+      if(res.data.length === 0){
+        this.setState({
+          posts: res.data,
+          postsFound: false
+        }, () => {
+          console.log(this.state)
+        })
+      }
+      else{
+        this.setState({ 
+          posts: res.data,
+          postsFound: true
+        }, () => {
+          console.log(this.state)
+        })
+      }
     })  
+  }
+
+  handleAnimationOn = event => {
+    event.target.classList.add('animated');
+    event.target.classList.add('infinite');
+    event.target.classList.add('pulse');
+  }
+
+  handleAnimationOff = event => {
+    event.target.classList.remove('animated');
+    event.target.classList.remove('infinite');
+    event.target.classList.remove('pulse');
   }
 
   render() {
@@ -68,26 +94,28 @@ class Search extends Component {
         </Row>
         <br/>
         <Row>
-        <Col size="sm-3">
+        <Col size="sm-4">
         <div style={{textAlign:"center"}}>
-          <h4>Selecciona el tipo de evento</h4>
+          <h4>¿De qué forma quieres ayudar?</h4>
         </div>
         </Col>
-        <Col size="sm-9">
-          <div style={{display:"flex", justifyContent:"center"}}>
-            
-            
-            <div style={{marginRight:"2rem"}}>
-              <img src={EventIco} className="animated infinite pulse" style={{width:"7rem"}}></img>
-              <p style={{textAlign:"center", color:"#D93B65", fontWeight:"bold", fontSize:"1rem"}}>Evento</p>    
-            </div>
-
-            <div>
-              <img src={NeedsIco} className="animated infinite pulse" style={{width:"7rem"}}></img>
-              <p style={{textAlign:"center", color:"#E421A2", fontWeight:"bold", fontSize:"1rem"}}>Recaudación</p>    
-            </div>
-          </div>
-
+        <Col size="sm-8">
+          <Row>
+            <Col size="md-5">
+              <div style={{height:"3rem", display:"flex", justifyContent:"center", cursor:"pointer"}}>
+                <img src={EventIco} style={{height:"3rem"}}></img>
+                <span style={{marginLeft:"1rem", lineHeight:"3rem", verticalAlign:"middle", color:"#D93B65", fontWeight:"bold", fontSize:"1rem"}}
+                onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}>Asistiendo a un evento</span>    
+              </div>
+            </Col>
+            <Col size="md-5">
+              <div style={{height:"3rem", display:"flex", justifyContent:"center", cursor:"pointer"}}>
+                <img src={NeedsIco} style={{height:"3rem"}}></img>
+                <span style={{marginLeft:"1rem", lineHeight:"3rem", verticalAlign:"middle", color:"#E421A2", fontWeight:"bold", fontSize:"1rem"}}
+                onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}>Contribuyendo a una recaudación</span>    
+              </div>
+            </Col>
+          </Row>
         </Col>
         </Row>
         <hr/>
@@ -95,42 +123,63 @@ class Search extends Component {
         <Col size="sm-12">
           <div style={{display:"flex", justifyContent:"space-around"}}>
           <div>
-            <h4>¿Con qué quieres ayudar?</h4>
+            <h4 className="mt-4">¿Qué tipo de contribución puedes hacer?</h4>
           </div>
           
             <div style={{width:"5rem"}}>
-              <img src={RopaIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#6900BC", fontWeight:"bold", fontSize:"0.8rem"}}>Ropa</p>
+              <img src={DonaIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"dinero"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw",textAlign:"center", color:"#84BF04", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Económica</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={ComidaIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#EF9300", fontWeight:"bold", fontSize:"0.8rem"}}>Comida</p>
+              <img src={VoluntIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"voluntarios"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#F2B705", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Voluntariado</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={DonaIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#84BF04", fontWeight:"bold", fontSize:"0.8rem"}}>Apoyo económico</p>
+              <img src={RopaIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"ropa"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#6900BC", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Ropa</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={VoluntIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#F2B705", fontWeight:"bold", fontSize:"0.8rem"}}>Voluntariado</p>
+              <img src={ComidaIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"comida"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#EF9300", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Comida</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={ToysIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#CC0097", fontWeight:"bold", fontSize:"0.8rem"}}>Juguetes</p>
+              <img src={ToysIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"juguetes"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#CC0097", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Juguetes</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={ArtPersIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#009CFC", fontWeight:"bold", fontSize:"0.8rem"}}>Artículos personales</p>
+              <img src={ArtPersIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"personales"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#009CFC", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Art. Personales</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={OtroIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
-              <p style={{textAlign:"center", color:"#055E00", fontWeight:"bold", fontSize:"0.8rem"}}>Otros</p>
+              <img src={OtroIco} style={{width:"5rem", cursor:"pointer"}}
+              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
+              onClick={() => this.retrievePosts({"necesidad":"otros"})}></img>
+              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#055E00", fontWeight:"bold", fontSize:"0.8rem"}}
+              >Otros</p>
             </div>
 
           </div>
@@ -138,6 +187,9 @@ class Search extends Component {
         </Row>
           <hr/>
         <Row>
+          <StatusMessage
+            status={this.state.postsFound}>
+          </StatusMessage>
 
           {this.state.posts.map(post => (
               <EventCard

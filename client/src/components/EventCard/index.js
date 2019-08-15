@@ -2,14 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function FriendCard(props) {
-  console.log(props)
+function EventCard(props) {
   const nombreFundacion = props.organization ? <span>{props.organization.nombre}</span> : "NA";
   const fundacionInfo = props.page === "search"? 
   <React.Fragment>
-  <li>
   <strong>Fundacion:</strong> {nombreFundacion}
- </li><hr/>
+  <hr/>
  </React.Fragment> : ""
           
   return (
@@ -18,21 +16,18 @@ function FriendCard(props) {
         <img alt={props.nombre} src={props.imagen} />
       </div>
       <div className="content">
-        <ul>
             <p className="mt-3"><strong>{props.nombre}</strong></p>
           <hr/>
-            <p>{props.fecha}</p>
+            <p>{Date(props.fechaInicial).toString().slice(0, 16)}</p>
             <p>{props.lugar}</p>
           <hr/>
-          {fundacionInfo}
-
+          <p>{fundacionInfo}</p>
           <Link to={"/Posts/" + props.id}>
                 <p>Mas info</p>
           </Link>
-        </ul>
       </div>
       </div>
   );
 }
 
-export default FriendCard;
+export default EventCard;

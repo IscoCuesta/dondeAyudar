@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import Cards from "../components/ONGcard";
+import OngCard from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Header, Portada, InfoONG } from "../components/EventHeader";
+import { Header, Portada, PostInfo } from "../components/EventHeader";
 import firebase from '@firebase/app';
 import '@firebase/storage';
 
@@ -73,13 +73,13 @@ class Detail extends Component {
             <Link to="/ONG/1">Ver fundacion</Link> */}
 
           <Col size="md-5">
-              <Cards
+              <OngCard
                   id={this.state.orgDetails._id}
                   key={this.state.orgDetails._id}
                   nombre={this.state.orgDetails.nombre}
                   logo={this.state.orgLogoUrl}
                 >
-              </Cards>
+              </OngCard>
           </Col>
    
         </Row>
@@ -87,7 +87,7 @@ class Detail extends Component {
         <hr></hr>
 
         <Row>
-          <InfoONG 
+          <PostInfo
             nombre={this.state.postDetails.nombre}
             lugar={this.state.postDetails.lugar}
             fechaInicial={this.state.postDetails.fechaInicial}
@@ -97,7 +97,7 @@ class Detail extends Component {
             necesidad={this.state.postDetails.necesidad}
             link={this.state.postDetails.link}
             >
-          </InfoONG>
+          </PostInfo>
         </Row>
 
       </Container>
