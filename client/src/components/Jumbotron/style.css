@@ -54,9 +54,12 @@
   opacity: 0.9;
 }
 
-p {
+.loginTextHeader {
   font-style: italic;
   color: white;
   font-size: 30px;
   font-weight: bold;
+  text-align: center;
+  margin-top: 4rem;
+  text-shadow: 3px 2px 3px rgb(24, 24, 24);
 }

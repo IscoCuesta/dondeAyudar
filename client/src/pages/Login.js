@@ -10,6 +10,8 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import firebase from 'firebase'
 import { userInfo } from "os";
 import $ from 'jquery';
+import '../App.css';
+
 
 
 
@@ -101,33 +103,42 @@ class Books extends Component {
             <Jumbotron>
               {/* <p>If you are a ONG Login</p> */}
             </Jumbotron>
+            </Col>
             <div><h1>{this.state.error}</h1></div>
-            <form>
-              <Input
-                value={this.state.email}
-                onChange={this.handleInputChange}
-                name="email"
-                placeholder="Email"
-              />
-              <Input
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                type="password"
-                placeholder="Password"
-              />
-                <FormBtn
-                  onClick={this.handleFormSubmit}>
-                  Log in
-                </FormBtn>
-                <FormBtn
-                  onClick={this.handleFormSubmitRegister}>
-                  Register
-                </FormBtn>
-
-            </form>
+            <Col size="md-6">
+            <div style={{marginTop:"2rem"}}>
+              <form>
+                <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name="email"
+                  placeholder="Email"
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <Col size="md-4 colBtns">
+                <div style={{display:"-webkit-inline-box", justifyContent:"center", marginLeft:"10rem"}}>
+                
+                  <FormBtn
+                    onClick={this.handleFormSubmit}>
+                    Log in
+                  </FormBtn>
+                  <FormBtn
+                    onClick={this.handleFormSubmitRegister}>
+                    Register
+                  </FormBtn>
+                </div>
+                </Col>
+              </form>
+            </div>
+            </Col>
             
-          </Col>
+          
         </Row>
       </Container>
     );
