@@ -161,7 +161,7 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      }).then(this.props.history.push("/"))
+      }).then(setTimeout(() => { this.props.history.push("/") }, 3000))
       .catch(err => console.log(err));
   };
 

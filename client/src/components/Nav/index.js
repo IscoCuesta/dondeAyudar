@@ -81,9 +81,10 @@ class Books extends Component {
 
   logOut() {
     console.log("logOut")
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(() => {
       // Sign-out successful.
       localStorage.setItem("DAU", null);
+      //setTimeout(() => { this.props.history.push("/") }, 3000)
     }).catch(function(error) {
       // An error happened.
       console.log(error)
