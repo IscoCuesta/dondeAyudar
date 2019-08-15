@@ -6,14 +6,13 @@ router.route("/")
   .get(postController.findAll)
   .post(postController.create);
 
+// Matches with "/api/posts/filterPosts"
+router.route("/filterPosts")
+.post(postController.findAll);
+
 // Matches with "/api/posts/:id"
 router.route("/:id")
   .get(postController.findById)
-  .put(postController.update)
+  .post(postController.update)
   .delete(postController.remove);
-
-// Matches with "/api/posts/filterPosts"
-router.route("/filterPosts")
-  .post(postController.findAll);
-
 module.exports = router;

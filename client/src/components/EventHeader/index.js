@@ -24,7 +24,7 @@ export function Portada(props) {
     return (
         <div
             className="fotoEvento text">
-            <img src="/images/logoPrueba.jpeg" alt={"Portada"} ></img>
+            <img src={props.imagen} alt={props.nombre} ></img>
         </div>
     );
 }

@@ -5,6 +5,8 @@ import Cards from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, InfoONG } from "../components/EventHeader";
+import firebase from '@firebase/app';
+import '@firebase/storage';
 
 // import EventCard from "../components/EventCard";
 
@@ -13,7 +15,8 @@ class Detail extends Component {
   state = {
     postId: null,
     postDetails: {},
-    orgDetails: {}
+    orgDetails: {},
+    orgLogoUrl: null
   };
 
   componentDidMount() {
@@ -24,16 +27,32 @@ class Detail extends Component {
     });
   }
 
-  retrieveDetails= () => {
+  retrieveDetails = () => {
     API.getPostDetails(this.state.postId)
     .then(res =>
       this.setState({ 
         postDetails: res.data,
         orgDetails: res.data.organization
       }, () => {
+        this.retrieveLogo();
         console.log(this.state);
     }))
     .catch(err => console.log(err));  
+  }
+
+  retrieveLogo = () => {
+    const storage = firebase.storage();
+    storage
+      .ref(`/logos/${this.state.orgDetails._id}.jpg`)
+      .getDownloadURL()
+      .then( url => {
+        this.setState({ 
+          orgLogoUrl: url 
+        }, () => {
+          //console.log(this.state);
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -44,8 +63,9 @@ class Detail extends Component {
         </Header>
         <Row>
           <Col size="md-7">
-            <Portada>
-              <p>"ONG Information"</p>
+            <Portada
+            imagen={this.state.postDetails.imagen}
+            nombre={this.state.postDetails.nombre}>
             </Portada>
           </Col> 
 
@@ -57,7 +77,7 @@ class Detail extends Component {
                   id={this.state.orgDetails._id}
                   key={this.state.orgDetails._id}
                   nombre={this.state.orgDetails.nombre}
-                  descripcion={this.state.orgDetails.descripcion}
+                  logo={this.state.orgLogoUrl}
                 >
               </Cards>
           </Col>

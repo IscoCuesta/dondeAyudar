@@ -11,6 +11,7 @@ const postSchema = new Schema({
   fechaFinal: { type: Date, required: true },
   lugar: { type: String, required: true },
   link: { type: String, required: true },
+  imagen: { type: String, required: false },
   organization: {
     type: Schema.Types.ObjectId,
     ref: "Organization"
