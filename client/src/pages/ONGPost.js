@@ -14,6 +14,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import Select from 'react-select';
+import { runInThisContext } from "vm";
 
 class Event extends Component {
   state = {
@@ -30,7 +31,8 @@ class Event extends Component {
     organization: null,
     selectedImage: null,
     postId: null,
-    firebaseUID: null
+    firebaseUID: null,
+    error: ""
   };
 
   componentDidMount() {
@@ -66,7 +68,6 @@ class Event extends Component {
     this.setState({
       [name]: value
     }, () => {
-      console.log(this.state);
     }
     );
   };
@@ -103,8 +104,7 @@ class Event extends Component {
       .catch(err => console.log(err))
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
+  handleFormSubmit = () => {
     API.savePost({
       nombre: this.state.nombre,
       tipo: this.state.tipo.value,
@@ -122,7 +122,7 @@ class Event extends Component {
           postId: res.data._id
         } , () => {
           this.uploadImageHandler();
-        });
+        }, this.props.history.push(this.state.organization));
       })
       .catch(err => console.log(err));
   };
@@ -135,12 +135,11 @@ class Event extends Component {
       this.state.necesidad !== [] &&
       this.state.resumen !== "" &&
       this.state.descripcion !== "" &&
-      this.state.startDate._d !== null &&
-      this.state.endDate._d !== null &&
+      this.state.startDate !== null &&
+      this.state.endDate !== null &&
       this.state.lugar !== "" &&
       this.state.link !== "" &&
-      this.state.imagen !== "" &&
-      this.state.selectedImage !== null &&
+      this.state.selectedImage !== null
       ){
         if(
           this.state.firebaseUID !== null &&
@@ -156,6 +155,7 @@ class Event extends Component {
       this.setState({ 
         error: "falta algun campo por llenar"
       });
+      console.log(this.state.error)
     }
   };
 
@@ -170,6 +170,7 @@ class Event extends Component {
           <Col size="md-2"></Col>
           <Col size="md-8">
             <h3 className="mb-3 mt-3">Crea un nuevo post</h3>
+
             <form>
             <Input
               value={this.state.nombre}
@@ -266,11 +267,9 @@ class Event extends Component {
                 />
                 </Row>
               </Col>
-              <div>
-                <h3>{this.state.error0}</h3>
-              </div>
               <Col size="md-2">
-                
+
+                <h6>{this.state.error}</h6>
                   <FormBtn className="mt-5" onClick={this.validate}>
                     Crear Post
                   </FormBtn>
@@ -279,9 +278,6 @@ class Event extends Component {
             </Row>
             </form>
            
-              <Link to="/ONG">
-                
-              </Link>
 
 
           </Col>

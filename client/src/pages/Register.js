@@ -43,7 +43,7 @@ class Register extends Component {
 
       } else {
         // No user is signed in.
-        this.props.history.push("/Login");
+        this.props.history.push("/");
       }
     });
 
@@ -139,8 +139,7 @@ class Register extends Component {
       .catch(err => console.log(err))
   }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
+  handleFormSubmit = () => {
 
     API.saveOrg({
       nombre: this.state.nombre,
@@ -162,7 +161,7 @@ class Register extends Component {
           this.uploadLogoHandler();
           this.uploadHeaderHandler();
         });
-      }).then(this.props.history.push("/ONG/"+this.state.orgId))
+      }).then(this.props.history.push("/"))
       .catch(err => console.log(err));
   };
 
@@ -339,7 +338,7 @@ class Register extends Component {
               </Row>
 
               <div>
-                <h3>{this.state.error0}</h3>
+                <h3>{this.state.error}</h3>
               </div>
               
               <FormBtn onClick={this.Validate}>

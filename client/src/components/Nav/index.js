@@ -86,10 +86,9 @@ class Books extends Component {
       localStorage.setItem("DAU", null);
     }).catch(function(error) {
       // An error happened.
-    }).finally(() => {
-      this.props.history.push("/");
+      console.log(error)
     })
-  }
+  };
 
 
   render () {
