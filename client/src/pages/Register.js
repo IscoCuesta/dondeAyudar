@@ -167,8 +167,9 @@ class Register extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
-        <Nav/>
         <Row>
           <Col size="md-2"></Col>
           <Col size="md-8">
@@ -320,6 +321,7 @@ class Register extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

@@ -87,9 +87,10 @@ class Books extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
       
-      <Nav/>
         <Row>
           {this.state.isError?
           <Toast
@@ -129,6 +130,7 @@ class Books extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

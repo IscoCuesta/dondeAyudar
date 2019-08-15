@@ -34,8 +34,9 @@ class Books extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
-        <Nav/>
         <Row>
             <Header backgroundImage={BackHead}>
             <div className="friendsHead">
@@ -138,6 +139,7 @@ class Books extends Component {
         </Row>
         
       </Container>
+      </div>
     );
   }
 }

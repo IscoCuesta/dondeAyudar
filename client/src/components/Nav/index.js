@@ -11,8 +11,8 @@ const navText1 = {
   margin: "1rem",
 };
 
-const navText2 = {
-  color: "#23D9B7",
+const nav = {
+  width: "100%"
 };
 
 
@@ -25,20 +25,22 @@ class Books extends Component {
 
 
   componentWillMount(){
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
         localStorage.setItem("DAU", user.uid)
+        this.setState({
+          firebaseUID: localStorage.getItem("DAU"),
+          logged: true
+        });
       } else {
         // No user is signed in.
-        this.props.history.push("/Login");
+        // this.props.history.push("/Login");
       }
     });
 
-    this.setState({
-      firebaseUID: localStorage.getItem("DAU"),
-      logged: true
-    });
+
+
   };
 
   componentDidMount() {
@@ -71,16 +73,17 @@ class Books extends Component {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
       localStorage.setItem("DAU", null);
-      this.props.history.push("/");
     }).catch(function(error) {
       // An error happened.
-    });
+    }).finally(() => {
+      // this.props.history.push("/");
+    })
   }
 
 
   render () {
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg" style={nav}>
       <a className="navbar-brand" href="/">
         <img src={logoIcon}  width="50px" height="50px"></img>
       </a>

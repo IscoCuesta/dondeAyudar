@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row, Container, Wrapper } from "../components/Grid";
 import EventCard from "../components/EventCard";
 import Nav from "../components/Nav";
 import API from "../utils/API";
@@ -106,8 +106,9 @@ class Detail extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
-        <Nav/>
         <Header 
           nombre={this.state.orgDetails.nombre}
           logoUrl={this.state.orgLogoUrl}>
@@ -155,6 +156,7 @@ class Detail extends Component {
           paginaweb={this.state.orgDetails.paginaweb}>
         </Footer>
       </Container>
+      </div>
 
     );
   }

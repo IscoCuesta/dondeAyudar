@@ -20,8 +20,9 @@ class Detail extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
-        <Nav/>
         <Row>
           <Col size="md-12">
             <Jumbotron>
@@ -85,6 +86,7 @@ class Detail extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

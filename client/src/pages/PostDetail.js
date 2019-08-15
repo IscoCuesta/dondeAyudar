@@ -23,8 +23,9 @@ class Detail extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
-        <Nav/>
         <Header 
           nombre="Nombre Evento">
         </Header>
@@ -72,8 +73,9 @@ class Detail extends Component {
             >
           </InfoONG>
         </Row>
-
       </Container>
+      </div>
+
     );
   }
 }

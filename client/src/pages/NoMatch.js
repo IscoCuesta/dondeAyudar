@@ -5,8 +5,9 @@ import Nav from "../components/Nav";
 
 function NoMatch() {
   return (
+    <div>
+    <Nav/>
     <Container fluid>
-      <Nav/>
       <Row>
         <Col size="md-12">
           <Jumbotron>
@@ -20,6 +21,7 @@ function NoMatch() {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 }
 

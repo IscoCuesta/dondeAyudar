@@ -128,8 +128,9 @@ class Event extends Component {
 
   render() {
     return (
+      <div>
+      <Nav/>
       <Container fluid>
-        <Nav/>
         <Row>
 
           <Col size="md-2"></Col>
@@ -249,6 +250,7 @@ class Event extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }
