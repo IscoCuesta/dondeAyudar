@@ -55,6 +55,8 @@ class Event extends Component {
             })
           })
         })
+      }else{
+        this.props.history.push("/Login")
       }
     });
   };
@@ -123,6 +125,38 @@ class Event extends Component {
         });
       })
       .catch(err => console.log(err));
+  };
+
+  validate = event => {
+    event.preventDefault();
+    if(
+      this.state.nombre !== "" &&
+      this.state.tipo.value !== "" &&
+      this.state.necesidad !== [] &&
+      this.state.resumen !== "" &&
+      this.state.descripcion !== "" &&
+      this.state.startDate._d !== null &&
+      this.state.endDate._d !== null &&
+      this.state.lugar !== "" &&
+      this.state.link !== "" &&
+      this.state.imagen !== "" &&
+      this.state.selectedImage !== null &&
+      ){
+        if(
+          this.state.firebaseUID !== null &&
+          this.state.organization !== null
+          ){
+            this.handleFormSubmit()
+          } else{
+            this.setState({ 
+              error: "error en el inicio de session"
+            });
+          }
+    }else {
+      this.setState({ 
+        error: "falta algun campo por llenar"
+      });
+    }
   };
 
 
@@ -232,9 +266,12 @@ class Event extends Component {
                 />
                 </Row>
               </Col>
+              <div>
+                <h3>{this.state.error0}</h3>
+              </div>
               <Col size="md-2">
-
-                  <FormBtn className="mt-5" onClick={this.handleFormSubmit}>
+                
+                  <FormBtn className="mt-5" onClick={this.validate}>
                     Crear Post
                   </FormBtn>
 

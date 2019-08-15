@@ -31,7 +31,8 @@ class Register extends Component {
     firebaseUID: "",
     selectedLogo: null,
     selectedHeader: null,
-    orgId: null
+    orgId: null,
+    error: ""
   };
 
   componentWillMount(){
@@ -163,6 +164,32 @@ class Register extends Component {
         });
       }).then(this.props.history.push("/ONG/"+this.state.orgId))
       .catch(err => console.log(err));
+  };
+
+  Validate = event => {
+    event.preventDefault();
+
+    if(
+      this.state.nombre !== "" &&
+      this.state.descripcion !== "" &&
+      this.state.mision !== "" &&
+      this.state.vision !== "" &&
+      this.state.objetivo !== [] &&
+      this.state.email !== "" &&
+      this.state.telefono !== "" &&
+      this.state.paginaweb !== "" &&
+      this.state.direccion !== "" &&
+      this.state.firebaseUID !== "" &&
+      this.state.necesidades !== [] &&
+      this.state.selectedLogo !== null &&
+      this.state.selectedHeader !== null
+    ){
+      this.handleFormSubmit()
+    }else {
+      this.setState({ 
+        error: "falta algun campo por llenar"
+      });
+    }
   };
 
   render() {
@@ -310,8 +337,12 @@ class Register extends Component {
                 <Input id="input-header" type="file" onChange={this.fileChangedHandler}></Input>
                 </Col>
               </Row>
+
+              <div>
+                <h3>{this.state.error0}</h3>
+              </div>
               
-              <FormBtn onClick={this.handleFormSubmit}>
+              <FormBtn onClick={this.Validate}>
                 Register
               </FormBtn>
               <Link to="/ONG">

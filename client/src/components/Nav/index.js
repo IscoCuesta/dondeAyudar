@@ -11,6 +11,10 @@ const navText1 = {
   margin: "1rem",
 };
 
+const LogOutBtn = {
+margin: "10px 10px 10px auto !important"
+};
+
 const nav = {
   width: "100%"
 };
@@ -19,6 +23,7 @@ const nav = {
 class Books extends Component {
   state = {
     orgId: null,
+    orgName: "",
     Org: {},
     logged: false
   };
@@ -55,17 +60,16 @@ class Books extends Component {
 
 
   loadUser() {
-    console.log(this.state.firebaseUID);
     API.getOrgUid({
       userId: this.state.firebaseUID
     }).then((res) =>{
       console.log(res)
       if(res.data !== null){
-        console.log(res.data)
         this.setState({
-          Org: res.data
+          Org: res.data,
+          orgName: res.data.nombre
         }, () => console.log(this.state))
-      } 
+      }
     })
     // .then(() => {
     //   if(OrgID){
@@ -83,7 +87,7 @@ class Books extends Component {
     }).catch(function(error) {
       // An error happened.
     }).finally(() => {
-      // this.props.history.push("/");
+      this.props.history.push("/");
     })
   }
 
@@ -109,6 +113,7 @@ class Books extends Component {
       {this.state.logged ?
 
         <FormBtn
+        style={{ margin: "10px 10px 10px auto"}}
         onClick={this.logOut}>
           LogOut
         </FormBtn>

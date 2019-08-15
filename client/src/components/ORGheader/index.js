@@ -36,10 +36,15 @@ export function InfoONG (props) {
             <div className="col-md-4 objNecesidades">
                 <h3>Objetivo</h3> <p>{props.objetivo}</p>
                 <h3>Necesidades</h3> <p>{props.necesidades}</p>
-                <Link to = '/ONG/newPost'><FormBtn>
-                Create a new post
-              </FormBtn>
-              </Link>
+                {props.isOwner?
+                <Link to = '/ONG/newPost'>
+                    <FormBtn>
+                    Create a new post
+                    </FormBtn>
+                </Link>
+                :
+                ""
+                }
             </div>
         </div>
     );

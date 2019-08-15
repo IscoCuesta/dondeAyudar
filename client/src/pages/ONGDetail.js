@@ -38,16 +38,24 @@ class Detail extends Component {
         orgDetails: res.data 
       }, () => {
         firebase.auth().onAuthStateChanged(user => {
-          if (user.uid === this.state.orgDetails.userId){
-            this.setState({
-              isOwner: true,
-              logged: true
-            }, () => {
-              console.log(this.state)
-            })
+          if(user){
+            if (user.uid === this.state.orgDetails.userId){
+              this.setState({
+                isOwner: true,
+                logged: true
+              }, () => {
+                console.log(this.state)
+              })
+            }
           }
           else{
             console.log(this.state)
+            this.setState({
+              isOwner: false,
+              logged: false
+            }, () => {
+              console.log(this.state)
+            })
           }
         })  
       }))
@@ -129,7 +137,8 @@ class Detail extends Component {
           mision={this.state.orgDetails.mision}
           vision={this.state.orgDetails.vision}
           objetivo={this.state.orgDetails.objetivo}
-          necesidades={this.state.orgDetails.necesidades}>
+          necesidades={this.state.orgDetails.necesidades}
+          isOwner={this.state.isOwner}>
         </InfoONG>
 
           <hr></hr>
