@@ -5,20 +5,58 @@ import Cards from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, InfoONG } from "../components/EventHeader";
+<<<<<<< HEAD
 import Nav from "../components/Nav";
+=======
+import firebase from '@firebase/app';
+import '@firebase/storage';
+
+>>>>>>> master
 // import EventCard from "../components/EventCard";
 
 
 class Detail extends Component {
   state = {
-    book: {}
+    postId: null,
+    postDetails: {},
+    orgDetails: {},
+    orgLogoUrl: null
   };
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+
   componentDidMount() {
-    // API.getBook(this.props.match.params.id)
-    //   .then(res => this.setState({ book: res.data }))
-    //   .catch(err => console.log(err));
+    this.setState({ 
+      postId: this.props.match.params.id
+    } , () => {
+    this.retrieveDetails();
+    });
+  }
+
+  retrieveDetails = () => {
+    API.getPostDetails(this.state.postId)
+    .then(res =>
+      this.setState({ 
+        postDetails: res.data,
+        orgDetails: res.data.organization
+      }, () => {
+        this.retrieveLogo();
+        console.log(this.state);
+    }))
+    .catch(err => console.log(err));  
+  }
+
+  retrieveLogo = () => {
+    const storage = firebase.storage();
+    storage
+      .ref(`/logos/${this.state.orgDetails._id}.jpg`)
+      .getDownloadURL()
+      .then( url => {
+        this.setState({ 
+          orgLogoUrl: url 
+        }, () => {
+          //console.log(this.state);
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -27,12 +65,13 @@ class Detail extends Component {
       <Nav/>
       <Container fluid>
         <Header 
-          nombre="Nombre Evento">
+          nombre={this.state.postDetails.nombre}>
         </Header>
         <Row>
           <Col size="md-7">
-            <Portada>
-              <p>"ONG Information"</p>
+            <Portada
+            imagen={this.state.postDetails.imagen}
+            nombre={this.state.postDetails.nombre}>
             </Portada>
           </Col> 
 
@@ -40,15 +79,13 @@ class Detail extends Component {
             <Link to="/ONG/1">Ver fundacion</Link> */}
 
           <Col size="md-5">
-            <Link to="/ONG/1">
               <Cards
-                  id=""
-                  key=""
-                  nombre=""
-                  descripcion=""
+                  id={this.state.orgDetails._id}
+                  key={this.state.orgDetails._id}
+                  nombre={this.state.orgDetails.nombre}
+                  logo={this.state.orgLogoUrl}
                 >
               </Cards>
-            </Link>
           </Col>
    
         </Row>
@@ -57,19 +94,14 @@ class Detail extends Component {
 
         <Row>
           <InfoONG 
-            nombre="CONCIERTO PARA RECAUDAR FONDOSPARA LA FUNDACION...."
-            lugar="Auditorio Nacional, venta de garage, direccion..."
-            startDate="12 de octubre"
-            endDate="15 de Octubre"
-            descripcion="Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                It has survived not only five centuries. Lorem Ipsum is simply dummy text of the 
-                printing and typesetting industry. It has survived not only five centuries. 
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            resumen="Necesitamos jovenes, necesitamos dinero..."
-            necesidad="Economica, recursos, voluntarios..."
-            vision="Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                It has survived not only five centuries"
-            link="facebook, tickermaster....."
+            nombre={this.state.postDetails.nombre}
+            lugar={this.state.postDetails.lugar}
+            fechaInicial={this.state.postDetails.fechaInicial}
+            fechaFinal={this.state.postDetails.fechaFinal}
+            descripcion={this.state.postDetails.descripcion}
+            resumen={this.state.postDetails.resumen}
+            necesidad={this.state.postDetails.necesidad}
+            link={this.state.postDetails.link}
             >
           </InfoONG>
         </Row>

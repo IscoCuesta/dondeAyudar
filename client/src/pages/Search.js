@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import firebase from '@firebase/app';
+import '@firebase/storage';
+
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import EventCard from "../components/EventCard";
@@ -11,6 +14,11 @@ import EventIco from "../images/event-ico.svg";
 import DonaIco from "../images/dona-ico.svg";
 import NeedsIco from "../images/needs-ico.svg";
 import VoluntIco from "../images/volunt-ico.svg";
+import RopaIco from "../images/ropa-ico.svg";
+import ComidaIco from "../images/comida-ico.svg";
+import ToysIco from "../images/toys-ico.svg";
+import ArtPersIco from "../images/personal-ico.svg";
+import OtroIco from "../images/Otro-ico.svg";
 import BackHead from "../images/fondo-banner.svg";
 import PeopleHead from "../images/friends-banner.svg";
 import Header from "../components/Header";
@@ -24,13 +32,27 @@ const divIconsS = {
 };
 
 
-class Books extends Component {
+class Search extends Component {
 
-
-  componentDidMount() {
-    // this.loadBooks();
+  state= {
+    posts: [],
+    images: {}
   }
 
+  componentDidMount() {
+    this.retrievePosts();
+  }
+
+  retrievePosts = (filter) => {
+    API.getPosts({filter
+    }).then(res => {
+      this.setState({ 
+        posts: res.data
+      }, () => {
+        console.log(this.state)
+      })
+    })  
+  }
 
   render() {
     return (
@@ -42,100 +64,96 @@ class Books extends Component {
             <div className="friendsHead">
               <img src={PeopleHead} width="50%"></img>
             </div>
-            
-              
             </Header>
         </Row>
         <br/>
         <Row>
-        <Col size="sm-4"></Col>
-        <Col size="sm-4">
-          <div style={divIconsS}>
-          <img src={EventIco} className="animated infinite pulse" style={{maxWidth:"7rem"}}></img>
-          
-              <p>Evento</p>
+        <Col size="sm-3">
+        <div style={{textAlign:"center"}}>
+          <h4>Selecciona el tipo de evento</h4>
+        </div>
+        </Col>
+        <Col size="sm-9">
+          <div style={{display:"flex", justifyContent:"center"}}>
+            
+            
+            <div style={{marginRight:"2rem"}}>
+              <img src={EventIco} className="animated infinite pulse" style={{width:"7rem"}}></img>
+              <p style={{textAlign:"center", color:"#D93B65", fontWeight:"bold", fontSize:"1rem"}}>Evento</p>    
+            </div>
+
+            <div>
+              <img src={NeedsIco} className="animated infinite pulse" style={{width:"7rem"}}></img>
+              <p style={{textAlign:"center", color:"#E421A2", fontWeight:"bold", fontSize:"1rem"}}>Recaudación</p>    
+            </div>
           </div>
-          
-          
-          <div style={divIconsS}>
-          <img src={EventIco} className="animated infinite pulse" style={{maxWidth:"7rem"}}></img>
-              <p>Recaudación</p>
-              </div>
-              </Col>
-          <Col size="sm-4"></Col>
+
+        </Col>
         </Row>
         <hr/>
-        <Row className="icons-Row">
-        <Col size="sm-2"></Col>
-          <Col size="sm-1">
-          <img src={EventIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Ropa</p>
-          </Col>
+        <Row>
+        <Col size="sm-12">
+          <div style={{display:"flex", justifyContent:"space-around"}}>
+          <div>
+            <h4>¿Con qué quieres ayudar?</h4>
+          </div>
+          
+            <div style={{width:"5rem"}}>
+              <img src={RopaIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#6900BC", fontWeight:"bold", fontSize:"0.8rem"}}>Ropa</p>
+            </div>
 
-          <Col size="sm-1">
-          <img src={NeedsIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Comida</p>  
-          </Col>
+            <div style={{width:"5rem"}}>
+              <img src={ComidaIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#EF9300", fontWeight:"bold", fontSize:"0.8rem"}}>Comida</p>
+            </div>
 
-          <Col size="sm-1">
-          <img src={DonaIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Apoyo económico</p>  
-          </Col>
+            <div style={{width:"5rem"}}>
+              <img src={DonaIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#84BF04", fontWeight:"bold", fontSize:"0.8rem"}}>Apoyo económico</p>
+            </div>
 
-          <Col size="sm-1">
-          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Voluntariado</p>  
-          </Col>
+            <div style={{width:"5rem"}}>
+              <img src={VoluntIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#F2B705", fontWeight:"bold", fontSize:"0.8rem"}}>Voluntariado</p>
+            </div>
 
-          <Col size="md-1">
-          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Juguetes</p>  
-          </Col>
+            <div style={{width:"5rem"}}>
+              <img src={ToysIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#CC0097", fontWeight:"bold", fontSize:"0.8rem"}}>Juguetes</p>
+            </div>
 
-          <Col size="md-1">
-          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Artículos personales</p>  
-          </Col>
+            <div style={{width:"5rem"}}>
+              <img src={ArtPersIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#009CFC", fontWeight:"bold", fontSize:"0.8rem"}}>Artículos personales</p>
+            </div>
 
-          <Col size="md-1">
-          <img src={VoluntIco} className="animated infinite pulse" style={{maxWidth:"5rem"}}></img>
-              <p style={{textAlign:"center", color:"red", fontWeight:"bold"}}>Otros</p>  
-          </Col>
-          <Col size="md-2"></Col>
+            <div style={{width:"5rem"}}>
+              <img src={OtroIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <p style={{textAlign:"center", color:"#055E00", fontWeight:"bold", fontSize:"0.8rem"}}>Otros</p>
+            </div>
+
+          </div>
+        </Col>
         </Row>
           <hr/>
-        
-          <Row>
+        <Row>
 
-          <Col size="md-6">
-            
+          {this.state.posts.map(post => (
               <EventCard
                   guessCard="1"
-                  id="1"
-                  key="1"
-                  name="Campamento Tortugero"
-                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                  location="2, 3 y 4 de semptiembre en Nautla, Veracruz"
-                  resumen="Liberacion de tortugas, playas más limpias, conocimiento acerca de la bioconservación"
-                  >
+                  id={post._id}
+                  key={post._id}
+                  nombre={post.nombre}
+                  lugar={post.lugar}
+                  fecha={post.fechaInicial}
+                  organization={post.organization}
+                  imagen={post.imagen}
+                  page="search"
+                >
               </EventCard>
-              
-          </Col>
-          <Col size="md-6">
-            <Link to="/Event/1">
-              <EventCard
-                  guessCard="2"
-                  id="2"
-                  key="2"
-                  name="Tapaton 2019"
-                  image="https://www.csc.gov.sg/images/default-source/ethos-images/ethos-digital-issue-3/charity_754x556px.jpg?sfvrsn=c26d54c4_0"
-                  location="Del 17 al 24 de septiembre, alcaldía Benito Juárez"
-                  resumen="Dona tus tapitas para salvar vidas. Colecta de tapas de plastico de cualquier tipo de envase"
-                  />
-            </Link>
-          </Col>
-
-          
+          ))}
+ 
         </Row>
         
       </Container>
@@ -144,4 +162,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Search;

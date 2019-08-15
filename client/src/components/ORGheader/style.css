@@ -4,8 +4,13 @@
     text-align: center;
     vertical-align: middle;
     line-height: 150px;
-    font-size: 100px;
-    color: red;
+    font-size: 80px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(134, 65, 199);
+
+    font-size: 5rem;
+    color: rgb(68, 68, 68);
+    text-shadow: 3px 2px 3px rgb(177, 177, 177);
 }
 
 .logo {
@@ -27,15 +32,55 @@
 .infoEspecifica {
     background: rgba(233, 233, 226, 0.358);
     padding-left: 35px;
+    text-align: justify; 
 }
 
 .objNecesidades {
     background: rgba(233, 233, 226, 0.358);
     padding-right: 35px;
+    text-align: justify; 
+}
+
+h3 {
+    font-weight: bold;
 }
 
 .footer {
-    background: rgb(181, 206, 213);
+    background: rgb(246, 246, 246);
     text-align: center;
     font-size: 15px;
+    font-family:  'Nanum Gothic', sans-serif;
+    /* display: flex; */
+    height: 8rem;
+        /* margin-bottom: 30px;
+        padding-bottom: 15px; */
 }
+
+.footerInfo {
+    font-size: 1rem;
+    display: flex;
+    margin-top: 2rem;
+}
+
+p {
+    margin-left: 1.5rem;
+}
+
+/* .infoObj {
+    margin-top: 3rem;
+} */
+
+.rowHeader {
+    background-image: url(../../images/titleBackground.jpg);
+    background-size: cover;
+}
+
+.InfoONGstyle {
+    background-image: url(../../images/titleBackground.jpg);
+    background-size: cover;
+    /* opacity: .5; */
+}
+
+/* .imagenFondo {
+    background-image: url(../../images/titleBackground.jpg);
+} */

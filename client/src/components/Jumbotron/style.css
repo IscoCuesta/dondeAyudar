@@ -46,3 +46,17 @@
   padding-inline: 5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.jumbotron {
+  background-image: url(../../images/loginBackground.jpg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+}
+
+p {
+  font-style: italic;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}

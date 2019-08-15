@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import firebase from 'firebase';
+import '@firebase/storage';
 
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
@@ -91,7 +92,7 @@ class Event extends Component {
     });
   };
 
-  uploadImageHandler = () => {
+  uploadImageHandler = (cb, postId) => {
     const formData = new FormData()
     formData.append(
       'myFile',
@@ -100,9 +101,24 @@ class Event extends Component {
     );
     formData.append('fileName', this.state.postId);
     axios.post('https://us-central1-dondeayudar.cloudfunctions.net/uploadPostImage', formData)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        cb(postId);
+    })
       .catch(err => console.log(err))
+      
   };
+
+  retrieveUrl = (postId) => {
+    const storage = firebase.storage();
+    storage
+      .ref(`/posts/${postId}.jpg`)
+      .getDownloadURL()
+      .then( url => {
+        API.updatePost(postId, {imagen:url})
+      })
+      .catch(err => console.log(err));
+  }
 
   handleFormSubmit = () => {
     API.savePost({
@@ -121,8 +137,8 @@ class Event extends Component {
         this.setState({ 
           postId: res.data._id
         } , () => {
-          this.uploadImageHandler();
-        }, this.props.history.push(this.state.organization));
+          this.uploadImageHandler(this.retrieveUrl, this.state.postId);
+        });
       })
       .catch(err => console.log(err));
   };
@@ -166,7 +182,6 @@ class Event extends Component {
       <Nav/>
       <Container fluid>
         <Row>
-
           <Col size="md-2"></Col>
           <Col size="md-8">
             <h3 className="mb-3 mt-3">Crea un nuevo post</h3>

@@ -93,7 +93,7 @@ class Detail extends Component {
   }
 
   retrievePosts = () => {
-    API.getOrgPosts({
+    API.getPosts({
       organization: this.state.orgId
     }).then(res => {
       this.setState({ 
@@ -144,18 +144,18 @@ class Detail extends Component {
           <hr></hr>
         <Row>
         {this.state.orgPosts.map(post => (
-          <Link to="posts/1">
               <EventCard
                   guessCard="1"
                   id={post._id}
                   key={post._id}
-                  name={post.nombre}
-                  location={post.lugar}
-                  descripcion={post.descripcion}
-                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
-                  >
+                  nombre={post.nombre}
+                  fecha={post.fechaInicial}
+                  lugar={post.lugar}
+                  imagen={post.imagen}
+                  organization={post.organization}
+                  page="ONG"
+                >
               </EventCard>
-            </Link>
         ))}
         </Row>
         <Footer
