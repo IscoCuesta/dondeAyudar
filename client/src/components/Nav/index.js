@@ -90,9 +90,9 @@ class Books extends Component {
 {/*       <a className="my-2 my-sm-0" href="/Login" style={navText2}>
         Incia sesión o regístrate
       </a> */}
-      { this.state.Org._id ?
-        <a className="my-2 my-sm-0" href={"/ONG/"+this.state.Org._id} style={navText1}>
-        {this.state.Org.nombre}
+      { this.state.logged ?
+        <a className="my-2 my-sm-0" href={this.state.Org._id ? "/ONG/"+this.state.Org._id : "/ONG"} style={navText1}>
+        {this.state.Org.nombre? this.state.Org.nombre : "DóndeAyudar" }
         </a>
       :
         <a className="my-2 my-sm-0" href="/Login" style={navText1}>
@@ -105,7 +105,6 @@ class Books extends Component {
         onClick={this.logOut}>
           LogOut
         </FormBtn>
-
         :
         ''
       }
