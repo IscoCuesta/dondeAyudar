@@ -5,13 +5,9 @@ import Cards from "../components/ONGcard";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Header, Portada, InfoONG } from "../components/EventHeader";
-<<<<<<< HEAD
-import Nav from "../components/Nav";
-=======
 import firebase from '@firebase/app';
 import '@firebase/storage';
 
->>>>>>> master
 // import EventCard from "../components/EventCard";
 
 

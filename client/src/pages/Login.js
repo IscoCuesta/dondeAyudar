@@ -4,14 +4,7 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 import firebase from 'firebase'
-<<<<<<< HEAD
-import { userInfo } from "os";
-import $ from 'jquery';
-import '../App.css';
-
-=======
 import Nav from "../components/Nav";
->>>>>>> master
 
 
 
