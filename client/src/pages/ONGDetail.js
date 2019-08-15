@@ -127,10 +127,12 @@ class Detail extends Component {
                   guessCard="1"
                   id={post._id}
                   key={post._id}
-                  name={post.nombre}
-                  location={post.lugar}
-                  descripcion={post.descripcion}
-                  image="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2018/01/15155312/iStock-667709450.jpg"
+                  nombre={post.nombre}
+                  fecha={post.fechaInicial}
+                  lugar={post.lugar}
+                  imagen={post.imagen}
+                  organization={post.organization}
+                  page="ONG"
                 >
               </EventCard>
         ))}
