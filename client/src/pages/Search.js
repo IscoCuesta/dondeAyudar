@@ -32,6 +32,8 @@ const divIconsS = {
 };
 
 
+
+
 class Search extends Component {
 
   state= {
@@ -97,37 +99,37 @@ class Search extends Component {
           </div>
           
             <div style={{width:"5rem"}}>
-              <img src={RopaIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={RopaIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#6900BC", fontWeight:"bold", fontSize:"0.8rem"}}>Ropa</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={ComidaIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={ComidaIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#EF9300", fontWeight:"bold", fontSize:"0.8rem"}}>Comida</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={DonaIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={DonaIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#84BF04", fontWeight:"bold", fontSize:"0.8rem"}}>Apoyo económico</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={VoluntIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={VoluntIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#F2B705", fontWeight:"bold", fontSize:"0.8rem"}}>Voluntariado</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={ToysIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={ToysIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#CC0097", fontWeight:"bold", fontSize:"0.8rem"}}>Juguetes</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={ArtPersIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={ArtPersIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#009CFC", fontWeight:"bold", fontSize:"0.8rem"}}>Artículos personales</p>
             </div>
 
             <div style={{width:"5rem"}}>
-              <img src={OtroIco} className="animated infinite pulse" style={{width:"5rem"}}></img>
+              <img src={OtroIco} className="animated infinite pulse" style={{width:"5rem", cursor:"pointer"}}></img>
               <p style={{textAlign:"center", color:"#055E00", fontWeight:"bold", fontSize:"0.8rem"}}>Otros</p>
             </div>
 
