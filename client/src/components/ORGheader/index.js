@@ -27,7 +27,6 @@ export function Portada(props) {
 
 export function InfoONG (props) {
     return (
-        // <div className="imagenFondo"></div>
         <div className="row InfoONGstyle">
             <div className="col-md-8 infoEspecifica">
                 <h3>Descripcion</h3> <p>{props.descripcion}</p>
@@ -37,9 +36,9 @@ export function InfoONG (props) {
             <div className="col-md-4 objNecesidades">
                 <div className="infoObj">
                     <h3>Objetivo</h3> <p>{props.objetivo}</p>
-                    <br/> <br/> <br/> <br/> <br/> <br/>
+                        <br/> <br/> <br/> <br/> <br/> <br/>
                     <h3>Necesidades</h3> <p>{props.necesidades}</p>
-                    <br/> <br/> <br/> <br/> <br/>
+                        <br/> <br/> <br/> <br/> <br/>
                     <Link to = '/ONG/newPost'>
                         <FormBtn>
                             Create a new post
