@@ -7,7 +7,7 @@ function Jumbotron({ children }) {
       style={{ height: 400, clear: "both", paddingTop: 120, textAlign: "center" }}
       className="jumbotron text"
       >
-        <p>Si eres parte de una Fundacion te invitamos a registrarte</p>
+        <p className="parrafoLogin">Si eres parte de una Fundacion te invitamos a registrarte</p>
         {/* <p>En caso de ya tener una cuenta inicia sesion</p> */}
       {children}
     </div>

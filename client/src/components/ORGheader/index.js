@@ -26,6 +26,14 @@ export function Portada(props) {
 }
 
 export function InfoONG (props) {
+    let necesidades = null
+    let objetivo = null
+    if(props.objetivo){
+        objetivo = Object.values(props.objetivo).map(elemento => <p>{elemento.charAt(0).toUpperCase() + elemento.slice(1)}</p>)
+    }
+    if(props.necesidades){
+        necesidades = Object.values(props.necesidades).map(elemento => <p>{elemento.charAt(0).toUpperCase() + elemento.slice(1)}</p>)
+    }
     return (
         <div className="row InfoONGstyle">
             <div className="col-md-8 infoEspecifica">
@@ -35,10 +43,10 @@ export function InfoONG (props) {
             </div>
             <div className="col-md-4 objNecesidades">
                 <div className="infoObj">
-                    <h3>Objetivo</h3> <p>{props.objetivo}</p>
-                        <br/> <br/> <br/> <br/> <br/> <br/>
-                    <h3>Necesidades</h3> <p>{props.necesidades}</p>
-                        <br/> <br/> <br/> <br/> <br/>
+                    <h3>Objetivo</h3> <p>{objetivo}</p>
+                    <br/> <br/> <br/> <br/> <br/> <br/>
+                    <h3>Necesidades</h3> <p>{necesidades}</p>
+                    <br/> <br/> <br/> <br/> <br/>
                     <Link to = '/ONG/newPost'>
                         <FormBtn>
                             Create a new post

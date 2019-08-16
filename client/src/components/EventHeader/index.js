@@ -29,16 +29,18 @@ export function Portada(props) {
     );
 }
 
-export function InfoONG (props) {
-
-
+export function PostInfo (props) {
+    let necesidades = null
+    if(props.necesidad){
+        necesidades = Object.values(props.necesidad).map(elemento => <p>{elemento.charAt(0).toUpperCase() + elemento.slice(1)}</p>)
+    }
     return (
         <div className="row">
             <div className="col-md-7 infoEspecifica">
                 <div className="textInfoEsp">
                     <h5><strong>Resumen</strong></h5> <p>{props.resumen}</p>
                     <h5><strong>Descripcion del Evento</strong></h5> <p>{props.descripcion}</p>
-                    <h5><strong>Tipo de apoyo que se necesita</strong></h5> <p>{props.necesidad}</p>
+                    <h5><strong>Tipo de apoyo que se necesita</strong></h5> <p>{necesidades}</p>
                 </div>
             </div>
             <div className="col-md-5 objNecesidades">
@@ -47,10 +49,10 @@ export function InfoONG (props) {
                         <h5><strong>Locación del evento</strong></h5> <p>{props.lugar}</p>
                     </div>
                     <div className="col-sm-6">       
-                        <h5><strong>Fecha Inicial</strong></h5> <p>{props.fechaInicial}</p>
+                        <h5><strong>Fecha Inicial</strong></h5> <p>{Date(props.fechaInicial).toString().slice(0, 16)}</p>
                     </div>
                     <div className="col-sm-6"> 
-                        <h5><strong>Fecha Final</strong></h5> <p>{props.fechaFinal}</p>
+                        <h5><strong>Fecha Final</strong></h5> <p>{Date(props.fechaFinal).toString().slice(0, 16)}</p>
                     </div>
                 
                     <a className="linkEvent" href={props.link}><strong>Link del evento</strong></a>
