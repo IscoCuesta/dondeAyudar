@@ -18,7 +18,7 @@ const storage = new Storage({
   auth_uri: process.env.AUTH_URI,
   token_uri: process.env.TOKEN_URI,
   auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_X509,
-  client_x509_cert_url: process.env.CLIENT_X509
+  client_x509_cert_url: process.env.CLIENT_X509,
 
   // keyFilename: 'dondeayudar-firebase-adminsdk-uiv8i-b4ac86f418.json',
 });
