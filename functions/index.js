@@ -9,7 +9,18 @@ const {Storage} = require('@google-cloud/storage');
 
 const storage = new Storage({
   projectId: 'dondeayudar',
-  keyFilename: 'dondeayudar-firebase-adminsdk-uiv8i-b4ac86f418.json',
+  type: process.env.TYPE,
+  project_id: process.env.PROJECT_IS,
+  private_key_id: process.env.PRIVATE_KEY_ID,
+  private_key: process.env.PRIVATE_KEY,
+  client_email: process.env.CLIENT_EMAIL,
+  client_id: process.env.CLIENT_ID,
+  auth_uri: process.env.AUTH_URI,
+  token_uri: process.env.TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_X509,
+  client_x509_cert_url: process.env.CLIENT_X509
+
+  // keyFilename: 'dondeayudar-firebase-adminsdk-uiv8i-b4ac86f418.json',
 });
 
 exports.uploadLogo = functions.https.onRequest((req, res) => {

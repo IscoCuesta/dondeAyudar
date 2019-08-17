@@ -2,3 +2,4 @@ node_modules
 firebaseConfig.js
 package-lock.json
 .DS_store
+.env
