@@ -34,9 +34,6 @@ const divIconsS = {
   /* display: "flex-inline", */
 };
 
-
-
-
 class Search extends Component {
 
   state= {
