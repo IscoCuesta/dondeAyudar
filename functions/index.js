@@ -6,10 +6,12 @@ const Busboy = require('busboy');
 const fs = require('fs');
 
 const {Storage} = require('@google-cloud/storage');
+const functionsConfig = require('./dondeayudar-firebase-adminsdk-uiv8i-b4ac86f418.json')
 
+const config = process.env.REACT_APP_FUNCTIONS_CONFIG ? JSON.parse(process.env.REACT_APP_FUNCTIONS_CONFIG) : functionsConfig
 const storage = new Storage({
   projectId: 'dondeayudar',
-  keyFilename: 'dondeayudar-firebase-adminsdk-uiv8i-b4ac86f418.json',
+  credentials: config
 });
 
 exports.uploadLogo = functions.https.onRequest((req, res) => {
