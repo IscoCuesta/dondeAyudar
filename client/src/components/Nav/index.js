@@ -32,8 +32,8 @@ class Books extends Component {
   componentWillMount(){
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        // User is signed in.
-        console.log(user)
+        // User is signed in. console.log exposes API key
+        //console.log(user)
         localStorage.setItem("DAU", user.uid)
         this.setState({
           firebaseUID: localStorage.getItem("DAU"),
