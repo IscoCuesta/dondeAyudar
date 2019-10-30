@@ -72,7 +72,7 @@ class Books extends Component {
       
             <div style={divBtns}>
                 <Link to="/Search">
-                  <FormBtn>
+                  <FormBtn className="centered-btn">
                     Empieza a ayudar
                   </FormBtn>
                 </Link>  

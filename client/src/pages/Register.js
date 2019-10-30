@@ -341,7 +341,7 @@ class Register extends Component {
                 <h3>{this.state.error}</h3>
               </div>
               
-              <FormBtn onClick={this.Validate}>
+              <FormBtn className="centered-btn" onClick={this.Validate}>
                 Register
               </FormBtn>
               <Link to="/ONG">
