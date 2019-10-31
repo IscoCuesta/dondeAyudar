@@ -3,15 +3,19 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as firebase from "firebase/app";
 
-var firebaseConfig = null;
-
-console.log(process.env.REACT_APP_FIREBASE_CONFIG)
-if (process.env.NODE_ENV === "development") {
-    firebaseConfig = require('./firebase-config')
-} else if (process.env.NODE_ENV === "production") {
-    firebaseConfig = JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG)
+if (process.env.NODE_ENV === "production"){
+  firebase.initializeApp(JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG));
 }
-console.log(firebaseConfig)
-firebase.initializeApp(firebaseConfig);
+else {
+	firebase.initializeApp({
+		apiKey: process.env.REACT_APP_APIKEY,
+		authDomain: process.env.REACT_APP_AUTHDOMAIN,
+		databaseURL: process.env.REACT_APP_DATABASEURL,
+		projectId: process.env.REACT_APP_PROJECTID,
+		storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+		messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+		appId: process.env.REACT_APP_APPID
+	});
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));

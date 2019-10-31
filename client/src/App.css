@@ -19,17 +19,12 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .wrapper {
   background: rgb(125,7,242);
   background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgb(41, 0, 131) 100%);
 } 
 
-.navbar-expand-lg {
+.navbar {
   background: rgb(125,7,242);
   background: radial-gradient(circle, rgba(125,7,242,1) 60%, rgba(41, 0, 131) 100%);
 }
@@ -39,8 +34,103 @@
   margin: auto;
 }
 
+.post-filter-text{
+  margin-left: 1em;
+  line-height: 3em;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
 .icons-Row {
   background-color: aqua;
+}
+
+.filter-title{
+  text-align: center;
+}
+
+.filter-container{
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.filter-div{
+  margin-top: 1em;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 8%;
+  display: inline-block;
+}
+
+.filter-text{
+  margin-top: .5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.events{
+  color: #D93B65;
+}
+
+.collections{
+  color: #E421A2;
+}
+
+.donation{
+  color: #84BF04;
+}
+
+.volunteers{
+  color: #F2B705;
+}
+
+.clothes{
+  color: #6900BC;
+}
+
+.food{
+  color: #EF9300;
+}
+
+.toys{
+  color: #CC0097;
+}
+
+.personal{
+  color: #009CFC;
+}
+
+.other{
+  color: #055E00;
+}
+
+.centered-btn{
+  margin: "10px auto";
+  display: "flex"
+}
+
+.resetmargin{
+  margin-left: 0px;
+  margin-bottom: 0px;
+}
+
+@media (max-width: 737px){
+  .filter-div{
+    margin-left: 4%;
+    margin-right: 4%;
+    width: 16%;
+    display: inline-block;
+  }
+  .filter-text{
+    font-size: 0.5em;
+  }
+  .filter-container{
+    padding: 0% 3%;
+    margin-bottom: 1em;
+  }
+  .post-filter-text{
+    margin-left: .5em;
+  }
 }
 
 /* .container {

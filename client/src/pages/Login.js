@@ -106,10 +106,12 @@ class Books extends Component {
                 placeholder="Password"
               />
                 <FormBtn
+                  className="centered-btn"
                   onClick={this.handleFormSubmit}>
                   Log in
                 </FormBtn>
                 <FormBtn
+                  className="centered-btn"
                   onClick={this.handleFormSubmitRegister}>
                   Register
                 </FormBtn>

@@ -6,10 +6,10 @@ import { Link } from "react-router-dom"
 export function Header(props) {
     return (
         <div className="row rowHeader">
-            <div className="col-md-10 nombre">
+            <div className="nombre">
                 {props.nombre}
             </div>
-            <div className="col-md-2 logo">
+            <div className="logo">
                 <img className="logoo" src={props.logoUrl} alt={props.nombre}></img>
             </div>
         </div>
@@ -48,7 +48,7 @@ export function InfoONG (props) {
                     <h3>Necesidades</h3> <p>{necesidades}</p>
                     <br/> <br/> <br/> <br/> <br/>
                     <Link to = '/ONG/newPost'>
-                        <FormBtn>
+                        <FormBtn className="centered-btn">
                             Create a new post
                         </FormBtn>
                     </Link>
@@ -63,10 +63,10 @@ export function Footer (props) {
         <div className="row">
             <div className="col-md-12 footer">
                 <div className="footerInfo">
-                    <p>{props.direccion}</p>
-                    <p>{props.telefono}</p>
-                    <p>{props.email}</p>
-                    <p>{props.paginaweb}</p>
+                    <p>Dirección: {props.direccion}</p>
+                    <p>Teléfono: {props.telefono}</p>
+                    <p>Email: {props.email}</p>
+                    <p>Website: {props.paginaweb}</p>
                 </div>
             </div>
         </div>

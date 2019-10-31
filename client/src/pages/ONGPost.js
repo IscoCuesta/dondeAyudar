@@ -285,7 +285,7 @@ class Event extends Component {
               <Col size="md-2">
 
                 <h6>{this.state.error}</h6>
-                  <FormBtn className="mt-5" onClick={this.validate}>
+                  <FormBtn className="centered-btn mt-5"onClick={this.validate}>
                     Crear Post
                   </FormBtn>
 

@@ -95,24 +95,22 @@ class Search extends Component {
         <br/>
         <Row>
         <Col size="sm-4">
-        <div style={{textAlign:"center"}}>
-          <h4>¿De qué forma quieres ayudar?</h4>
+        <div className="mb-3 mb-md-0" style={{textAlign:"center"}}>
+          <h4>¿Qué tipo de posts quieres ver?</h4>
         </div>
         </Col>
         <Col size="sm-8">
           <Row>
-            <Col size="md-5">
+            <Col size="6 md-5">
               <div style={{height:"3rem", display:"flex", justifyContent:"center", cursor:"pointer"}}>
                 <img src={EventIco} style={{height:"3rem"}}></img>
-                <span style={{marginLeft:"1rem", lineHeight:"3rem", verticalAlign:"middle", color:"#D93B65", fontWeight:"bold", fontSize:"1rem"}}
-                onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}>Asistiendo a un evento</span>    
+                <span className="post-filter-text events" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}>Eventos</span>    
               </div>
             </Col>
-            <Col size="md-5">
+            <Col size="6 md-5">
               <div style={{height:"3rem", display:"flex", justifyContent:"center", cursor:"pointer"}}>
                 <img src={NeedsIco} style={{height:"3rem"}}></img>
-                <span style={{marginLeft:"1rem", lineHeight:"3rem", verticalAlign:"middle", color:"#E421A2", fontWeight:"bold", fontSize:"1rem"}}
-                onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}>Contribuyendo a una recaudación</span>    
+                <span className="post-filter-text collections" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}>Recaudaciones</span>    
               </div>
             </Col>
           </Row>
@@ -121,68 +119,47 @@ class Search extends Component {
         <hr/>
         <Row>
         <Col size="sm-12">
-          <div style={{display:"flex", justifyContent:"space-around"}}>
-          <div>
-            <h4 className="mt-4">¿Qué tipo de contribución puedes hacer?</h4>
-          </div>
           
-            <div style={{width:"5rem"}}>
-              <img src={DonaIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"dinero"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw",textAlign:"center", color:"#84BF04", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Económica</p>
-            </div>
+            <h4 className="filter-title mt-3">¿Qué tipo de contribución puedes hacer?</h4>
 
-            <div style={{width:"5rem"}}>
-              <img src={VoluntIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"voluntarios"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#F2B705", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Voluntariado</p>
-            </div>
+            <div className="filter-container">
+          
+              <div className="filter-div">
+                <img src={DonaIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"dinero"})}></img>
+                <p className="filter-text resetmargin donation">Económica</p>
+              </div>
 
-            <div style={{width:"5rem"}}>
-              <img src={RopaIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"ropa"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#6900BC", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Ropa</p>
-            </div>
+              <div className="filter-div">
+                <img src={VoluntIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"voluntarios"})}></img>
+                <p className="filter-text resetmargin volunteers">Voluntariado</p>
+              </div>
 
-            <div style={{width:"5rem"}}>
-              <img src={ComidaIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"comida"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#EF9300", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Comida</p>
-            </div>
+              <div className="filter-div">
+                <img src={RopaIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"ropa"})}></img>
+                <p className="filter-text resetmargin clothes">Ropa</p>
+              </div>
 
-            <div style={{width:"5rem"}}>
-              <img src={ToysIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"juguetes"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#CC0097", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Juguetes</p>
-            </div>
+              <div className="filter-div">
+                <img src={ComidaIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"comida"})}></img>
+                <p className="filter-text resetmargin food">Comida</p>
+              </div>
 
-            <div style={{width:"5rem"}}>
-              <img src={ArtPersIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"personales"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#009CFC", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Art. Personales</p>
-            </div>
+              <div className="filter-div">
+                <img src={ToysIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"juguetes"})}></img>
+                <p className="filter-text resetmargin toys">Juguetes</p>
+              </div>
 
-            <div style={{width:"5rem"}}>
-              <img src={OtroIco} style={{width:"5rem", cursor:"pointer"}}
-              onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff}
-              onClick={() => this.retrievePosts({"necesidad":"otros"})}></img>
-              <p style={{marginTop:".3rem", marginLeft:"-.05vw", textAlign:"center", color:"#055E00", fontWeight:"bold", fontSize:"0.8rem"}}
-              >Otros</p>
-            </div>
+              <div className="filter-div">
+                <img src={ArtPersIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"personales"})}></img>
+                <p className="filter-text resetmargin personal">Personales</p>
+              </div>
 
-          </div>
+              <div className="filter-div">
+                <img src={OtroIco} className="filter-icon" onMouseEnter={this.handleAnimationOn} onMouseOut={this.handleAnimationOff} onClick={() => this.retrievePosts({"necesidad":"otros"})}></img>
+                <p className="filter-text resetmargin other">Otros</p>
+              </div>
+
+            </div>
         </Col>
         </Row>
           <hr/>
