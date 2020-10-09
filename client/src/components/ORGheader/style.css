@@ -1,94 +1,139 @@
+.header-row, .info-row, .events-row {
+    background: rgb(246, 246, 246);
+}
+
+.header-container, .info-container, .events-container {
+    margin: 0px 3% 0px 3%;
+    position: relative;
+}
+
+.events-container {
+    background-color: #ffffff;
+    margin-bottom: 30px;
+    padding-top: 35px;
+    padding-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+}
+
+.events-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.foto {
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-position: right 0px bottom -120px;
+}
+
+.name-tab{
+    height: 80px;
+    background-color: #ffffff;
+    border-radius: 0px 0px 3px 3px;
+}
+
 .nombre {
     overflow: hidden;
-    background: rgba(233, 233, 226, 0.358);
-    height: 23vh;
-    text-align: center;
+    height: 75px;
+    padding-left: 20%;
     vertical-align: middle;
-    line-height: 23vh;
+    line-height: 75px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 8vw;
+    font-size: 1.8em;
+    font-weight: bold;
     color: rgb(68, 68, 68);
-    text-shadow: 3px 2px 3px rgb(177, 177, 177);
     flex-grow: 1;
 }
 
-.logo {
-    background: rgba(233, 233, 226, 0.358);
-    float: right;
-    height: 23vh;
-    width: 23vh
-}
-
-.logoo {
-    height: 100%;
-}
-
-/* .foto {
-    background-image: URL("/images/backgroundPrueba.jpg");
-    background-size: cover;
+.logo-container {
+    background: #ffffff;
     height: auto;
-    background-repeat: no-repeat;
-} */
-
-.infoEspecifica {
-    background: rgba(233, 233, 226, 0.358);
-    padding-top: 3em;
-    padding-left: 35px;
-    text-align: justify; 
+    width: 15%;
+    position: absolute;
+    left: 10%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
-.objNecesidades {
-    background: rgba(233, 233, 226, 0.358);
-    padding-top: 3em;
-    padding-right: 35px;
-    text-align: justify; 
+.logo {
+    height: 90%;
+    width: 90%;
+    margin: 5%;
+}
+
+.org-info {
+    display: inline-block;
+    background-color: #ffffff;
+    margin: 30px 2% 30px 0%;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+}
+
+.org-contact {
+    display: inline-block;
+    width: 98%;
+    min-height: calc(100% - 60px);
+    background-color: #ffffff;
+    margin: 30px 0% 30px 2%;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+}
+
+.org-info p, .org-contact p {
+    margin-left: 0px;
+}
+
+.org-contact p {
+    margin-bottom: 3px;
+}
+
+.contact-div, .needs-div {
+    margin-top: 30px
 }
 
 h3 {
     font-weight: bold;
 }
 
-.footer {
-    background: rgb(246, 246, 246);
-    text-align: center;
-    font-size: 15px;
-    font-family:  'Nanum Gothic', sans-serif;
-    /* display: flex; */
-    height: auto;
-        /* margin-bottom: 30px;
-        padding-bottom: 15px; */
-}
+@media (max-width: 767px){
 
-.footerInfo {
-    font-size: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem
-}
+    .logo-container {
+        height: 150px;
+        width: 150px;
+        left: 50%;
+        top: 25%;
+    }
 
-p {
-    margin-left: 1.5rem;
-}
-
-/* .infoObj {
-    margin-top: 3rem;
-} */
-
-.rowHeader {
-    background-image: url(../../images/titleBackground.jpg);
-    background-size: cover;
-}
-
-.InfoONGstyle {
-    background-image: url(../../images/titleBackground.jpg);
-    background-size: cover;
-    /* opacity: .5; */
-}
-/* .imagenFondo {
-    background-image: url(../../images/titleBackground.jpg);
-} */
-
-@media (min-width: 960px){
     .nombre{
-        font-size: 5rem;
+        font-size: 1.6em;
+        text-align: center;
+        padding-left: 0px;
+    }
+
+    .foto {
+        height: 200px;
+        background-position: right 0px bottom 0px;
+    }
+
+    .org-info, .org-contact {
+        margin: 30px 0% 30px 0%;
+    }
+
+    .org-contact {
+        height: auto;
+        margin: 0px 0% 30px 0%;
+        width: 100%;
     }
 }
+
+@media (max-width: 576px){
+    .header-container, .info-container, .events-container {
+        margin: 0px;
+        position: relative;
+    }
+}   

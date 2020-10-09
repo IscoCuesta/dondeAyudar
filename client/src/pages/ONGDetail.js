@@ -4,7 +4,7 @@ import { Col, Row, Container, Wrapper } from "../components/Grid";
 import EventCard from "../components/EventCard";
 import Nav from "../components/Nav";
 import API from "../utils/API";
-import { Header, Portada, InfoONG, Footer } from "../components/ORGheader";
+import { Header, InfoONG, Events } from "../components/ORGheader";
 import firebase from '@firebase/app';
 import '@firebase/storage';
 
@@ -119,18 +119,10 @@ class Detail extends Component {
       <Container fluid>
         <Header 
           nombre={this.state.orgDetails.nombre}
-          logoUrl={this.state.orgLogoUrl}>
+          logoUrl={this.state.orgLogoUrl}
+          headerUrl={this.state.orgHeaderUrl}>
         </Header>
-        <Row>
-          <Col size="md-12">
-            <Portada
-            headerUrl={this.state.orgHeaderUrl}>
-              <p>"ONG Information"</p>
-            </Portada>
-          </Col>  
-        </Row>
 
-        <hr></hr>
 
         <InfoONG 
           descripcion={this.state.orgDetails.descripcion}
@@ -138,32 +130,29 @@ class Detail extends Component {
           vision={this.state.orgDetails.vision}
           objetivo={this.state.orgDetails.objetivo}
           necesidades={this.state.orgDetails.necesidades}
-          isOwner={this.state.isOwner}>
-        </InfoONG>
-
-          <hr></hr>
-        <Row>
-        {this.state.orgPosts.map(post => (
-              <EventCard
-                  guessCard="1"
-                  id={post._id}
-                  key={post._id}
-                  nombre={post.nombre}
-                  fecha={post.fechaInicial}
-                  lugar={post.lugar}
-                  imagen={post.imagen}
-                  organization={post.organization}
-                  page="ONG"
-                >
-              </EventCard>
-        ))}
-        </Row>
-        <Footer
+          isOwner={this.state.isOwner}
           direccion={this.state.orgDetails.direccion}
           telefono={this.state.orgDetails.telefono}
           email={this.state.orgDetails.email}
           paginaweb={this.state.orgDetails.paginaweb}>
-        </Footer>
+        </InfoONG>
+
+        <Events>
+          {this.state.orgPosts.map(post => (
+            <EventCard
+                guessCard="1"
+                id={post._id}
+                key={post._id}
+                nombre={post.nombre}
+                fecha={post.fechaInicial}
+                lugar={post.lugar}
+                imagen={post.imagen}
+                organization={post.organization}
+                page="ONG"
+              >
+            </EventCard>
+          ))}
+        </Events>
       </Container>
       </div>
 
