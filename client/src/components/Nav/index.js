@@ -99,7 +99,7 @@ class Books extends Component {
         </a>
       }
       {this.state.logged ?
-        <button className="btn btn-outline-primary logout-btn" onClick={this.logOut}>LogOut</button> : ''
+        <button className="btn btn-outline-primary logout-btn" onClick={this.logOut}>Log out</button> : ''
       }
 
     </nav>

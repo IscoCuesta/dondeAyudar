@@ -60,6 +60,7 @@
   margin-right: 3%;
   width: 8%;
   display: inline-block;
+  cursor: pointer;
 }
 
 .filter-text{

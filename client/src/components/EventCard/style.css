@@ -4,14 +4,14 @@
   margin: 1rem;
   position: relative;
   width: 25%;
-  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  box-shadow: 0 2px 4px #999;
   text-align: left;
   opacity: .9;
-  font-size: 2rem
+  font-size: 2rem;
 }
 
 .card:hover {
-  opacity: 1;
+  box-shadow: 3px 3px 6px #999;
 }
 
 .img-container {
@@ -33,16 +33,19 @@
   padding-left: 1.5rem !important;
   padding-right: 1.5rem !important;
   font-size: 1rem;  
-  font-family: 'Nanum Gothic', sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
-.resetmargin{
-  margin-left: 0px;
-  margin-bottom: 0px;
-}
-
-@media (max-width: 737px){
+@media (max-width: 992px){
   .card{
-    width: 100%
+    width: 40%
+  }
+}
+
+@media (max-width: 576px){
+  .card{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 }

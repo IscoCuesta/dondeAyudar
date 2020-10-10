@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Link } from "react-router-dom"
 
 // const nombreEvento = { background: rgba(233, 233, 226, 0.358);
 //     height: "150px",
@@ -12,19 +13,27 @@ import "./style.css";
 
 export function Header(props) {
     return (
-        <div className="rowHeader">
-            <div className="col-md-12 nombreEvento">
-                {props.nombre}
+        <div className="row header-row">
+            <div className="col-12">
+                <div className="header-container">
+                    <div
+                        style={{  backgroundImage: `url(${props.imagen})` }}
+                        className="foto">
+                    </div>
+                    <div className="details-tab">
+                        <div className="event-title">
+                            {props.nombre}
+                        </div>
+                        <div className="event-timedate">
+                            Empieza {Date(props.fechaInicial).toString().slice(4, 15)}, 
+                            termina {Date(props.fechaFinal).toString().slice(4, 16)}
+                        </div>
+                        <div className="event-location">
+                             {props.lugar}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    );
-}
-
-export function Portada(props) {
-    return (
-        <div
-            className="fotoEvento text" 
-            style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center", backgroundSize: 'cover', backgroundImage: `url(${props.imagen})` }}>
         </div>
     );
 }
@@ -32,35 +41,39 @@ export function Portada(props) {
 export function PostInfo (props) {
     let necesidades = null
     if(props.necesidad){
-        necesidades = Object.values(props.necesidad).map(elemento => <p>{elemento.charAt(0).toUpperCase() + elemento.slice(1)}</p>)
+        necesidades = Object.values(props.necesidad).map(elemento => <p className="apoyo">{elemento.charAt(0).toUpperCase() + elemento.slice(1)}</p>)
     }
     return (
-        <div className="row">
-            <div className="col-md-7 infoEspecifica">
-                <div className="textInfoEsp">
-                    <h5><strong>Resumen</strong></h5> <p>{props.resumen}</p>
-                    <h5><strong>Descripcion del Evento</strong></h5> <p>{props.descripcion}</p>
-                    <h5><strong>Tipo de apoyo que se necesita</strong></h5> <p>{necesidades}</p>
-                </div>
-            </div>
-            <div className="col-md-5 objNecesidades">
-                <div className="row">
-                    <div className="col-sm-12 TextObjNed">
-                        <h5><strong>Locación del evento</strong></h5> <p>{props.lugar}</p>
+        <div className="row info-row">
+            <div className="col-12">
+                <div className="info-container">
+                    <div className="row no-gutters">
+                        <div className="col-md-8">
+                            <div className="event-info">
+                                <h4>Resumen</h4> <p>{props.resumen}</p>
+                                <h4>Detalles del evento</h4> <p>{props.descripcion}</p>
+                                <h4>¿Qué se necesita?</h4> {necesidades}
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="poster-org">
+                                <div className="content text-center">
+                                    <h5>Creado por</h5>
+                                    <Link to={"../ONG/" + props.id}>
+                                        <p className="poster-name"> {props.nombre} </p>
+                                    </Link>
+                                    <img style={{margin:"auto", width:"50%"}} src={props.logo} alt={props.nombre}></img>
+
+                                    <hr/>
+                                    <a href={"https://" + props.link}>
+                                        <p className="external-link">Más información del evento</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-sm-6">       
-                        <h5><strong>Fecha Inicial</strong></h5> <p>{Date(props.fechaInicial).toString().slice(0, 16)}</p>
-                    </div>
-                    <div className="col-sm-6"> 
-                        <h5><strong>Fecha Final</strong></h5> <p>{Date(props.fechaFinal).toString().slice(0, 16)}</p>
-                    </div>
-                
-                    <a className="linkEvent" href={props.link}><strong>Link del evento</strong></a>
-                </div>
+                </div>         
             </div>
         </div>
     );
 }
-
-
-

@@ -62,46 +62,25 @@ class Detail extends Component {
       <Nav/>
       <Container fluid>
         <Header 
-          nombre={this.state.postDetails.nombre}>
+          nombre={this.state.postDetails.nombre}
+          imagen={this.state.postDetails.imagen}
+          fechaInicial={this.state.postDetails.fechaInicial}
+          fechaFinal={this.state.postDetails.fechaFinal}
+          lugar={this.state.postDetails.lugar}>
         </Header>
-        <Row>
-          <Col size="md-7">
-            <Portada
-            imagen={this.state.postDetails.imagen}
-            nombre={this.state.postDetails.nombre}>
-            </Portada>
-          </Col> 
 
-          {/* <Col size="md-2 md-offset-10">
-            <Link to="/ONG/1">Ver fundacion</Link> */}
-
-          <Col size="md-5">
-              <OngCard
-                  id={this.state.orgDetails._id}
-                  key={this.state.orgDetails._id}
-                  nombre={this.state.orgDetails.nombre}
-                  logo={this.state.orgLogoUrl}
-                >
-              </OngCard>
-          </Col>
-   
-        </Row>
-        
-        <hr></hr>
-
-        <Row>
-          <PostInfo
-            nombre={this.state.postDetails.nombre}
-            lugar={this.state.postDetails.lugar}
-            fechaInicial={this.state.postDetails.fechaInicial}
-            fechaFinal={this.state.postDetails.fechaFinal}
-            descripcion={this.state.postDetails.descripcion}
-            resumen={this.state.postDetails.resumen}
-            necesidad={this.state.postDetails.necesidad}
-            link={this.state.postDetails.link}
-            >
-          </PostInfo>
-        </Row>
+        <PostInfo
+          nombre={this.state.postDetails.nombre}
+          descripcion={this.state.postDetails.descripcion}
+          resumen={this.state.postDetails.resumen}
+          necesidad={this.state.postDetails.necesidad}
+          link={this.state.postDetails.link}
+          id={this.state.orgDetails._id}
+          key={this.state.orgDetails._id}
+          nombre={this.state.orgDetails.nombre}
+          logo={this.state.orgLogoUrl}
+          >
+        </PostInfo>
       </Container>
       </div>
 
