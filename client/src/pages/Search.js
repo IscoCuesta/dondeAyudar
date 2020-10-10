@@ -93,7 +93,7 @@ class Search extends Component {
             </Header>
         </Row>
         <br/>
-        <Row>
+{/*         <Row>
         <Col size="sm-4">
         <div className="mb-3 mb-md-0" style={{textAlign:"center"}}>
           <h4>¿Qué tipo de posts quieres ver?</h4>
@@ -116,11 +116,11 @@ class Search extends Component {
           </Row>
         </Col>
         </Row>
-        <hr/>
+        <hr/> */}
         <Row>
         <Col size="sm-12">
           
-            <h4 className="filter-title mt-3">¿Qué tipo de contribución puedes hacer?</h4>
+            <h4 className="filter-title mt-3">¿De qué forma quieres ayudar?</h4>
 
             <div className="filter-container">
           

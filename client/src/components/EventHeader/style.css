@@ -1,13 +1,68 @@
-.nombreEvento {
-    background: rgba(233, 233, 226, 0.358);
-    height: 150px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 150px;
-    font-size: 5rem;
-    color: rgb(68, 68, 68);
+.details-tab{
+    background-color: #ffffff;
+    border-radius: 0px 0px 3px 3px;
+}
+
+.event-title {
+    overflow: hidden;
+    padding-left: 3%;
+    padding-top: 20px;
     font-family: 'Montserrat', sans-serif;
-    text-shadow: 3px 2px 3px rgb(177, 177, 177);
+    font-size: 1.8em;
+    font-weight: bold;
+    color: rgb(68, 68, 68);
+}
+
+.event-timedate, .event-location {
+    overflow: hidden;
+    padding-left: 3%;
+    margin-top: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    color: rgb(68, 68, 68);
+}
+
+.event-location {
+    padding-bottom: 15px;
+}
+
+.event-info {
+    display: inline-block;
+    background-color: #ffffff;
+    margin: 30px 2% 30px 0%;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+}
+
+.poster-org {
+    display: inline-block;
+    width: 98%;
+    min-height: calc(100% - 60px);
+    background-color: #ffffff;
+    margin: 30px 0% 30px 2%;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+}
+
+.event-info p, .poster-org p {
+    margin-left: 0px;
+}
+
+.event-info .apoyo {
+    margin-bottom: 3px;
+}
+
+.poster-name {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.external-link {
+    text-align: center;
 }
 
 p {
@@ -33,9 +88,15 @@ a {
     margin-top: 1.5rem;
 }
 
-/* .fotoEvento {
-    background-image: URL("/images/logoPrueba.jpeg");
-    background-size: cover;
-    height: auto;
-    background-repeat: no-repeat;
-} */
+@media (max-width: 767px){
+
+    .event-info, .poster-org {
+        margin: 30px 0% 30px 0%;
+    }
+
+    .poster-org {
+        height: auto;
+        margin: 0px 0% 30px 0%;
+        width: 100%;
+    }
+}

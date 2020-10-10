@@ -123,7 +123,6 @@ class Detail extends Component {
           headerUrl={this.state.orgHeaderUrl}>
         </Header>
 
-
         <InfoONG 
           descripcion={this.state.orgDetails.descripcion}
           mision={this.state.orgDetails.mision}
