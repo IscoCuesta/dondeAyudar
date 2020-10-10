@@ -65,9 +65,11 @@ export function InfoONG (props) {
                                     <p>Website: <a href={props.paginaweb}>Link</a></p>
                                     
                                     <Link to = '/ONG/newPost'>
-                                        {/* <FormBtn className="centered-btn">
-                                            Create a new post
-                                        </FormBtn> */}
+                                        <div className="new-button">
+                                            <FormBtn>
+                                                Crear un nuevo evento
+                                            </FormBtn>
+                                        </div>
                                     </Link>
                                 </div>
                             </div>
