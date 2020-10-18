@@ -19,8 +19,10 @@ export function TextArea(props) {
 }
 
 export function FormBtn(props) {
+  let displayClass;
+  if (props.display == "block") displayClass = "btn-block"
   return (
-    <button {...props} style={{ margin: "10px auto", display: "flex"}} className="btn btn-outline-primary">
+    <button {...props} className={`btn btn-outline-primary ${displayClass}`}>
       {props.children}
     </button>
   );

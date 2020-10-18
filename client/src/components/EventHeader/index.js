@@ -65,7 +65,7 @@ export function PostInfo (props) {
                                     <img style={{margin:"auto", width:"50%"}} src={props.logo} alt={props.nombre}></img>
 
                                     <hr/>
-                                    <a href={"https://" + props.link}>
+                                    <a href={props.link}>
                                         <p className="external-link">Más información del evento</p>
                                     </a>
                                 </div>

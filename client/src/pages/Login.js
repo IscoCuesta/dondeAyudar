@@ -6,7 +6,7 @@ import { Input, FormBtn } from "../components/Form";
 import firebase from 'firebase'
 import Nav from "../components/Nav";
 
-
+import styles from "./Login.module.css"
 
 class Books extends Component {
   state = {
@@ -55,9 +55,12 @@ class Books extends Component {
         this.props.history.push("/Register");
       })
       .catch((err)=> this.setState({error: err.message, isError: true}))
+    } else {
+      this.setState({error: "Introduce un email y contraseña", isError: true})
     }
 
   };
+
   handleFormSubmitRegister = event => {
     event.preventDefault();
     if (this.state.email && this.state.password) {
@@ -77,20 +80,23 @@ class Books extends Component {
       }).catch(err => {
         this.setState({error: err.message, isError: true})
       });
-  }};
+    } else {
+      this.setState({error: "Elige un email y contraseña para iniciar", isError: true})
+    }
+  };
 
   render() {
     return (
       <div>
       <Nav/>
       <Container fluid>
-      
         <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              {/* <p>If you are a ONG Login</p> */}
-            </Jumbotron>
-            <div><h1>{this.state.error}</h1></div>
+          <Col size="md-6 12">
+            <Jumbotron/>
+          </Col>
+          <Col size="md-6 12">
+            <div className={styles.formContainer}>
+            <h5 className={styles.defaultFont}> Inicia sesión en Donde Ayudar </h5>
             <form>
               <Input
                 value={this.state.email}
@@ -103,21 +109,17 @@ class Books extends Component {
                 onChange={this.handleInputChange}
                 name="password"
                 type="password"
-                placeholder="Password"
+                placeholder="Contraseña"
               />
                 <FormBtn
-                  className="centered-btn"
+                  display="block"
                   onClick={this.handleFormSubmit}>
-                  Log in
+                  Iniciar sesión
                 </FormBtn>
-                <FormBtn
-                  className="centered-btn"
-                  onClick={this.handleFormSubmitRegister}>
-                  Register
-                </FormBtn>
-
+                <p className={styles.registerPrompt}> ¿Aún no tienes una cuenta para tu ONG? <span className={styles.registerButton} onClick={this.handleFormSubmitRegister}> Regístrala </span></p>
             </form>
-            
+            <p className={styles.errorDisplay}>{this.state.error ? "Error: " + this.state.error : ""}</p>
+            </div>
           </Col>
         </Row>
       </Container>

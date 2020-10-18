@@ -86,7 +86,7 @@ export function Events (props) {
         <div className="row events-row">
             <div className="col-12">
                 <div className="events-container">
-                    <h4 className="events-title"> Nuestros próximos eventos </h4>
+                    <h4 className="events-title"> Próximos eventos </h4>
                     <div className="row">
                         {props.children}
                     </div>
