@@ -96,29 +96,29 @@ class Books extends Component {
           </Col>
           <Col size="md-6 12">
             <div className={styles.formContainer}>
-            <h5 className={styles.defaultFont}> Inicia sesión en Donde Ayudar </h5>
-            <form>
-              <Input
-                value={this.state.email}
-                onChange={this.handleInputChange}
-                name="email"
-                placeholder="Email"
-              />
-              <Input
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                type="password"
-                placeholder="Contraseña"
-              />
-                <FormBtn
-                  display="block"
-                  onClick={this.handleFormSubmit}>
-                  Iniciar sesión
-                </FormBtn>
-                <p className={styles.registerPrompt}> ¿Aún no tienes una cuenta para tu ONG? <span className={styles.registerButton} onClick={this.handleFormSubmitRegister}> Regístrala </span></p>
-            </form>
-            <p className={styles.errorDisplay}>{this.state.error ? "Error: " + this.state.error : ""}</p>
+              <h5 className={styles.defaultFont}> Inicia sesión en Donde Ayudar </h5>
+              <form>
+                <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name="email"
+                  placeholder="Email"
+                />
+                <Input
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  name="password"
+                  type="password"
+                  placeholder="Contraseña"
+                />
+                  <FormBtn
+                    display="block"
+                    onClick={this.handleFormSubmit}>
+                    Iniciar sesión
+                  </FormBtn>
+                  <p className={styles.registerPrompt}> ¿Aún no tienes una cuenta para tu ONG? <span className={styles.registerButton} onClick={this.handleFormSubmitRegister}> Regístrala </span></p>
+              </form>
+              <p className={styles.errorDisplay}>{this.state.error ? "Error: " + this.state.error : ""}</p>
             </div>
           </Col>
         </Row>

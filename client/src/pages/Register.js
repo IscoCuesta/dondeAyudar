@@ -25,7 +25,7 @@ class Register extends Component {
     necesidades: [],
     selectedLogo: null,
     selectedHeader: null,
-    firebaseUID: "",
+    firebaseUid: "",
     orgId: null,
     error: ""
   };
@@ -43,7 +43,7 @@ class Register extends Component {
     });
 
     this.setState({
-      firebaseUID: localStorage.getItem("DAU")
+      firebaseUid: localStorage.getItem("DAU")
     });
   }
 
@@ -58,7 +58,7 @@ class Register extends Component {
     let orgID = "";
 
     API.getOrgUid({
-      userId: this.state.firebaseUID
+      userId: this.state.firebaseUid
     }).then((res) =>{
       console.log(res)
       orgID = res.data._id;
@@ -141,18 +141,11 @@ class Register extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    const fields = ["nombre", "descripcion", "mision", "vision", "email", "telefono", "paginaweb", "direccion", "objetivo", "necesidades"];
-    let allValid = true;
+    const { firebaseUid, orgId, error, selectedHeader, selectedLogo, ...fields } = this.state;
 
-    for(var i = 0; i < fields.length; i++){
-      let valid = this.validate(fields[i], this.state[fields[i]]);
-      if (!valid){
-        allValid = false;
-        console.log(fields[i]);
-      }
-    }
+    let allValid = Object.entries(fields).every(field => this.validate(...field))
 
-    if (allValid && this.state.selectedHeader != null && this.state.selectedLogo != null){
+    if (allValid && selectedHeader != null && selectedLogo != null){
       API.saveOrg({
         nombre: this.state.nombre,
         descripcion: this.state.descripcion,
@@ -163,7 +156,7 @@ class Register extends Component {
         telefono: this.state.telefono,
         paginaweb: this.state.paginaweb,
         direccion: this.state.direccion,
-        userId: this.state.firebaseUID,
+        userId: this.state.firebaseUid,
         necesidades: this.state.necesidades.map(x => x.value)
       })
         .then(res => {
@@ -175,10 +168,6 @@ class Register extends Component {
           });
         }).then(setTimeout(() => { this.props.history.push("/") }, 3000))
         .catch(err => console.log(err));
-    } else {
-     this.setState({
-      error: "Alguno de los campos falló la validación"
-     })
     }
   };
 
@@ -269,10 +258,11 @@ class Register extends Component {
                   </Col>
                   <Col size="md-6">
                     <Select
+                      className={styles.needsSelect}
                       isMulti
                       name= "necesidades"
                       value={this.state.necesidades}
-                      placeholder="Selecciona el tipo de ayuda que estás buscando"
+                      placeholder="Tipo de ayuda que estás buscando"
                       onChange={this.handleSelectChange}
                       options={[
                           {value: "dinero", label: "Apoyo económico"}, 
@@ -360,11 +350,8 @@ class Register extends Component {
                 </FormBtn>
 
                 <div>
-                  <h5>{this.state.error}</h5>
+                  <p className={styles.errorDisplay}>{this.state.error}</p>
                 </div>
-
-                <Link to="/ONG">
-                </Link>
               </div>
           </Col>
         </Row>

@@ -3,19 +3,14 @@ import axios from 'axios';
 import firebase from 'firebase';
 import '@firebase/storage';
 
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import Nav from "../components/Nav";
 import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import Select from 'react-select';
-import { runInThisContext } from "vm";
 
 class Event extends Component {
   state = {
@@ -182,7 +177,6 @@ class Event extends Component {
       <Nav/>
       <Container fluid>
         <Row>
-          <Col size="md-2"></Col>
           <Col size="md-8">
             <h3 className="mb-3 mt-3">Crea un nuevo post</h3>
 
@@ -284,12 +278,13 @@ class Event extends Component {
               </Col>
               <Col size="md-2">
 
-                <h6>{this.state.error}</h6>
-                  <FormBtn className="centered-btn mt-5"onClick={this.validate}>
+                
+                  <FormBtn display="block" className="centered-btn mt-5" onClick={this.validate}>
                     Crear Post
                   </FormBtn>
 
               </Col>
+              <h6>{this.state.error}</h6>
             </Row>
             </form>
            

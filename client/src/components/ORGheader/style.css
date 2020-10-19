@@ -29,21 +29,43 @@
 }
 
 .name-tab{
-    height: 80px;
+    min-height: 80px;
     background-color: #ffffff;
     border-radius: 0px 0px 3px 3px;
+    display: flex;
 }
 
 .nombre {
-    overflow: hidden;
-    height: 75px;
+    min-height: 75px;
+    width: 85%;
     padding-left: 20%;
-    vertical-align: middle;
-    line-height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.nombre-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.8em;
     font-weight: bold;
     color: rgb(68, 68, 68);
+    overflow-wrap: break-word; 
+}
+
+.dashboard {
+    width: 15%;
+    padding-right: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dashboard-icon {
+    height: 30px;
+    margin: 0px 5px;
+}
+
+.dashboard-btn {    
+    margin: 0px 5px;
 }
 
 .logo-container {
@@ -67,6 +89,7 @@
     display: inline-block;
     background-color: #ffffff;
     margin: 30px 2% 30px 0%;
+    min-height: calc(100% - 60px);
     padding: 40px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 3px;
@@ -109,13 +132,34 @@ h3 {
         height: 150px;
         width: 150px;
         left: 50%;
-        top: 25%;
+        top: 20%;
     }
 
-    .nombre{
-        font-size: 1.6em;
-        text-align: center;
+    .name-tab {
+        display: inline-block;
+        width: 100%
+    }
+
+    .nombre {
         padding-left: 0px;
+        padding-top: 25px;
+        width: 100%;
+        justify-content: center;
+        align-items: initial;
+    }
+
+    .nombre-text{
+        font-size: 1.6em;
+        text-align: center; 
+    }
+
+    .dashboard {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 0px;
     }
 
     .foto {
@@ -132,6 +176,7 @@ h3 {
         margin: 0px 0% 30px 0%;
         width: 100%;
     }
+
 }
 
 @media (max-width: 576px){

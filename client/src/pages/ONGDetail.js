@@ -17,7 +17,7 @@ class Detail extends Component {
     orgHeaderUrl: null,
     orgPosts: [],
     isOwner: false,
-    logged: false
+    isLoggedIn: false
   };
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class Detail extends Component {
             if (user.uid === this.state.orgDetails.userId){
               this.setState({
                 isOwner: true,
-                logged: true
+                isLoggedIn: true
               }, () => {
                 console.log(this.state)
               })
@@ -52,7 +52,7 @@ class Detail extends Component {
             console.log(this.state)
             this.setState({
               isOwner: false,
-              logged: false
+              isLoggedIn: false
             }, () => {
               console.log(this.state)
             })
@@ -120,7 +120,10 @@ class Detail extends Component {
         <Header 
           nombre={this.state.orgDetails.nombre}
           logoUrl={this.state.orgLogoUrl}
-          headerUrl={this.state.orgHeaderUrl}>
+          headerUrl={this.state.orgHeaderUrl}
+          isOwner={this.state.isOwner}
+          isLoggedIn={this.state.isLoggedIn}
+          desktop={window.innerWidth > 767}>
         </Header>
 
         <InfoONG 
@@ -129,7 +132,6 @@ class Detail extends Component {
           vision={this.state.orgDetails.vision}
           objetivo={this.state.orgDetails.objetivo}
           necesidades={this.state.orgDetails.necesidades}
-          isOwner={this.state.isOwner}
           direccion={this.state.orgDetails.direccion}
           telefono={this.state.orgDetails.telefono}
           email={this.state.orgDetails.email}
