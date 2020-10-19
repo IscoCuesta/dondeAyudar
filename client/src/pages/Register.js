@@ -166,7 +166,7 @@ class Register extends Component {
             this.uploadLogoHandler();
             this.uploadHeaderHandler();
           });
-        }).then(setTimeout(() => { this.props.history.push("/") }, 3000))
+        }).then(setTimeout(() => { this.props.history.push(`/ONG/${this.state.orgId}`) }, 3000))
         .catch(err => console.log(err));
     }
   };
