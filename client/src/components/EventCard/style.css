@@ -1,6 +1,6 @@
 .card {
   border-radius: 2px;
-  min-height: 50vh;
+  min-height: 120px;
   margin: 1rem;
   position: relative;
   width: 25%;
@@ -8,10 +8,16 @@
   text-align: left;
   opacity: .9;
   font-size: 2rem;
+  position: relative;
 }
 
 .card:hover {
   box-shadow: 3px 3px 6px #999;
+}
+
+.eventcard-title {
+  overflow: hidden;
+  white-space: nowrap
 }
 
 .img-container {
@@ -34,6 +40,18 @@
   padding-right: 1.5rem !important;
   font-size: 1rem;  
   font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  display: none;
+  cursor: pointer;
+}
+
+.card:hover > .delete-btn {
+  display: block;
 }
 
 @media (max-width: 992px){

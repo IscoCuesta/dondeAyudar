@@ -7,7 +7,7 @@ import add from "../../images/plus-circle.svg";
 import edit from "../../images/edit.svg";
 
 export function Header(props) {
-    const editable = props.isOwner && props.isLoggedIn;
+    const editable = props.editable;
     const buttons = props.desktop ? 
         <div className="dashboard">
             <Link to = '/ONG/newPost'>

@@ -121,8 +121,7 @@ class Detail extends Component {
           nombre={this.state.orgDetails.nombre}
           logoUrl={this.state.orgLogoUrl}
           headerUrl={this.state.orgHeaderUrl}
-          isOwner={this.state.isOwner}
-          isLoggedIn={this.state.isLoggedIn}
+          editable={this.state.isLoggedIn && this.state.isOwner}
           desktop={window.innerWidth > 767}>
         </Header>
 
@@ -149,6 +148,7 @@ class Detail extends Component {
                 lugar={post.lugar}
                 imagen={post.imagen}
                 organization={post.organization}
+                editable={this.state.isLoggedIn && this.state.isOwner}
                 page="ONG"
               >
             </EventCard>
