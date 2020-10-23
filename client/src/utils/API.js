@@ -17,6 +17,10 @@ export default {
     return axios.post("/api/orgs", orgData);
   },
 
+  updateOrg: function(id, orgData){
+    return axios.put("/api/orgs/" + id, orgData);
+  },
+
   savePost: function(postData) {
     return axios.post("/api/posts", postData)
   },

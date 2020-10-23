@@ -119,6 +119,7 @@ class Detail extends Component {
       <Nav/>
       <Container fluid>
         <Header 
+          orgId={this.state.orgId}
           nombre={this.state.orgDetails.nombre}
           logoUrl={this.state.orgLogoUrl}
           headerUrl={this.state.orgHeaderUrl}

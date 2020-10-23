@@ -10,14 +10,14 @@ export function Header(props) {
     const editable = props.editable;
     const buttons = props.desktop ? 
         <div className="dashboard">
-            <Link to = '/ONG/newPost'>
+            <Link to = '/ong/newpost'>
                 <img
                   alt="Crear nuevo post"
                   className="dashboard-icon"
                   src={add}
                 />
             </Link>
-            <Link to = '#'>
+            <Link to = {`/ong/edit/${props.orgId}`}>
                 <img
                   alt="Editar perfil"
                   className="dashboard-icon"
@@ -26,7 +26,7 @@ export function Header(props) {
             </Link>
         </div> :
         <div className="dashboard">
-            <Link to = '/ONG/newPost'>
+            <Link to = '/ong/newPost'>
                 <div className="dashboard-btn">
                     <FormBtn>
                         Crear post
@@ -34,7 +34,7 @@ export function Header(props) {
                 </div>
                 
             </Link>
-            <Link to = '#'>
+            <Link to = {`/ong/edit/${props.orgId}`}>
                 <div className="dashboard-btn">
                     <FormBtn>
                         Editar perfil

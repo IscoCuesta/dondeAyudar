@@ -6,10 +6,9 @@ import Register from "./pages/Register";
 import Search from "./pages/Search";
 import PostDetail from "./pages/PostDetail";
 import ONGDetail from "./pages/ONGDetail";
-import ONG from "./pages/ONG";
 import ONGPost from "./pages/ONGPost";
+import ONGEdit from "./pages/ONGEdit";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
 import './App.css';
 
 
@@ -20,10 +19,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/sogin" component={Login} />
-          <Route exact path="/segister" component={Register} />
-          <Route exact path="/ong" component={ONG} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/ong/newpost" component={ONGPost} />
+          <Route exact path="/ong/edit/:id" component={ONGEdit} />
           <Route exact path="/ong/:id" component={ONGDetail} />
           <Route exact path="/posts/:id" component={PostDetail} />
           <Route component={NoMatch} />
