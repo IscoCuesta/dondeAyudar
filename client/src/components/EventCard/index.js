@@ -2,24 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
+import API from "../../utils/API";
 import trash from "../../images/trash.svg";
 
 function EventCard(props) {
+
+  const deleteEvent = (id) => {
+    API.deletePost(id)
+    .then(res => props.getPosts())
+  }
+
   const editable = props.editable;
   const deleteButton = editable ?
-    <div className="delete-btn">
+    <div className="delete-btn" onClick={() => deleteEvent(props.id)}>
       <img
         alt="delete post"
-        className="dashboard-icon"
+        className="dashboard-icon trash-icon"
         src={trash}
       />
     </div> : <div></div>
   console.log(props.fecha)
-  const nombreFundacion = props.organization ? <span>{props.organization.nombre}</span> : "NA";
-  const fundacionInfo = props.page === "search"? 
-  <React.Fragment>
-    {nombreFundacion}
- </React.Fragment> : ""
+  // const nombreFundacion = props.organization ? <span>{props.organization.nombre}</span> : "NA";
+  const fundacionInfo = props.page === "search" ? <span>{props.organization.nombre}</span> : ""
           
   return (
     <div className="card">

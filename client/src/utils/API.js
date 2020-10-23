@@ -29,6 +29,10 @@ export default {
     return axios.post("/api/posts/" + id, data);
   },
 
+  deletePost: function(id) {
+    return axios.delete("/api/posts/" + id);
+  },
+
   getPosts: function(filter){
     return axios.post("/api/posts/filterPosts", filter);
   },

@@ -103,6 +103,7 @@ class Detail extends Component {
       })
     })  
   }
+
   logOut = () => {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
@@ -149,6 +150,7 @@ class Detail extends Component {
                 imagen={post.imagen}
                 organization={post.organization}
                 editable={this.state.isLoggedIn && this.state.isOwner}
+                getPosts={this.retrievePosts}
                 page="ONG"
               >
             </EventCard>

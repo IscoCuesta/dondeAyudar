@@ -19,13 +19,13 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/Search" component={Search} />
-          <Route exact path="/Login" component={Login} />
-          <Route exact path="/Register" component={Register} />
-          <Route exact path="/ONG" component={ONG} />
-          <Route exact path="/ONG/newPost" component={ONGPost} />
-          <Route exact path="/ONG/:id" component={ONGDetail} />
-          <Route exact path="/Posts/:id" component={PostDetail} />
+          <Route exact path="/search" component={Search} />
+          <Route exact path="/sogin" component={Login} />
+          <Route exact path="/segister" component={Register} />
+          <Route exact path="/ong" component={ONG} />
+          <Route exact path="/ong/newpost" component={ONGPost} />
+          <Route exact path="/ong/:id" component={ONGDetail} />
+          <Route exact path="/posts/:id" component={PostDetail} />
           <Route component={NoMatch} />
         </Switch>
       </div>
