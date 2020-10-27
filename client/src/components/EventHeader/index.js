@@ -59,7 +59,7 @@ export function PostInfo (props) {
                             <div className="poster-org">
                                 <div className="content text-center">
                                     <h5>Creado por</h5>
-                                    <Link to={"../ONG/" + props.id}>
+                                    <Link to={"../ong/" + props.id}>
                                         <p className="poster-name"> {props.nombre} </p>
                                     </Link>
                                     <img style={{margin:"auto", width:"50%"}} src={props.logo} alt={props.nombre}></img>

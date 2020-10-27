@@ -7,6 +7,7 @@ import { Input, TextArea, FormBtn, Separator } from "../components/Form";
 import Select from 'react-select';
 import firebase from 'firebase'
 import Nav from "../components/Nav";
+import NotFound from "../components/NotFound";
 
 import styles from "./Register.module.css"
 
@@ -322,125 +323,136 @@ class Edit extends Component {
   };
 
   render() {
-    return (
-      <div>
-      <Nav/>
-      <Container fluid>
-        <Row>
-          <Col size="12">
-            <div className={styles.formContainer}>
-              <h3 className="mb-3 mt-3">Actualiza tu información</h3>
-                <Input
-                value={this.state.nombre}
-                onChange={this.handleInputChange}
-                name="nombre"
-                placeholder="Nombre de tu organización/fundación"
-                />
-                <Row>
-                  <Col size="md-6">
-                    <Select
-                      isMulti
-                      name= "objetivo"
-                      value={this.state.objetivo}
-                      placeholder="¿Cuál es el objeto de tu organización?"
-                      onChange={this.handleSelectChange}
-                      options={this.state.objectOptions}
-                    />
-                  </Col>
-                  <Col size="md-6">
-                    <Select
-                      className={styles.needsSelect}
-                      isMulti
-                      name= "necesidades"
-                      value={this.state.necesidades}
-                      placeholder="Tipo de ayuda que estás buscando"
-                      onChange={this.handleSelectChange}
-                      options={this.state.needsOptions}
-                    />
-                  </Col>
-                </Row>
-                
-                <Separator></Separator>
-                <TextArea
-                value={this.state.descripcion}
-                onChange={this.handleInputChange}
-                name="descripcion"
-                placeholder="Proporciona una descripción básica de tu organización"
-                />
-                <Row>
-                  <Col size="md-6">
-                    <TextArea
-                    value={this.state.mision}
-                    onChange={this.handleInputChange}
-                    name="mision"
-                    placeholder="Misión"
-                    />
-                  </Col>
-                  <Col size="md-6">
-                    <TextArea
-                    value={this.state.vision}
-                    onChange={this.handleInputChange}
-                    name="vision"
-                    placeholder="Visión"
-                    />
-                  </Col>
-                </Row>
-                <Input
-                value={this.state.direccion}
-                onChange={this.handleInputChange}
-                name="direccion"
-                placeholder="Dirección de la fundación"
-                />
-                <Row>
-                  <Col size="md-4">
-                    <Input
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    name="email"
-                    placeholder="Introduce tu email de contacto"
-                    />
-                  </Col>
-                  <Col size="md-4">
-                    <Input
-                    value={this.state.telefono}
-                    onChange={this.handleInputChange}
-                    name="telefono"
-                    placeholder="Introduce tu teléfono"
-                    />
-                  </Col>
-                  <Col size="md-4">
-                    <Input
-                    value={this.state.paginaweb}
-                    onChange={this.handleInputChange}
-                    name="paginaweb"
-                    placeholder="Introduce el URL de tu website"
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col size="md-6">
-                  <h6 className="ml-2 mb-3 mt-1">Sube el logo de tu organización</h6>
-                  <Input id="input-logo" type="file" onChange={this.fileChangedHandler}></Input>
-                  </Col>
-                  <Col size="md-6">
-                  <h6 className="ml-2 mb-3 mt-1">Sube una imagen de portada</h6>
-                  <Input id="input-header" type="file" onChange={this.fileChangedHandler}></Input>
-                  </Col>
-                </Row>
+    if (this.state.isLoggedIn && this.state.isOwner){
+      return (
+        <div>
+        <Nav/>
+        <Container fluid>
+          <Row>
+            <Col size="12">
+              <div className={styles.formContainer}>
+                <h3 className="mb-3 mt-3">Actualiza tu información</h3>
+                  <Input
+                  value={this.state.nombre}
+                  onChange={this.handleInputChange}
+                  name="nombre"
+                  placeholder="Nombre de tu organización/fundación"
+                  />
+                  <Row>
+                    <Col size="md-6">
+                      <Select
+                        isMulti
+                        name= "objetivo"
+                        value={this.state.objetivo}
+                        placeholder="¿Cuál es el objeto de tu organización?"
+                        onChange={this.handleSelectChange}
+                        options={this.state.objectOptions}
+                      />
+                    </Col>
+                    <Col size="md-6">
+                      <Select
+                        className={styles.needsSelect}
+                        isMulti
+                        name= "necesidades"
+                        value={this.state.necesidades}
+                        placeholder="Tipo de ayuda que estás buscando"
+                        onChange={this.handleSelectChange}
+                        options={this.state.needsOptions}
+                      />
+                    </Col>
+                  </Row>
+                  
+                  <Separator></Separator>
+                  <TextArea
+                  value={this.state.descripcion}
+                  onChange={this.handleInputChange}
+                  name="descripcion"
+                  placeholder="Proporciona una descripción básica de tu organización"
+                  />
+                  <Row>
+                    <Col size="md-6">
+                      <TextArea
+                      value={this.state.mision}
+                      onChange={this.handleInputChange}
+                      name="mision"
+                      placeholder="Misión"
+                      />
+                    </Col>
+                    <Col size="md-6">
+                      <TextArea
+                      value={this.state.vision}
+                      onChange={this.handleInputChange}
+                      name="vision"
+                      placeholder="Visión"
+                      />
+                    </Col>
+                  </Row>
+                  <Input
+                  value={this.state.direccion}
+                  onChange={this.handleInputChange}
+                  name="direccion"
+                  placeholder="Dirección de la fundación"
+                  />
+                  <Row>
+                    <Col size="md-4">
+                      <Input
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                      name="email"
+                      placeholder="Introduce tu email de contacto"
+                      />
+                    </Col>
+                    <Col size="md-4">
+                      <Input
+                      value={this.state.telefono}
+                      onChange={this.handleInputChange}
+                      name="telefono"
+                      placeholder="Introduce tu teléfono"
+                      />
+                    </Col>
+                    <Col size="md-4">
+                      <Input
+                      value={this.state.paginaweb}
+                      onChange={this.handleInputChange}
+                      name="paginaweb"
+                      placeholder="Introduce el URL de tu website"
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col size="md-6">
+                    <h6 className="ml-2 mb-3 mt-1">Sube el logo de tu organización</h6>
+                    <Input id="input-logo" type="file" onChange={this.fileChangedHandler}></Input>
+                    </Col>
+                    <Col size="md-6">
+                    <h6 className="ml-2 mb-3 mt-1">Sube una imagen de portada</h6>
+                    <Input id="input-header" type="file" onChange={this.fileChangedHandler}></Input>
+                    </Col>
+                  </Row>
 
-                <FormBtn display="block" className="centered-btn" onClick={this.handleFormSubmit}>
-                  Actualizar información
-                </FormBtn>
+                  <FormBtn display="block" className="centered-btn" onClick={this.handleFormSubmit}>
+                    Actualizar información
+                  </FormBtn>
 
-                <div>
-                  <p className={styles.errorDisplay}>{this.state.error}</p>
+                  <div>
+                    <p className={styles.errorDisplay}>{this.state.error}</p>
+                  </div>
                 </div>
-              </div>
-          </Col>
-        </Row>
-      </Container>
-      </div>
-    );
+            </Col>
+          </Row>
+        </Container>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Nav/>
+          <Container fluid>
+            <NotFound/>
+          </Container>
+        </div>
+      );
+    }
   }
 }
 

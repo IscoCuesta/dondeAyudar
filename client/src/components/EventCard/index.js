@@ -36,7 +36,7 @@ function EventCard(props) {
             <p className="resetmargin"> {new Date(props.fecha).toString().slice(0, 16)}</p>
           <p className="resetmargin">{fundacionInfo}</p>
           <hr/>
-          <Link to={"/Posts/" + props.id}>
+          <Link to={"/posts/" + props.id}>
                 <p className="mb-3">Ver detalles</p>
           </Link>
       </div>

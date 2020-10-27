@@ -11,7 +11,7 @@ const nav = {
 };
 
 
-class Books extends Component {
+class Nav extends Component {
   state = {
     orgId: null,
     orgName: "",
@@ -86,11 +86,11 @@ class Books extends Component {
   render () {
   return (
     <nav className="navbar">
-      <a className="navbar-brand" href="/Search">
+      <a className="navbar-brand" href="/search">
         <img src={logoIcon}  width="50px" height="50px"></img>
       </a>
       { this.state.logged ?
-        <a className="org-name" href={this.state.Org !== {} ? "/ONG/"+this.state.Org._id : "/ONG"}>
+        <a className="org-name" href={this.state.Org !== {} ? "/ong/"+this.state.Org._id : "/ong"}>
         {this.state.Org.nombre? this.state.Org.nombre : "DóndeAyudar" }
         </a>
       :
@@ -107,4 +107,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Nav;

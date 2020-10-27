@@ -29,6 +29,7 @@
 .event-info {
     display: inline-block;
     background-color: #ffffff;
+    min-height: calc(100% - 60px);
     margin: 30px 2% 30px 0%;
     padding: 40px;
     font-family: Arial, Helvetica, sans-serif;
