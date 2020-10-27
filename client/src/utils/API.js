@@ -17,6 +17,10 @@ export default {
     return axios.post("/api/orgs", orgData);
   },
 
+  updateOrg: function(id, orgData){
+    return axios.put("/api/orgs/" + id, orgData);
+  },
+
   savePost: function(postData) {
     return axios.post("/api/posts", postData)
   },
@@ -27,6 +31,10 @@ export default {
 
   updatePost: function(id, data){
     return axios.post("/api/posts/" + id, data);
+  },
+
+  deletePost: function(id) {
+    return axios.delete("/api/posts/" + id);
   },
 
   getPosts: function(filter){

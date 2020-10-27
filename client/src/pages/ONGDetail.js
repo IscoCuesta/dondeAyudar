@@ -17,7 +17,7 @@ class Detail extends Component {
     orgHeaderUrl: null,
     orgPosts: [],
     isOwner: false,
-    logged: false
+    isLoggedIn: false
   };
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class Detail extends Component {
             if (user.uid === this.state.orgDetails.userId){
               this.setState({
                 isOwner: true,
-                logged: true
+                isLoggedIn: true
               }, () => {
                 console.log(this.state)
               })
@@ -52,7 +52,7 @@ class Detail extends Component {
             console.log(this.state)
             this.setState({
               isOwner: false,
-              logged: false
+              isLoggedIn: false
             }, () => {
               console.log(this.state)
             })
@@ -103,6 +103,7 @@ class Detail extends Component {
       })
     })  
   }
+
   logOut = () => {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
@@ -118,9 +119,12 @@ class Detail extends Component {
       <Nav/>
       <Container fluid>
         <Header 
+          orgId={this.state.orgId}
           nombre={this.state.orgDetails.nombre}
           logoUrl={this.state.orgLogoUrl}
-          headerUrl={this.state.orgHeaderUrl}>
+          headerUrl={this.state.orgHeaderUrl}
+          editable={this.state.isLoggedIn && this.state.isOwner}
+          desktop={window.innerWidth > 767}>
         </Header>
 
         <InfoONG 
@@ -129,7 +133,6 @@ class Detail extends Component {
           vision={this.state.orgDetails.vision}
           objetivo={this.state.orgDetails.objetivo}
           necesidades={this.state.orgDetails.necesidades}
-          isOwner={this.state.isOwner}
           direccion={this.state.orgDetails.direccion}
           telefono={this.state.orgDetails.telefono}
           email={this.state.orgDetails.email}
@@ -147,6 +150,8 @@ class Detail extends Component {
                 lugar={post.lugar}
                 imagen={post.imagen}
                 organization={post.organization}
+                editable={this.state.isLoggedIn && this.state.isOwner}
+                getPosts={this.retrievePosts}
                 page="ONG"
               >
             </EventCard>

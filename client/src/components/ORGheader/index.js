@@ -1,9 +1,48 @@
 import React from "react";
 import "./style.css";
-import { FormBtn } from "../Form"
 import { Link } from "react-router-dom"
 
+import { FormBtn } from "../Form";
+import add from "../../images/plus-circle.svg";
+import edit from "../../images/edit.svg";
+
 export function Header(props) {
+    const editable = props.editable;
+    const buttons = props.desktop ? 
+        <div className="dashboard">
+            <Link to = '/ong/newpost'>
+                <img
+                  alt="Crear nuevo post"
+                  className="dashboard-icon"
+                  src={add}
+                />
+            </Link>
+            <Link to = {`/ong/edit/${props.orgId}`}>
+                <img
+                  alt="Editar perfil"
+                  className="dashboard-icon"
+                  src={edit}
+                />
+            </Link>
+        </div> :
+        <div className="dashboard">
+            <Link to = '/ong/newPost'>
+                <div className="dashboard-btn">
+                    <FormBtn>
+                        Crear post
+                    </FormBtn>
+                </div>
+                
+            </Link>
+            <Link to = {`/ong/edit/${props.orgId}`}>
+                <div className="dashboard-btn">
+                    <FormBtn>
+                        Editar perfil
+                    </FormBtn>
+                </div>
+            </Link>  
+        </div>;
+        const dashboard = editable ? buttons : <div></div>;
     return (
         <div className="row header-row">
             <div className="col-12">
@@ -14,8 +53,9 @@ export function Header(props) {
                     </div>
                     <div className="name-tab">
                         <div className="nombre">
-                            {props.nombre}
+                            <div className="nombre-text"> {props.nombre} </div>
                         </div>
+                        {dashboard}
                     </div>
                     <div className="logo-container">
                         <img className="logo" src={props.logoUrl} alt={props.nombre}></img>
@@ -63,14 +103,6 @@ export function InfoONG (props) {
                                     <p>Teléfono: {props.telefono}</p>
                                     <p>Email: {props.email}</p>
                                     <p>Website: <a href={props.paginaweb}>Link</a></p>
-                                    
-                                    <Link to = '/ONG/newPost'>
-                                        <div className="new-button">
-                                            <FormBtn>
-                                                Crear un nuevo evento
-                                            </FormBtn>
-                                        </div>
-                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +118,7 @@ export function Events (props) {
         <div className="row events-row">
             <div className="col-12">
                 <div className="events-container">
-                    <h4 className="events-title"> Nuestros próximos eventos </h4>
+                    <h4 className="events-title"> {props.children.length > 0 ? "Próximos eventos" : "Aún no se han creado eventos"} </h4>
                     <div className="row">
                         {props.children}
                     </div>
